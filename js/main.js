@@ -116,7 +116,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         let movie = {
             'title': currMovie['title'],
             'bechdel': currMovie['binary'] === "PASS",
-            'year': currMovie['year'],
+            'year': +currMovie['year'],
             'budget': +currMovie['budget'],
             'budget2013': +currMovie['budget_2013$'],
             'domesticGross': +currMovie['domgross'],
@@ -139,4 +139,10 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
     }
 
     console.log(alltimeData);
+
+    createVis();
+}
+
+function createVis() {
+    areachart = new StackedAreaChart("time-area-chart", alltimeData);
 }

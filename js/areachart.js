@@ -37,27 +37,6 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("width", vis.width)
         .attr("height", vis.height);
 
-    // Scales and axes
-    vis.x = d3.scaleTime()
-        .range([0, vis.width])
-        .domain(d3.extent(vis.data, function(d) { return d.year; }));
-
-    vis.y = d3.scaleLinear()
-        .range([vis.height, 0]);
-
-    vis.xAxis = d3.axisBottom()
-        .scale(vis.x);
-
-    vis.yAxis = d3.axisLeft()
-        .scale(vis.y);
-
-    vis.svg.append("g")
-        .attr("class", "x-axis axis")
-        .attr("transform", "translate(0," + vis.height + ")");
-
-    vis.svg.append("g")
-        .attr("class", "y-axis axis");
-
     vis.nestedBechdelCount = d3.nest()
         .key(function(d) { return d.year; })
         .rollup(function(v) { return {
@@ -78,15 +57,12 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.bechdelData = vis.bechdelData.reverse();
 
-    console.log(vis.bechdelData);
-
 
     var dataCategories = ["pass", "fail"];
     var stack = d3.stack()
         .keys(dataCategories);
 
     vis.stackedData = stack(vis.bechdelData);
-    console.log(vis.stackedData);
 
     // Initialize stacked area layout
     vis.area = d3.area()
@@ -94,6 +70,28 @@ StackedAreaChart.prototype.initVis = function() {
         .x(function(d) { return vis.x(d.data.year); })
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
+
+    // Scales and axes
+    vis.x = d3.scaleLinear()
+        .range([0, vis.width])
+        .domain(d3.extent(vis.bechdelData, function(d) { return d.year; }));
+
+    vis.y = d3.scaleLinear()
+        .range([vis.height, 0]);
+
+    vis.xAxis = d3.axisBottom()
+        .scale(vis.x)
+        .tickFormat(d3.format("d"));
+
+    vis.yAxis = d3.axisLeft()
+        .scale(vis.y);
+
+    vis.svg.append("g")
+        .attr("class", "x-axis axis")
+        .attr("transform", "translate(0," + vis.height + ")");
+
+    vis.svg.append("g")
+        .attr("class", "y-axis axis");
 
     vis.wrangleData();
 

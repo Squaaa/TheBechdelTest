@@ -9,18 +9,15 @@ StackedAreaChart = function(_parentElement, _data){
     this.data = _data;
     this.displayData = []; // see data wrangling
 
-    // DEBUG RAW DATA
-    console.log(this.data);
-
     this.initVis();
 }
 
 StackedAreaChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = {top: 30, right: 30, bottom: 30, left: 30};
+    vis.margin = {top: 30, right: 50, bottom: 30, left: 140};
 
-    vis.width = 900 - vis.margin.left - vis.margin.right,
+    vis.width = 1000 - vis.margin.left - vis.margin.right,
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
@@ -71,6 +68,11 @@ StackedAreaChart.prototype.initVis = function() {
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
 
+    // Brush component
+    vis.brush = d3.brushX()
+        .extent([[0, 0], [vis.width, vis.height]])
+        .on("brush", brushed);
+
     // Scales and axes
     vis.x = d3.scaleLinear()
         .range([0, vis.width])
@@ -92,6 +94,52 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.svg.append("g")
         .attr("class", "y-axis axis");
+
+    // Y-axis label
+    vis.svg.append("text")
+        .attr("class", "y-axis")
+        .attr("transform", "rotate(-90)")
+        .attr("y", -35)
+        .attr("x", 0 - (vis.height / 2))
+        .style("text-anchor", "middle")
+        .text("Number of movies");
+
+    // Legend color blocks
+    var legend = vis.svg.selectAll("rect.legend")
+        .data(dataCategories);
+
+    legend.enter().append("rect")
+        .attr("class", "legend")
+        .attr("width", 15)
+        .attr("height", 15)
+        .merge(legend)
+        .transition()
+        .duration(800)
+        .attr("x", -100)
+        .attr("y", function(d, i) {return i * 25})
+        .attr("fill", function(d){
+            if (d === "pass") {
+                return "#377cd9";
+            }
+            return "#d32727";
+        })
+
+    legend.exit().remove();
+
+    // Legend labels
+    var labels = vis.svg.selectAll("text.legend")
+        .data(dataCategories);
+
+    labels.enter().append("text")
+        .attr("class", "legend")
+        .merge(labels)
+        .transition()
+        .duration(800)
+        .attr("x", -80)
+        .attr("y", function(d, i) {return i * 25 + 10})
+        .text(function(d) {return d});
+
+    labels.exit().remove();
 
     vis.wrangleData();
 
@@ -130,16 +178,20 @@ StackedAreaChart.prototype.updateVis = function(){
         .merge(categories)
         .style("fill", function(d,i) {
             if (d.key == "pass") {
-                return "blue";
+                return "#377cd9";
             }
-            return "red";
+            return "#d32727";
         })
         .attr("d", function(d) {
             return vis.area(d);
         });
 
-
     categories.exit().remove();
+
+    vis.brushGroup = vis.svg.append("g")
+        .attr("class", "brush")
+        .attr("clip-path", "url(#clip)")
+        .call(vis.brush);
 
 
     // Call axis functions with the new domain

@@ -1,8 +1,16 @@
 /* custom css rules */
 
 body {
-	font-family: 'Raleway', sans-serif;
+    margin: 2rem 2rem 2rem 4rem;
 }
 
 h1 {
+}
+
+text.legend {
+    font-size: 13px;
+}
+
+text.y-axis {
+    font-size: 14px;
 }

@@ -146,3 +146,12 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 function createVis() {
     areachart = new StackedAreaChart("time-area-chart", alltimeData);
 }
+
+function brushed() {
+    // Get the extent of the current brush
+    var selectionRange = d3.brushSelection(d3.select(".brush").node());
+
+    // Convert the extent into the corresponding domain values
+    var selectionDomain = selectionRange.map(areachart.x.invert);
+
+}

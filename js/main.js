@@ -56,7 +56,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             if (currActor['MOVIE'] === movie['title']) {
                 let actorData = {
                     'name': currActor['ACTOR'],
-                    'gender': currActor['GENDER'],
+                    'gender': currActor['GENDER'].toLowerCase(),
                     'character': currActor['CHARACTER_NAME'],
                     'characterType': currActor['TYPE'],
                     'billing': +currActor['BILLING']
@@ -86,7 +86,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
                     let crewMember = {
                         'name': currCrew['FULL_NAME'],
                         'gender': currCrew['GENDER_GUESS'],
-                        'department': currCrew['DEPARTMENT']
+                        'department': currCrew['DEPARTMENT'].replace("_", "").replace("by", "")
                     };
                     crewData.push(crewMember);
                 }
@@ -144,7 +144,10 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 }
 
 function createVis() {
-    areachart = new StackedAreaChart("time-area-chart", alltimeData);
+    var areachart = new StackedAreaChart("time-area-chart", alltimeData);
+    // TODO link to bar chart
+    var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
+    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
 }
 
 function brushed() {

@@ -119,9 +119,9 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("y", function(d, i) {return i * 25})
         .attr("fill", function(d){
             if (d === "pass") {
-                return "#377cd9";
+                return "blue";
             }
-            return "#d32727";
+            return "red";
         })
 
     legend.exit().remove();
@@ -178,9 +178,9 @@ StackedAreaChart.prototype.updateVis = function(){
         .merge(categories)
         .style("fill", function(d,i) {
             if (d.key == "pass") {
-                return "#377cd9";
+                return "blue";
             }
-            return "#d32727";
+            return "red";
         })
         .attr("d", function(d) {
             return vis.area(d);

@@ -149,7 +149,7 @@ function createVis() {
     var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
-
+    var genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 }
 

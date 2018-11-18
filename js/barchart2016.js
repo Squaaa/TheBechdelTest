@@ -7,6 +7,7 @@
 
 boxOffice = [1153, 1029, 1024, 966, 875, 872, 783, 812, 746, 1056];
 
+
 BarChart2016 = function(_parentElement, _data){
     this.parentElement = _parentElement;
     this.data = _data;
@@ -17,7 +18,15 @@ BarChart2016 = function(_parentElement, _data){
 BarChart2016.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = {top: 25, right: 25, bottom: 50, left: 80},
+    for (var i = 0; i < vis.data.length; i++) {
+        this.data[i].boxOffice = boxOffice[i];
+    }
+
+    this.data.sort(function(a, b) {
+       return a.boxOffice - b.boxOffice;
+    });
+
+    vis.margin = {top: 25, right: 25, bottom: 50, left: 90},
         vis.width = 500 - vis.margin.left - vis.margin.right,
         vis.height = 325 - vis.margin.top - vis.margin.bottom;
 
@@ -74,14 +83,14 @@ BarChart2016.prototype.initVis = function() {
         .range([0, vis.width]);
 
     x.domain([0, d3.max(boxOffice)]);
-    y.domain(vis.data.map(function(d) { return d.title; }));
+    y.domain(vis.data.map(function(d) { return d.title.substring(0, 15); }));
 
     vis.svg.selectAll(".bar")
         .data(vis.data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("width", function(d, i) {return x(boxOffice[i]); } )
-        .attr("y", function(d) { return y(d.title); })
+        .attr("width", function(d, i) {return x(d.boxOffice); } )
+        .attr("y", function(d) { return y(d.title.substring(0, 15)); })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
             return d.bechdel ? "blue" : "red";
@@ -103,7 +112,6 @@ BarChart2016.prototype.initVis = function() {
     // add the y Axis
     vis.svg.append("g")
         .call(d3.axisLeft(y));
-
 
 
 };

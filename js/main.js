@@ -144,20 +144,17 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 }
 
 function createVis() {
-    var areachart = new StackedAreaChart("time-area-chart", alltimeData);
-    // TODO link to bar chart
+    var myEventHandler = {};
+
+    var areachart = new StackedAreaChart("time-area-chart", alltimeData, myEventHandler);
+    // TODO link to scatterplot
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
     var genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
     var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
-}
 
-function brushed() {
-    // Get the extent of the current brush
-    var selectionRange = d3.brushSelection(d3.select(".brush").node());
-
-    // Convert the extent into the corresponding domain values
-    var selectionDomain = selectionRange.map(areachart.x.invert);
-
+    $(myEventHandler).bind("selectionChanged", function(event, rangeStart, rangeEnd){
+        genrechart.onSelectionChange(rangeStart, rangeEnd);
+    });
 }

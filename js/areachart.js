@@ -1,12 +1,13 @@
 /*
  * StackedAreaChart - Object constructor function
  * @param _parentElement 	-- the HTML element in which to draw the visualization
- * @param _data						-- the
+ * @param _data						-- the data
  */
 
-StackedAreaChart = function(_parentElement, _data){
+StackedAreaChart = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
+    this.eventHandler = _eventHandler;
     this.displayData = []; // see data wrangling
 
     this.initVis();
@@ -54,7 +55,6 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.bechdelData = vis.bechdelData.reverse();
 
-
     var dataCategories = ["pass", "fail"];
     var stack = d3.stack()
         .keys(dataCategories);
@@ -68,10 +68,19 @@ StackedAreaChart.prototype.initVis = function() {
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
 
-    // Brush component
+    // Initialize brushing component
+    vis.currentBrushRegion = null;
+
     vis.brush = d3.brushX()
-        .extent([[0, 0], [vis.width, vis.height]])
-        .on("brush", brushed);
+        .extent([[0,0],[vis.width, vis.height]])
+        .on("brush", function(){
+            // User just selected a specific region
+            vis.currentBrushRegion = d3.event.selection;
+            vis.currentBrushRegion = vis.currentBrushRegion.map(vis.x.invert);
+
+            // 3. Trigger the event 'selectionChanged' of our event handler
+            $(vis.eventHandler).trigger("selectionChanged", vis.currentBrushRegion);
+        });
 
     // Scales and axes
     vis.x = d3.scaleLinear()

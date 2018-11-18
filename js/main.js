@@ -146,9 +146,9 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 function createVis() {
     var areachart = new StackedAreaChart("time-area-chart", alltimeData);
     // TODO link to bar chart
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
 
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 }

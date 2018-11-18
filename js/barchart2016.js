@@ -28,7 +28,7 @@ BarChart2016.prototype.initVis = function() {
 
     vis.margin = {top: 25, right: 25, bottom: 50, left: 90},
         vis.width = 500 - vis.margin.left - vis.margin.right,
-        vis.height = 325 - vis.margin.top - vis.margin.bottom;
+        vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
 
     // SVG drawing area

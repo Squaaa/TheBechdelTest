@@ -148,6 +148,8 @@ function createVis() {
     // TODO link to bar chart
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
+
+    var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 }
 
 function brushed() {

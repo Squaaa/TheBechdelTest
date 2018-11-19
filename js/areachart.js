@@ -18,8 +18,8 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.margin = {top: 30, right: 50, bottom: 30, left: 140};
 
-    vis.width = 1000 - vis.margin.left - vis.margin.right,
-        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.width = 1100 - vis.margin.left - vis.margin.right,
+        vis.height = 250 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

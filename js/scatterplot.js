@@ -16,10 +16,10 @@ ScatterPlot = function(_parentElement, _data){
 ScatterPlot.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = {top: 30, right: 50, bottom: 40, left: 140};
+    vis.margin = {top: 30, right: 50, bottom: 40, left: 90};
 
-    vis.width = 800 - vis.margin.left - vis.margin.right;
-    vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right;
+    vis.height = 350 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -27,8 +27,6 @@ ScatterPlot.prototype.initVis = function() {
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
-
-    console.log(vis.data);
 
     vis.x = d3.scaleLinear()
         .range([0, vis.width])
@@ -39,8 +37,7 @@ ScatterPlot.prototype.initVis = function() {
         .domain(d3.extent(vis.data, function(d) { return d.budget; }));
 
     vis.xAxis = d3.axisBottom()
-        .scale(vis.x)
-        .tickFormat(d3.format("d"));
+        .scale(vis.x);
 
     vis.yAxis = d3.axisLeft()
         .scale(vis.y);
@@ -62,7 +59,7 @@ ScatterPlot.prototype.initVis = function() {
 
     vis.svg.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - vis.margin.left + 50)
+        .attr("y", 0 - vis.margin.left)
         .attr("x", 0 - (vis.height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -80,7 +77,6 @@ ScatterPlot.prototype.wrangleData = function(){
 
     // In the first step no data wrangling/filtering needed
     vis.displayData = vis.filteredData;
-    console.log(vis.displayData)
 
     // Update the visualization
     vis.updateVis();
@@ -119,8 +115,7 @@ ScatterPlot.prototype.updateVis = function(){
             return vis.x(d.domesticGross);
         })
         .attr("stroke", "black")
-
-    circle.on("mouseover", tool_tip.show)
+        .on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);
 
     circle.exit().remove();

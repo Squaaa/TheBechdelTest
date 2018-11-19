@@ -19,7 +19,7 @@ StackedBarChart.prototype.initVis = function() {
     vis.margin = {top: 30, right: 50, bottom: 90, left: 50};
 
     vis.width = 600 - vis.margin.left - vis.margin.right,
-        vis.height = 450 - vis.margin.top - vis.margin.bottom;
+        vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

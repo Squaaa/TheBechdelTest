@@ -55,7 +55,7 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.bechdelData = vis.bechdelData.reverse();
 
-    var dataCategories = ["pass", "fail"];
+    var dataCategories = ["fail", "pass"];
     var stack = d3.stack()
         .keys(dataCategories);
 
@@ -115,7 +115,7 @@ StackedAreaChart.prototype.initVis = function() {
 
     // Legend color blocks
     var legend = vis.svg.selectAll("rect.legend")
-        .data(dataCategories);
+        .data(dataCategories.reverse());
 
     legend.enter().append("rect")
         .attr("class", "legend")

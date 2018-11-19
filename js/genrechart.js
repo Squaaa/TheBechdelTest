@@ -42,7 +42,14 @@ StackedBarChart.prototype.initVis = function() {
         .scale(vis.x);
 
     vis.yAxis = d3.axisLeft()
-        .scale(vis.y);
+        .scale(vis.y)
+        .tickFormat(function(d){
+            if(Math.floor(d) != d)
+            {
+                return;
+            }
+            return d;
+        });
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")

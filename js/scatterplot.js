@@ -7,6 +7,7 @@
 ScatterPlot = function(_parentElement, _data){
     this.parentElement = _parentElement;
     this.data = _data;
+    this.filteredData = this.data;
     this.displayData = []; // see data wrangling
 
     this.initVis();
@@ -78,7 +79,8 @@ ScatterPlot.prototype.wrangleData = function(){
     var vis = this;
 
     // In the first step no data wrangling/filtering needed
-    vis.displayData = vis.data;
+    vis.displayData = vis.filteredData;
+    console.log(vis.displayData)
 
     // Update the visualization
     vis.updateVis();
@@ -97,7 +99,7 @@ ScatterPlot.prototype.updateVis = function(){
     vis.svg.call(tool_tip);
 
     var circle = vis.svg.selectAll("circle")
-        .data(vis.data);
+        .data(vis.displayData);
 
     circle.enter()
         .append("circle")
@@ -117,9 +119,23 @@ ScatterPlot.prototype.updateVis = function(){
             return vis.x(d.domesticGross);
         })
         .attr("stroke", "black")
-        .on("mouseover", tool_tip.show)
+
+    circle.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);
+
+    circle.exit().remove();
 
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
+}
+
+ScatterPlot.prototype.onSelectionChange = function(selectionStart, selectionEnd){
+    var vis = this;
+
+    // Filter original unfiltered data depending on selected time period (brush)
+    vis.filteredData = vis.data.filter(function(d){
+        return d.year >= selectionStart && d.year <= selectionEnd;
+    });
+
+    vis.wrangleData();
 }

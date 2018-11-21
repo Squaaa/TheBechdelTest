@@ -15,6 +15,10 @@ text.y-axis {
     font-size: 14px;
 }
 
+label {
+    margin-right: 1rem;
+}
+
 /*********************/
 /*  TOOLTIP OVERLAY  */
 /*********************/

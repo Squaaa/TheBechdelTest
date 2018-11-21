@@ -146,8 +146,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 function createVis() {
     var areachartBrush = {};
 
-    var areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    // TODO link to scatterplot
+    areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
     var genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
@@ -158,4 +157,8 @@ function createVis() {
         genrechart.onSelectionChange(rangeStart, rangeEnd);
         scatterplot.onSelectionChange(rangeStart, rangeEnd);
     });
+}
+
+function updateAxes() {
+    areachart.wrangleData();
 }

@@ -45,6 +45,18 @@
     <h2>Bechdel Test Over Time</h2>
     <div class="row">
         <div class="col-md-12">
+            <!-- Select box to choose the data type -->
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="select-box">Chart data:</label>
+                    <select class="form-control" id="select-box" onchange="updateAxes()">
+                        <option value="number">Number of movies</option>
+                        <option value="proportion">Proportion of movies</option>
+                        <option value="budget">Total budget</option>
+                        <option value="gross">Total domestic gross</option>
+                    </select>
+                </div>
+            </form>
             <div id="time-area-chart"></div>
         </div>
     </div>

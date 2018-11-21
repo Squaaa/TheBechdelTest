@@ -220,7 +220,9 @@ StackedAreaChart.prototype.updateVis = function(){
     categories.enter().append("path")
         .attr("class", "area")
         .merge(categories)
-        .style("fill", function(d,i) {
+        .transition()
+        .duration(800)
+        .style("fill", function(d) {
             if (d.key == "pass") {
                 return "blue";
             }
@@ -240,5 +242,8 @@ StackedAreaChart.prototype.updateVis = function(){
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
-    vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.select(".y-axis")
+        .transition()
+        .duration(800)
+        .call(vis.yAxis);
 }

@@ -162,3 +162,20 @@ function createVis() {
 function updateAxes() {
     areachart.wrangleData();
 }
+
+var i = 0;
+var textq = 'Blank Blank Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?';
+var speed = 30;
+
+function typeWrite() {
+    if (i < textq.length) {
+        document.getElementById("first-question").innerHTML += textq.charAt(i);
+        i++;
+        setTimeout(typeWrite, speed);
+    }
+    $("#guess").fadeIn(4000);
+}
+
+function showVis() {
+    $("#main-visual").fadeIn();
+}

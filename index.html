@@ -11,69 +11,83 @@
     <div class="row">
         <div class="col-md-6">
             <p>DEFINITION OF BECHDEL TEST (TODO)</p>
-            <p>OUT OF THE TOP 10 GROSSING FILMS FROM 2016, HOW MANY PASSED THE BECHDEL TEST? (TODO)</p>
+            <button type="button" class="btn btn-light" onclick="typeWrite()">Next</button>
+            <br>
+            <br>
+            <h2 id="first-question"></h2>
+            <div id="guess">
+                <p>Enter your guess: </p>
+                <input class="form-control" type="number" id="number-input">
+                <br>
+                <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+            </div>
+
         </div>
         <div class="col-md-6">
-            SOME IMAGE (TODO)
+            <img src="img/comic.png">
         </div>
     </div>
-    <h2>Top 10 Grossing Movies from 2016</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Box Office & Bechdel Test Results</h3>
-            <div id="top-10-bar-chart">BAR CHART</div>
+
+    <div id="main-visual">
+        <h2>Top 10 Grossing Movies from 2016</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Box Office & Bechdel Test Results</h3>
+                <div id="top-10-bar-chart">BAR CHART</div>
+            </div>
+            <div class="col-md-6">
+                <div id="top-10-detail-area">
+                    <div id="top-10-movie-description">MOVIE DESCRIPTION (TODO)</div>
+                    <h3>Cast Gender Breakdown</h3>
+                    <div id="cast-icon-chart"></div>
+                    <h3>Crew Gender Breakdown</h3>
+                    <div id="crew-icon-chart"></div>
+                    <div id="dialogue-bubble-chart">DIALOGUE BUBBLE CHART (TODO)</div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div id="top-10-detail-area">
-                <div id="top-10-movie-description">MOVIE DESCRIPTION (TODO)</div>
-                <h3>Cast Gender Breakdown</h3>
-                <div id="cast-icon-chart"></div>
-                <h3>Crew Gender Breakdown</h3>
-                <div id="crew-icon-chart"></div>
-                <div id="dialogue-bubble-chart">DIALOGUE BUBBLE CHART (TODO)</div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>VIDEO (TODO)</p>
+            </div>
+            <div class="col-md-6">
+                <p>DATA ANALYSIS (TODO)</p>
+            </div>
+        </div>
+        <h2>Bechdel Test Over Time</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Select box to choose the data type -->
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="select-box">Chart data:</label>
+                        <select class="form-control" id="select-box" onchange="updateAxes()">
+                            <option value="number">Number of movies</option>
+                            <option value="proportion">Proportion of movies</option>
+                            <option value="budget">Total budget</option>
+                            <option value="gross">Total domestic gross</option>
+                        </select>
+                    </div>
+                </form>
+                <div id="time-area-chart"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="time-genre-bar-chart"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="time-money-scatterplot"></div>
+            </div>
+        </div>
+        <h2>Conclusion</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <p>CONCLUSION (TODO)</p>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <p>VIDEO (TODO)</p>
-        </div>
-        <div class="col-md-6">
-            <p>DATA ANALYSIS (TODO)</p>
-        </div>
-    </div>
-    <h2>Bechdel Test Over Time</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <!-- Select box to choose the data type -->
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="select-box">Chart data:</label>
-                    <select class="form-control" id="select-box" onchange="updateAxes()">
-                        <option value="number">Number of movies</option>
-                        <option value="proportion">Proportion of movies</option>
-                        <option value="budget">Total budget</option>
-                        <option value="gross">Total domestic gross</option>
-                    </select>
-                </div>
-            </form>
-            <div id="time-area-chart"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div id="time-genre-bar-chart"></div>
-        </div>
-        <div class="col-md-6">
-            <div id="time-money-scatterplot"></div>
-        </div>
-    </div>
-    <h2>Conclusion</h2>
-    <div class="row">
-        <div class="col-md-12">
-            <p>CONCLUSION (TODO)</p>
-        </div>
-    </div>
+
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

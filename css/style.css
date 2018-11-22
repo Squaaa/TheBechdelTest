@@ -19,6 +19,20 @@ label {
     margin-right: 1rem;
 }
 
+img {
+    width: 60%;
+    height: 100%;
+}
+
+#guess {
+    display:none;
+    width: 50%;
+}
+
+#main-visual {
+    display: none;
+}
+
 /*********************/
 /*  TOOLTIP OVERLAY  */
 /*********************/

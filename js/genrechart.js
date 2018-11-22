@@ -16,7 +16,7 @@ StackedBarChart = function(_parentElement, _data){
 StackedBarChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = {top: 30, right: 50, bottom: 90, left: 50};
+    vis.margin = {top: 30, right: 50, bottom: 90, left: 100};
 
     vis.width = 600 - vis.margin.left - vis.margin.right,
         vis.height = 400 - vis.margin.top - vis.margin.bottom;
@@ -42,14 +42,7 @@ StackedBarChart.prototype.initVis = function() {
         .scale(vis.x);
 
     vis.yAxis = d3.axisLeft()
-        .scale(vis.y)
-        .tickFormat(function(d){
-            if(Math.floor(d) != d)
-            {
-                return;
-            }
-            return d;
-        });
+        .scale(vis.y);
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
@@ -58,14 +51,14 @@ StackedBarChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
-    // Y-axis label
+    /* // Y-axis label
     vis.svg.append("text")
         .attr("class", "y-axis")
         .attr("transform", "rotate(-90)")
-        .attr("y", -35)
+        .attr("y", -vis.margin.left)
         .attr("x", 0 - (vis.height / 2))
         .style("text-anchor", "middle")
-        .text("Number of movies");
+        .text("Number of movies"); */
 
     vis.wrangleData();
 
@@ -74,29 +67,69 @@ StackedBarChart.prototype.initVis = function() {
 StackedBarChart.prototype.wrangleData = function(){
     var vis = this;
 
+    var yValue = d3.select("#select-box").property("value");
+    var parameters = [];
+    if (yValue === "number") {
+        parameters = ["pass", "fail"];
+    } else if (yValue === "proportion") {
+        parameters = ["propPass", "propFail"];
+    } else if (yValue === "budget") {
+        parameters = ["passBudget", "failBudget"];
+    } else {
+        parameters = ["passGross", "failGross"];
+    }
+
     var nestedData = d3.nest()
         .key(function(d) { return d.genre; })
         .rollup(function(v) { return {
             count: v.length,
             pass: d3.sum(v, function(d) { return d.bechdel; }),
-            fail: v.length - d3.sum(v, function(d) { return d.bechdel; })
+            fail: v.length - d3.sum(v, function(d) { return d.bechdel; }),
+            propPass: d3.sum(v, function(d) { return d.bechdel; }) / v.length,
+            propFail: (v.length - d3.sum(v, function(d) { return d.bechdel; })) / v.length,
+            passBudget: d3.sum(v, function(d) {
+                if (d.bechdel) {
+                    return d.budget;
+                }
+                return 0;
+            }),
+            failBudget: d3.sum(v, function(d) {
+                if (!d.bechdel) {
+                    return d.budget;
+                }
+                return 0;
+            }),
+            passGross: d3.sum(v, function(d) {
+                if (d.bechdel) {
+                    return d.domesticGross;
+                }
+                return 0;
+            }),
+            failGross: d3.sum(v, function(d) {
+                if (!d.bechdel) {
+                    return d.domesticGross;
+                }
+                return 0;
+            })
         }; })
         .entries(vis.filteredData);
 
-    var genreData = []
+    var genreData = [];
 
     for (i=0; i<nestedData.length; i++) {
         genreData.push({
             genre: nestedData[i].key,
             count: nestedData[i].value.count,
-            pass: nestedData[i].value.pass,
-            fail: nestedData[i].value.fail
+            pass: nestedData[i].value[parameters[0]],
+            fail: nestedData[i].value[parameters[1]]
         })
-    }
+    };
+
+    console.log(genreData)
 
     genreData.sort(function(a,b) {
         return b.count - a.count;
-    })
+    });
 
     vis.displayData = genreData;
 
@@ -111,7 +144,7 @@ StackedBarChart.prototype.updateVis = function(){
 
     vis.y.domain([
         0,
-        d3.max(vis.displayData, function(d) {return d.count})
+        d3.max(vis.displayData, function(d) {return d.pass + d.fail})
     ]);
 
     // Create fail bars

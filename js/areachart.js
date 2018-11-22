@@ -94,7 +94,6 @@ StackedAreaChart.prototype.wrangleData = function(){
 
     var yValue = d3.select("#select-box").property("value");
     var parameters = [];
-
     if (yValue === "number") {
         parameters = ["pass", "fail"];
     } else if (yValue === "proportion") {
@@ -140,14 +139,14 @@ StackedAreaChart.prototype.wrangleData = function(){
         }; })
         .entries(vis.data);
 
-    vis.bechdelData = []
+    vis.bechdelData = [];
     for (i=0; i<vis.nestedBechdelCount.length; i++) {
         vis.bechdelData.push({
             year: vis.nestedBechdelCount[i].key,
             pass: vis.nestedBechdelCount[i].value[parameters[0]],
             fail: vis.nestedBechdelCount[i].value[parameters[1]]
         })
-    }
+    };
 
     vis.bechdelData = vis.bechdelData.reverse();
 

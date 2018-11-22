@@ -149,7 +149,7 @@ function createVis() {
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
-    var genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
+    genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
     var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 
@@ -161,6 +161,7 @@ function createVis() {
 
 function updateAxes() {
     areachart.wrangleData();
+    genrechart.wrangleData();
 }
 
 var i = 0;

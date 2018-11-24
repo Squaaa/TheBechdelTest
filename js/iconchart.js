@@ -109,7 +109,7 @@ IconChart.prototype.updateVis = function(){
         })
         .attr("r", 0.8 * radius)
         .attr("cx", function (d, i) { return radius + (i % rowLength) * (2 * radius); })
-        .attr("cy", function (d, i) { return 50 + Math.floor(i / rowLength) * (2 * radius); });
+        .attr("cy", function (d, i) { return radius + 25 + Math.floor(i / rowLength) * (2 * radius); });
 
     circle.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);

@@ -6,39 +6,41 @@ queue()
     .defer(d3.csv,"data/top10_data/nextBechdel_castGender.csv")
     .defer(d3.csv,"data/top10_data/nextBechdel_crewGender.csv")
     .defer(d3.csv,"data/top10_data/dialogue/CivilWar.csv")
+    .defer(d3.csv,"data/top10_data/dialogue/RogueOne.csv")
     .defer(d3.csv,"data/top10_data/dialogue/FindingDory.csv")
     .defer(d3.csv,"data/top10_data/dialogue/Zootopia.csv")
     .defer(d3.csv,"data/top10_data/dialogue/Junglebook.csv")
     .defer(d3.csv,"data/top10_data/dialogue/SecretLifeofPets.csv")
     .defer(d3.csv,"data/top10_data/dialogue/BatmanVSuperman.csv")
-    .defer(d3.csv,"data/top10_data/dialogue/Deadpool.csv")
     .defer(d3.csv,"data/top10_data/dialogue/FantasticBeasts.csv")
+    .defer(d3.csv,"data/top10_data/dialogue/Deadpool.csv")
     .defer(d3.csv,"data/top10_data/dialogue/SuicideSquad.csv")
-    .defer(d3.csv,"data/top10_data/dialogue/RogueOne.csv")
     .defer(d3.csv,"data/alltime_data/movies.csv")
     .defer(d3.csv,"data/alltime_data/Bechdel-master_revenue.csv")
     .await(wrangleData);
 
 function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
-                     civilWarData, findingDoryData, zootopiaData, junglebookData,
-                     secretLifeofPetsData, batmanVSupermanData, deadpoolData,
-                     fantasticBeastsData, suicideSquadData, rogueOneData,
-                     allTimeMovies, allTimeGenre) {
+                     civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData,
+                     secretLifeofPetsData, batmanVSupermanData, fantasticBeastsData, deadpoolData,
+                     suicideSquadData, allTimeMovies, allTimeGenre) {
     if  (error) {
         console.log(error);
     }
 
     // titles/dialogue data of top 10 grossing movies from 2016, manually sorted descending revenue
-    var top10titles = ["Captain America: Civil War", "Finding Dory", "Zootopia", "The Jungle Book",
-                        "The Secret Life of Pets", "Batman v Superman: Dawn of Justice", "Deadpool",
-                        "Fantastic Beasts and Where to Find Them", "Suicide Squad", "Rogue One"];
-    var top10dialogue = [civilWarData, findingDoryData, zootopiaData, junglebookData, secretLifeofPetsData,
-                        batmanVSupermanData, deadpoolData, fantasticBeastsData, suicideSquadData, rogueOneData];
+    let top10titles = ["Captain America: Civil War", "Rogue One", "Finding Dory", "Zootopia", "The Jungle Book",
+                        "The Secret Life of Pets", "Batman v Superman: Dawn of Justice",
+                        "Fantastic Beasts and Where to Find Them", "Deadpool",  "Suicide Squad"];
+    let top10dialogue = [civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData, secretLifeofPetsData,
+                        batmanVSupermanData, fantasticBeastsData, deadpoolData, suicideSquadData];
+    let top10BoxOffice = [1153, 1056, 1029, 1024, 966, 875, 872, 812, 783, 746];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {
             'title': top10titles[i],
-            'bechdel': null
+            'bechdel': null,
+            'rank': i + 1,
+            'boxOffice': top10BoxOffice[i]
         };
 
         let testIndex = 0;
@@ -109,8 +111,6 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         top10Data.push(movie);
     }
 
-    console.log(top10Data);
-
     for (let i = 0; i < allTimeMovies.length; i++) {
         let currMovie = allTimeMovies[i];
         let movie = {
@@ -138,8 +138,6 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         }
     }
 
-    console.log(alltimeData);
-
     createVis();
 }
 
@@ -147,10 +145,10 @@ function createVis() {
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData']);
-    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
+    var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
+    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){

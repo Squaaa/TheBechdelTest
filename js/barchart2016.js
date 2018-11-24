@@ -5,22 +5,18 @@
  * @param _data						-- the
  */
 
-boxOffice = [1153, 1029, 1024, 966, 875, 872, 783, 812, 746, 1056];
 
-
-BarChart2016 = function(_parentElement, _data){
+BarChart2016 = function(_parentElement, _data, _casticonchart, _crewiconchart){
     this.parentElement = _parentElement;
     this.data = _data;
+    this.casticonchart = _casticonchart;
+    this.crewiconchart = _crewiconchart;
 
     this.initVis();
 }
 
 BarChart2016.prototype.initVis = function() {
     var vis = this;
-
-    for (var i = 0; i < vis.data.length; i++) {
-        this.data[i].boxOffice = boxOffice[i];
-    }
 
     this.data.sort(function(a, b) {
        return a.boxOffice - b.boxOffice;
@@ -82,7 +78,7 @@ BarChart2016.prototype.initVis = function() {
     var x = d3.scaleLinear()
         .range([0, vis.width]);
 
-    x.domain([0, d3.max(boxOffice)]);
+    x.domain([0, d3.max(vis.data, function (d) { return d.boxOffice })]);
     y.domain(vis.data.map(function(d) { return d.title.substring(0, 15); }));
 
     vis.svg.selectAll(".bar")
@@ -94,6 +90,16 @@ BarChart2016.prototype.initVis = function() {
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
             return d.bechdel ? "blue" : "red";
+        })
+        .on("click", function (d) {
+            document.getElementById("top-10-movie-description").innerHTML =
+                "<h3>#" + d['rank'] + " " + d['title'] + "</h3>" +
+                "<p>Box Office Revenue: $" + d['boxOffice'] + "000000</p>" +
+                "<p>" + getBechdelStr(d['bechdel']) + "</p>";
+            vis.casticonchart.data = d['castData'];
+            vis.casticonchart.wrangleData();
+            vis.crewiconchart.data = d['crewData'];
+            vis.crewiconchart.wrangleData();
         });
 
     // add the x Axis
@@ -113,8 +119,14 @@ BarChart2016.prototype.initVis = function() {
     vis.svg.append("g")
         .call(d3.axisLeft(y));
 
-
 };
+
+var getBechdelStr = function (bechdel) {
+    if (bechdel) {
+        return "Passes Bechdel Test";
+    }
+    return "Fails Bechdel Test";
+}
 
 
 

@@ -157,7 +157,6 @@ StackedAreaChart.prototype.wrangleData = function(){
     vis.stackedData = stack(vis.bechdelData);
 
     vis.displayData = vis.stackedData;
-    console.log(vis.bechdelData)
 
     // Update the visualization
     vis.updateVis();

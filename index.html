@@ -8,33 +8,44 @@
 </head>
 <body>
     <h1>The Bechdel Test: Representation of Women in Film</h1>
+    <br>
     <div class="row">
         <div class="col-md-6">
             <h2>What is the Bechdel Test?</h2>
-            <p>The Bechdel Test is a simple assessment used to indicate the active presence of women in fiction.
-                Through three rules, it forms a relatively simple baseline for female representation in film:</p>
-            <p>1. There must be two women,</p>
-            <p>2. Who talk to each other,</p>
-            <p>3. About something other than a man.</p>
-            <button type="button" class="btn btn-light" onclick="typeWrite()">Next</button>
-            <br>
-            <br>
-            <h2 id="first-question"></h2>
-            <div id="guess">
-                <p>Enter your guess: </p>
-                <input class="form-control" type="number" id="number-input">
-                <br>
-                <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+            <div id="intro">
+                <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
+                    It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
+                    Through three rules, it forms a relatively simple baseline for female representation in film:</p>
+                <ol>
+                    <li>There must be at least two women, </li>
+                    <li>Who talk to each other,</li>
+                    <li>About something other than a man.</li>
+                </ol>
+                <p>Easy enough, right?</p>
+                <button type="button" class="btn btn-light" onclick="typeWrite()">Next</button>
             </div>
-
         </div>
         <div class="col-md-6">
-            <img src="img/comic.png">
+            <img src="img/comic.png" id="comic">
         </div>
     </div>
-
+    <br>
+    <br>
+    <h2 id="first-question"></h2>
+    <div id="guess" align="center">
+        <p>Enter your guess: </p>
+        <input class="form-control" type="number" id="number-input" min="0" max="10">
+        <br>
+        <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+    </div>
     <div id="main-visual">
-        <h2>Top 10 Grossing Movies from 2016</h2>
+        <br>
+        <br>
+        <div id="top-view">
+            <p id="show-answer"></p>
+            <h2>Top 10 Grossing Movies from 2016</h2>
+            <br>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <h3>Box Office & Bechdel Test Results</h3>

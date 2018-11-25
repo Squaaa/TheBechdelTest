@@ -88,6 +88,7 @@ IconChart.prototype.wrangleData = function(){
 
     // Update the visualization
     vis.updateVis();
+    vis.updateVis();
 }
 
 IconChart.prototype.updateVis = function(){

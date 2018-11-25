@@ -180,7 +180,7 @@ function updateCastIconChart() {
 
 var i = 0;
 var textq = 'Blank Blank Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?';
-var speed = 30;
+var speed = 5;
 
 function typeWrite() {
     if (i < textq.length) {
@@ -193,4 +193,8 @@ function typeWrite() {
 
 function showVis() {
     $("#main-visual").fadeIn();
+    var answer = document.getElementById('number-input').value;
+    $("#show-answer").html("You answered " + answer + " movies, which is " + (6 - answer) + " off from the correct answer.");
+    document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+
 }

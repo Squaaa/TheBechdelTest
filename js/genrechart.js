@@ -126,7 +126,7 @@ StackedBarChart.prototype.wrangleData = function(){
     };
 
     genreData.sort(function(a,b) {
-        return b.count - a.count;
+        return (b.pass + b.fail) - (a.pass + a.fail);
     });
 
     vis.displayData = genreData;

@@ -92,10 +92,9 @@ BarChart2016.prototype.initVis = function() {
             return d.bechdel ? "blue" : "red";
         })
         .on("click", function (d) {
-            document.getElementById("top-10-movie-description").innerHTML =
-                "<h3>#" + d['rank'] + " " + d['title'] + "</h3>" +
-                "<p>Box Office Revenue: $" + d['boxOffice'] + "000000</p>" +
-                "<p>" + getBechdelStr(d['bechdel']) + "</p>";
+            document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];
+            document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + d['boxOffice'] + "000000";
+            document.getElementById("top-10-movie-bechdel").innerHTML = d['bechdel'] ? "Passes Bechdel Test" : "Fails Bechdel Test";
             vis.casticonchart.data = d['castData'];
             vis.casticonchart.wrangleData();
             vis.crewiconchart.data = d['crewData'];
@@ -120,14 +119,6 @@ BarChart2016.prototype.initVis = function() {
         .call(d3.axisLeft(y));
 
 };
-
-var getBechdelStr = function (bechdel) {
-    if (bechdel) {
-        return "Passes Bechdel Test";
-    }
-    return "Fails Bechdel Test";
-}
-
 
 
 

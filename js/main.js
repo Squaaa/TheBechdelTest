@@ -145,10 +145,10 @@ function createVis() {
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
-    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
+    this.casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
+    this.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, this.casticonchart, crewiconchart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
@@ -158,6 +158,11 @@ function createVis() {
 function updateAxes() {
     areachart.wrangleData();
     genrechart.wrangleData();
+}
+
+function updateCastIconChart() {
+    this.casticonchart.wrangleData();
+    this.crewiconchart.wrangleData();
 }
 
 var i = 0;

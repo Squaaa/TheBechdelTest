@@ -48,10 +48,10 @@ BarChart2016.prototype.initVis = function() {
         .attr("x", function(d, i) {return i * 100})
         .attr("y", -21)
         .attr("fill", function(d){
-            if (d === "Pass") {
+            if (d === "Fail") {
                 return "red";
             }
-            if (d === "Fail") {
+            if (d === "Pass") {
                 return "blue";
             }
         });

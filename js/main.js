@@ -34,13 +34,24 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
     let top10dialogue = [civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData, secretLifeofPetsData,
                         batmanVSupermanData, fantasticBeastsData, deadpoolData, suicideSquadData];
     let top10BoxOffice = [1153, 1056, 1029, 1024, 966, 875, 872, 812, 783, 746];
+    let top10Analysis = ["Passes all three tests, barely. Natasha (Black Widow) and Wanda (Scarlet Witch) briefly discuss the latter's inexperience with her powers.",
+    "Passes all three tests, barely. Jyn and Lyra (her mother) exchange a few words about hiding. Jyn and Mon Mothma exchange a few words, but mostly talk to the group.",
+        "Passes all three tests, thoroughly. Dory and Destiny have several conversations with each other. Dory, her mom, and several supporting characters do as well.",
+        "Passes all three tests, with flying colors. Judy Hopps, Gazelle, Mrs. Otterton, Judy's Mom, Dharma Armadillo, Fru Fru, and Bellweather have several conversations.",
+        "Passes only two tests. Kaa (the snake) and Raksha (the wolf) do talk to each other, but it's about Mowgli's father.",
+        "Passes only two tests. Gidget and Chloe both talk to each other, but only about their male love interests.",
+        "Passes only two tests. Lois and Martha talk about the former's relationship with Kent. Jenny also says a total of five words to Lois, but she doesn't respond.",
+        "Passes all three tests, barely. Mary Lou, Modesty, Seraphina, Tina, the MACUSA president, and Newt have brief or dubiously non-male centered conversations.",
+        "Passes only one test. The film has a few named female characters such as Vanessa, NTW, and Angel Dust, but they never talk with each other.",
+        "Passes all three tests, barely. Amanda Waller, Harleen Quinzel, and June Moone have very brief conversations."];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {
             'title': top10titles[i],
             'bechdel': null,
             'rank': i + 1,
-            'boxOffice': top10BoxOffice[i]
+            'boxOffice': top10BoxOffice[i],
+            'analysis': top10Analysis[i]
         };
 
         let testIndex = 0;
@@ -148,10 +159,10 @@ function createVis() {
     var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
     var wordcloudpass = new WordCloud("word-cloud-pass", true);
     var wordcloudfail = new WordCloud("word-cloud-fail", false);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="200467e7-2441-481a-9c5c-f3b342ec4d7e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/barchart2016.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/barchart2016.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/genrechart.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/genrechart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/iconchart.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/iconchart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,14 +19,14 @@
     <session id="998706985">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="160" />
-          <entry key="js" value="1051" />
+          <entry key="html" value="1700" />
+          <entry key="js" value="3056" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="160" />
-          <entry key="JavaScript" value="1051" />
+          <entry key="HTML" value="1700" />
+          <entry key="JavaScript" value="3056" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -41,7 +38,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="3" />
+          <entry key="csv" value="6" />
           <entry key="html" value="1" />
           <entry key="js" value="6" />
         </counts>
@@ -50,18 +47,18 @@
         <counts>
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="6" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-472">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="344">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
             </state>
           </provider>
         </entry>
@@ -69,7 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/genrechart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="142">
+              <caret line="183" column="32" lean-forward="true" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -78,17 +76,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/top10_data/dialogue/BatmanVSuperman.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-179" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
+            <state relative-caret-position="-1805">
+              <caret line="36" column="132" selection-start-line="36" selection-start-column="132" selection-end-line="36" selection-end-column="132" />
             </state>
           </provider>
         </entry>
@@ -96,12 +87,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/iconchart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-1234">
               <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/top10_data/nextBechdel_castGender.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-13" />
           </provider>
         </entry>
       </file>
@@ -115,21 +113,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/jquery.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/barchart2016.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="84" column="23" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
+            <state relative-caret-position="254">
+              <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -160,7 +147,12 @@
       <find>axisbottom</find>
       <find>g.</find>
       <find>map</find>
+      <find>red</find>
+      <find>getbechdel</find>
+      <find>d.bechdel</find>
       <find>margin</find>
+      <find>d['bec</find>
+      <find>bechdel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,7 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/barchart2016.js" />
         <option value="$PROJECT_DIR$/js/could.js" />
         <option value="$PROJECT_DIR$/js/worldcloud.js" />
         <option value="$PROJECT_DIR$/js/WordCloud.js" />
@@ -178,8 +169,9 @@
         <option value="$PROJECT_DIR$/js/wordcloudpass.js" />
         <option value="$PROJECT_DIR$/js/wordcloudfail.js" />
         <option value="$PROJECT_DIR$/js/wordcloud.js" />
-        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/barchart2016.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -189,7 +181,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="x" value="202" />
     <option name="y" value="23" />
     <option name="width" value="943" />
@@ -283,18 +275,18 @@
       <workItem from="1542291334312" duration="8565000" />
       <workItem from="1542332022658" duration="2013000" />
       <workItem from="1542545687007" duration="9187000" />
-      <workItem from="1543005134178" duration="11240000" />
+      <workItem from="1543005134178" duration="16106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13240000" />
+    <option name="totallyTimeSpent" value="18106000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="202" y="23" width="943" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15250199" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20824295" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -328,11 +320,6 @@
     <entry file="file://$PROJECT_DIR$/../../labs/lab6/js/main.js" />
     <entry file="file://$PROJECT_DIR$/../../labs/lab6/js/stackedAreaChart.js" />
     <entry file="file://$PROJECT_DIR$/../../midterm 2/js/vis-choropleth.js" />
-    <entry file="file://$PROJECT_DIR$/data/top10_data/nextBechdel_allTests.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-116" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -340,20 +327,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/top10_data/nextBechdel_castGender.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/areachart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1155">
           <caret line="81" column="32" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/barchart2016.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="84" column="23" selection-start-line="84" selection-start-column="23" selection-end-line="84" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -387,15 +364,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/iconchart.js">
+    <entry file="file://$PROJECT_DIR$/data/top10_data/nextBechdel_allTests.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-207" />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/top10_data/dialogue/BatmanVSuperman.csv">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/js/wordcloud.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -404,31 +379,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/data/top10_data/nextBechdel_castGender.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-472">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="-13" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/barchart2016.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="98" column="39" selection-start-line="98" selection-start-column="39" selection-end-line="98" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/genrechart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="142">
+          <caret line="183" column="32" lean-forward="true" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/top10_data/dialogue/BatmanVSuperman.csv">
+    <entry file="file://$PROJECT_DIR$/js/iconchart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-179" />
+        <state relative-caret-position="-1234">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
+        <state relative-caret-position="-1805">
+          <caret line="36" column="132" selection-start-line="36" selection-start-column="132" selection-end-line="36" selection-end-column="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>

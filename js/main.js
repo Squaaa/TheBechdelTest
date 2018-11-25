@@ -58,7 +58,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         while (movie['bechdel'] === null) {
             let currMovie = top10bechdelTests[testIndex];
             if (currMovie['movie'] === movie['title']) {
-                movie['bechdel'] = +currMovie['bechdel'] === 1;
+                movie['bechdel'] = +currMovie['bechdel'] === 0;
             }
             testIndex++;
         }

@@ -89,7 +89,7 @@ BarChart2016.prototype.initVis = function() {
         .attr("y", function(d) { return y(d.title.substring(0, 15)); })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
-            return !d.bechdel ? "blue" : "red";
+            return !d.bechdel ? "red" : "blue";
         })
         .on("click", function (d) {
             document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];

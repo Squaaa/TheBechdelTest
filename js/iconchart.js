@@ -49,10 +49,9 @@ IconChart.prototype.initVis = function() {
 
     vis.legend.exit().remove();
 
-    document.getElementById("top-10-movie-description").innerHTML =
-        "<h3>#" + vis.allData['rank'] + " " + vis.allData['title'] + "</h3>" +
-        "<p>Box Office Revenue: $" + vis.allData['boxOffice'] + "000000</p>" +
-        "<p>" + getBechdelStr(vis.allData['bechdel']) + "</p>";
+    document.getElementById("top-10-movie-title").innerHTML = "#" + vis.allData['rank'] + " " + vis.allData['title'];
+    document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + vis.allData['boxOffice'] + "000000";
+    document.getElementById("top-10-movie-bechdel").innerHTML = vis.allData['bechdel'] ? "Passes Bechdel Test" : "Fails Bechdel Test";
 
     vis.wrangleData();
 };
@@ -62,9 +61,30 @@ IconChart.prototype.wrangleData = function(){
 
     // In the first step no data wrangling/filtering needed
     // vis.displayData = vis.stackedData;
+    console.log(vis.data);
     vis.displayData = vis.data.filter(function (d) {
         return d['gender'].toLowerCase() === "male" || d['gender'].toLowerCase() === "female";
     });
+    let value = d3.select("#sort-type").property("value");
+    if (value === "billing") {
+        vis.displayData.sort(function (a, b) {
+            return a[value] - b[value];
+        });
+    }
+    if (value === "gender") {
+        vis.displayData.sort(function (a, b) {
+            let a_val = 0;
+            let b_val = 0;
+            if (a["gender"].toLowerCase() === "female") {
+                a_val = 1;
+            }
+            if (b["gender"].toLowerCase() === "female") {
+                b_val = 1;
+            }
+            return b_val - a_val;
+        });
+    }
+    console.log(vis.displayData);
 
     // Update the visualization
     vis.updateVis();
@@ -75,22 +95,6 @@ IconChart.prototype.updateVis = function(){
 
     let rowLength = Math.ceil(Math.sqrt(2 * vis.displayData.length));
     let radius = 250 / rowLength;
-
-    var tool_tip = d3.tip()
-        .attr("class", "d3-tip")
-        .offset([-8, 0])
-        .html(function(d) {
-            var html = d['name'];
-            if (d['characterType']) {
-                html += "</br>" + d['characterType']
-            }
-            if (d['department']) {
-                html += "</br>" + d['department']
-            }
-            return html;
-        });
-
-    vis.svg.call(tool_tip);
 
     var circle = vis.svg.selectAll("circle")
         .data(vis.displayData);
@@ -110,6 +114,25 @@ IconChart.prototype.updateVis = function(){
         .attr("r", 0.8 * radius)
         .attr("cx", function (d, i) { return radius + (i % rowLength) * (2 * radius); })
         .attr("cy", function (d, i) { return radius + 25 + Math.floor(i / rowLength) * (2 * radius); });
+
+    var tool_tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-8, 0])
+        .html(function(d) {
+            var html = d['name'];
+            if (d['character']) {
+                html += "</br>" + d['character']
+            }
+            if (d['characterType']) {
+                html += "</br>" + d['characterType']
+            }
+            if (d['department']) {
+                html += "</br>" + d['department']
+            }
+            return html;
+        });
+
+    vis.svg.call(tool_tip);
 
     circle.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);

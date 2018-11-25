@@ -151,6 +151,8 @@ function createVis() {
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
     var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data);
+    var wordcloudpass = new WordCloud("word-cloud-pass", true);
+    var wordcloudfail = new WordCloud("word-cloud-fail", false);
     var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){

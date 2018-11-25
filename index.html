@@ -31,17 +31,27 @@
     </div>
     <br>
     <br>
-    <h2 id="first-question"></h2>
-    <div id="guess" align="center">
-        <p>Enter your guess: </p>
-        <input class="form-control" type="number" id="number-input" min="0" max="10">
-        <br>
-        <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+
+    <div class = "row">
+        <div class = "col" id="firstQ">
+            <p id="first-question"></p>
+        </div>
+        <div class = "col">
+            <div id="guess" align="center">
+                <p>Enter your guess: </p>
+                <div class="form-group">
+                    <input class="form-control" type="number" id="number-input" min="0" max="10" step="1">
+                </div>
+                <p id="answer-feedback"></p>
+                <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+            </div>
+        </div>
     </div>
+
+
     <div id="main-visual">
-        <br>
-        <br>
         <div id="top-view">
+            <br>
             <p id="show-answer"></p>
             <h2>Top 10 Grossing Movies from 2016</h2>
             <br>

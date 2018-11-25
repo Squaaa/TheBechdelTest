@@ -110,8 +110,8 @@ BarChart2016.prototype.initVis = function() {
         .attr("class", "x-axis")
         .attr("transform",  "translate(0," + vis.height + ")")
         .attr("y", 35)
-        .attr("x", vis.width / 2)
-        .text("Box Office Revenue in Millions");
+        .attr("x", vis.width / 4)
+        .text("Box Office Revenue (Millions)");
 
 
     // add the y Axis

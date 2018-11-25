@@ -149,11 +149,9 @@ function createVis() {
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
     var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
-    var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
-        scatterplot.onSelectionChange(rangeStart, rangeEnd);
     });
 }
 

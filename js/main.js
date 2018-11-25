@@ -148,7 +148,10 @@ function createVis() {
     this.casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
     this.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, this.casticonchart, crewiconchart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, this.casticonchart, this.crewiconchart);
+    var wordcloudpass = new WordCloud("word-cloud-pass", true);
+    var wordcloudfail = new WordCloud("word-cloud-fail", false);
+    var scatterplot = new ScatterPlot("time-money-scatterplot", alltimeData);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);

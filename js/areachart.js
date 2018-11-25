@@ -157,6 +157,7 @@ StackedAreaChart.prototype.wrangleData = function(){
     vis.stackedData = stack(vis.bechdelData);
 
     vis.displayData = vis.stackedData;
+    console.log(vis.bechdelData)
 
     // Update the visualization
     vis.updateVis();
@@ -177,7 +178,7 @@ StackedAreaChart.prototype.updateVis = function(){
 
     // Legend color blocks
     var legend = vis.svg.selectAll("rect.legend")
-        .data(vis.dataCategories);
+        .data(vis.dataCategories.slice().reverse());
 
     legend.enter().append("rect")
         .attr("class", "legend")

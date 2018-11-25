@@ -48,10 +48,10 @@ BarChart2016.prototype.initVis = function() {
         .attr("x", function(d, i) {return i * 100})
         .attr("y", -21)
         .attr("fill", function(d){
-            if (d === "Fail") {
+            if (d === "Pass") {
                 return "blue";
             }
-            if (d === "Pass") {
+            if (d === "Fail") {
                 return "red";
             }
         });
@@ -89,7 +89,7 @@ BarChart2016.prototype.initVis = function() {
         .attr("y", function(d) { return y(d.title.substring(0, 15)); })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
-            return !d.bechdel ? "red" : "blue";
+            return !d.bechdel ? "blue" : "red";
         })
         .on("click", function (d) {
             document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];

@@ -70,22 +70,16 @@
                 <div id="top-10-detail-area">
                     <h3 id="top-10-movie-title"></h3>
                     <p id="top-10-movie-revenue"></p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p id="top-10-movie-bechdel"></p>
+                    <p id="top-10-movie-bechdel"></p>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="sort-type">Sort Breakdown By</label>
+                            <select class="form-control" id="sort-type" onchange="updateCastIconChart()">
+                                <option value="billing">Billing Rank  </option>
+                                <option value="gender">Gender  </option>
+                            </select>
                         </div>
-                        <div class="col-md-4">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="sort-type">Sort Breakdown By</label>
-                                    <select class="form-control" id="sort-type" onchange="updateCastIconChart()">
-                                        <option value="billing">Billing Rank  </option>
-                                        <option value="gender">Gender  </option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    </form>
                     <h4>Cast Gender Breakdown</h4>
                     <div id="cast-icon-chart"></div>
                     <h4>Crew Gender Breakdown</h4>

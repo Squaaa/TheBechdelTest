@@ -103,6 +103,7 @@ IconChart.prototype.updateVis = function(){
     circle.enter().append("circle")
         .merge(circle)
         .transition()
+        .duration(800)
         .attr("fill", function (d) {
             if (d['gender'].toLowerCase() === "male") {
                 return "#ccc";

@@ -169,6 +169,10 @@ function createVis() {
 }
 
 function updateAxes() {
+    if (areachart.currentBrushRegion != null) {
+        areachart.brushGroup.call(areachart.brush.move, null);
+        console.log(genrechart.filteredData)
+    }
     areachart.wrangleData();
     genrechart.wrangleData();
 }

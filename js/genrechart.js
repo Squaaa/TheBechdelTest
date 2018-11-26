@@ -154,7 +154,7 @@ StackedBarChart.prototype.updateVis = function(){
         .merge(fail)
         .transition()
         .duration(800)
-        .style("fill", "#d32727")
+        .style("fill", "#d63031")
         .attr("x", function(d) {
             return vis.x(d.genre);
         })
@@ -177,7 +177,7 @@ StackedBarChart.prototype.updateVis = function(){
         .merge(pass)
         .transition()
         .duration(800)
-        .style("fill", "#377cd9")
+        .style("fill", "#74b9ff")
         .attr("x", function(d) {
             return vis.x(d.genre);
         })

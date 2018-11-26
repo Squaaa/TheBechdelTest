@@ -144,7 +144,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             }
         }
 
-        if (movie['genre']) {
+        if (movie['year'] > 1980) {
             alltimeData.push(movie);
         }
     }

@@ -49,7 +49,7 @@ BarChart2016.prototype.initVis = function() {
         .attr("y", -21)
         .attr("fill", function(d){
             if (d === "Pass") {
-                return "#377cd9";
+                return "#74b9ff";
             }
             if (d === "Fail") {
                 return "#d32727";
@@ -89,7 +89,7 @@ BarChart2016.prototype.initVis = function() {
         .attr("y", function(d) { return y(d.title.substring(0, 15)); })
         .attr("height", y.bandwidth())
         .attr("fill", function (d) {
-            return !d.bechdel ? "#d32727" : "#377cd9";
+            return !d.bechdel ? "#d32727" : "#74b9ff";
         })
         .on("click", function (d) {
             document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];

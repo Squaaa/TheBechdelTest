@@ -39,10 +39,10 @@ IconChart.prototype.initVis = function() {
         .attr("y", 0)
         .attr("fill", function(d){
             if (d === "Male") {
-                return "red";
+                return "#d32727";
             }
             if (d === "Female") {
-                return "blue";
+                return "#377cd9";
             }
             return "black";
         });
@@ -105,10 +105,10 @@ IconChart.prototype.updateVis = function(){
         .transition()
         .attr("fill", function (d) {
             if (d['gender'].toLowerCase() === "male") {
-                return "red";
+                return "#d32727";
             }
             if (d['gender'].toLowerCase() === "female") {
-                return "blue";
+                return "#377cd9";
             }
             return "black";
         })

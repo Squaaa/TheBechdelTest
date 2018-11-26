@@ -190,9 +190,9 @@ StackedAreaChart.prototype.updateVis = function(){
         .attr("y", function(d, i) {return i * 25})
         .attr("fill", function(d){
             if (d === "pass") {
-                return "blue";
+                return "#377cd9";
             }
-            return "red";
+            return "#d32727";
         })
 
     legend.exit().remove();
@@ -223,9 +223,9 @@ StackedAreaChart.prototype.updateVis = function(){
         .duration(800)
         .style("fill", function(d) {
             if (d.key == "pass") {
-                return "blue";
+                return "#377cd9";
             }
-            return "red";
+            return "#d32727";
         })
         .attr("d", function(d) {
             return vis.area(d);

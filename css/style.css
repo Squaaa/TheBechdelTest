@@ -25,22 +25,23 @@ img {
     height: 100%;
 }
 
-#guess {
+#guess, #guess-two {
     display:none;
     font-size: 22px;
 }
 
-#main-visual {
+#first-question, #second-question {
+    display: none;
+    font-size: 40px;
+    text-align: center;
+}
+
+#main-visual, #main-visual-2, #full-intro {
     display: none;
 }
 
 #comic {
     width: 100%;
-}
-
-#first-question {
-    font-size: 40px;
-    text-align: center;
 }
 
 #number-input {
@@ -50,13 +51,30 @@ img {
     text-align: center;
 }
 
+#year-input {
+    width: 400px;
+    line-height: 100px;
+    font-size: 100px;
+    text-align: center;
+}
+
 #intro {
     font-size: 22px;
 }
 
-#show-answer {
-    font-size: 20px;
+#show-answer, #show-answer-2 {
+    font-size: 50px;
 }
+
+#time-data-analysis {
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+
+#time-data-analysis p {
+    display: inline;
+}
+
 
 /*********************/
 /*  TOOLTIP OVERLAY  */

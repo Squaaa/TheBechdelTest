@@ -42,6 +42,7 @@ StackedAreaChart.prototype.initVis = function() {
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
 
+
     // Initialize brushing component
     vis.currentBrushRegion = null;
 
@@ -55,6 +56,9 @@ StackedAreaChart.prototype.initVis = function() {
             // 3. Trigger the event 'selectionChanged' of our event handler
             $(vis.eventHandler).trigger("selectionChanged", vis.currentBrushRegion);
         });
+
+    vis.brushGroup = vis.svg.append("g")
+        .attr("class", "brush");
 
     // Scales and axes
     vis.x = d3.scaleLinear()
@@ -79,11 +83,36 @@ StackedAreaChart.prototype.initVis = function() {
 
     // Y-axis label
     vis.yLabel = vis.svg.append("text")
-        .attr("class", "y-axis")
+        .attr("class", "y-label")
         .attr("transform", "rotate(-90)")
         .attr("y", -35)
         .attr("x", 0 - (vis.height / 2))
         .style("text-anchor", "middle");
+
+    // Annotations
+    /*
+    const type = d3.annotationXYThreshold;
+
+    const annotations = [{
+        note: {
+            label: "Longer text to show text wrapping",
+            title: "Annotations :)"
+        },
+        x: 50,
+        y: 150,
+        dy: 137,
+        dx: 162
+    }]
+
+    var makeAnnotations = d3.annotation()
+        .type(type)
+        .annotations(annotations)
+
+    console.log(makeAnnotations)
+
+    vis.svg.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations); */
 
     vis.wrangleData();
 
@@ -92,13 +121,13 @@ StackedAreaChart.prototype.initVis = function() {
 StackedAreaChart.prototype.wrangleData = function(){
     var vis = this;
 
-    var yValue = d3.select("#select-box").property("value");
+    vis.yValue = d3.select("#select-box").property("value");
     var parameters = [];
-    if (yValue === "number") {
+    if (vis.yValue === "number") {
         parameters = ["pass", "fail"];
-    } else if (yValue === "proportion") {
+    } else if (vis.yValue === "proportion") {
         parameters = ["propPass", "propFail"];
-    } else if (yValue === "budget") {
+    } else if (vis.yValue === "budget") {
         parameters = ["passBudget", "failBudget"];
     } else {
         parameters = ["passGross", "failGross"];
@@ -114,25 +143,25 @@ StackedAreaChart.prototype.wrangleData = function(){
             propFail: (v.length - d3.sum(v, function(d) { return d.bechdel; })) / v.length,
             passBudget: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failBudget: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             passGross: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failGross: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             })
@@ -164,6 +193,10 @@ StackedAreaChart.prototype.wrangleData = function(){
 
 StackedAreaChart.prototype.updateVis = function(){
     var vis = this;
+
+    // Update y-axis labels
+    var selectedText = d3.select('#select-box option:checked').text();
+    vis.yLabel.text(selectedText);
 
     // Update domain
     vis.x.domain(d3.extent(vis.bechdelData, function(d) { return d.year; }));
@@ -233,11 +266,17 @@ StackedAreaChart.prototype.updateVis = function(){
 
     categories.exit().remove();
 
-    vis.brushGroup = vis.svg.append("g")
-        .attr("class", "brush")
-        .attr("clip-path", "url(#clip)")
-        .call(vis.brush);
+    d3.select("#time-area-chart")
+        .on("mouseover", function() {
+            d3.select("." + vis.yValue).style("font-weight", "bold")
+        })
+        .on("mouseout", function() {
+            d3.select("." + vis.yValue).style("font-weight", "normal")
+        });
 
+    vis.brushGroup.attr("clip-path", "url(#clip)").call(vis.brush);
+
+    vis.brushGroup.moveToFront();
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
@@ -246,3 +285,10 @@ StackedAreaChart.prototype.updateVis = function(){
         .duration(800)
         .call(vis.yAxis);
 }
+
+// Bring a D3 element to the front
+d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
+};

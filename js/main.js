@@ -64,23 +64,14 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         }
 
         let castData = [];
-        for (let i = 0; i < top10castGender.length; i++) {
-            let currActor = top10castGender[i];
-            if (currActor['MOVIE'] === movie['title']) {
+        for (let j = 0; j < top10castGender.length; j++) {
+            let currActor = top10castGender[j];
+            // exception for Rogue One (title discrepancy)
+            if (currActor['MOVIE'] === movie['title'] ||
+                (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story")) {
                 let actorData = {
                     'name': currActor['ACTOR'],
                     'gender': currActor['GENDER'].toLowerCase(),
-                    'character': currActor['CHARACTER_NAME'],
-                    'characterType': currActor['TYPE'],
-                    'billing': +currActor['BILLING']
-                };
-                castData.push(actorData);
-            }
-            // exception for Rogue One (title discrepancy)
-            if (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story") {
-                let actorData = {
-                    'name': currActor['ACTOR'],
-                    'gender': currActor['GENDER'],
                     'character': currActor['CHARACTER_NAME'],
                     'characterType': currActor['TYPE'],
                     'billing': +currActor['BILLING']
@@ -92,8 +83,8 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 
         // NOTE: missing crewData available for 'Fantastic Beasts and Where to Find Them' and 'Suicide Squad'
         let crewData = [];
-        for (let i = 0; i < top10crewGender.length; i++) {
-            let currCrew = top10crewGender[i];
+        for (let j = 0; j < top10crewGender.length; j++) {
+            let currCrew = top10crewGender[j];
             if (currCrew['MOVIE'] === movie['title'] + "_(2016)") {
                 if (currCrew['GENDER_GUESS'] && currCrew['GENDER_GUESS'] !== "null") {
                     let crewMember = {
@@ -114,7 +105,8 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
                 'character': character['Character'],
                 'gender': character['Gender'],
                 'words': +character['Total_Words'],
-                'speakingTurns': +character['speaking_turns']
+                'speakingTurns': +character['speaking_turns'],
+                'role': character['role']
             };
             dialogueData.push(characterData);
         }
@@ -156,12 +148,11 @@ function createVis() {
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    this.casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0]);
-    this.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0]);
+    var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
+    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
+    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, this.casticonchart, this.crewiconchart);
-    var wordcloudpass = new WordCloud("word-cloud-pass", true);
-    var wordcloudfail = new WordCloud("word-cloud-fail", false);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, casticonchart, crewiconchart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
@@ -173,36 +164,49 @@ function updateAxes() {
     genrechart.wrangleData();
 }
 
-function updateCastIconChart() {
-    this.casticonchart.wrangleData();
-    this.crewiconchart.wrangleData();
+function showQOne() {
+    $("#first-question").fadeIn(2000);
+    $("#guess").fadeIn(2000);
+    document.getElementById('bottom-view-1').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
-var i = 0;
-var textq = 'Blank Blank Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?';
-var speed = 2;
-
-function typeWrite() {
-    document.getElementById('firstQ').scrollIntoView({ behavior: 'smooth', block: 'start', });
-    if (i < textq.length) {
-        document.getElementById("first-question").innerHTML += textq.charAt(i);
-        i++;
-        setTimeout(typeWrite, speed);
-    }
-    $("#guess").fadeIn(4000);
-
+function showQTwo() {
+    $("#second-question").fadeIn(2000);
+    $("#guess-two").fadeIn(2000);
+    document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 function showVis() {
     var answer = document.getElementById('number-input').value;
     console.log(answer);
     console.log((Number.isInteger(answer)));
-    if((answer < 0 || answer > 10)) {
+    if((answer < 0 || answer > 10) || (answer === "")) {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {
         $("#main-visual").fadeIn();
-        $("#show-answer").html("You thought " + answer + " movies or " + (answer * 10) + "% of the top 10 grossing films from 2016 passed the Bechdel Test. Here is what 2016 actually looked like.");
+        $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. <b>Here is what 2016 actually looked like. </b>");
         document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
     }
 }
+
+function showVisTwo() {
+    var answer = document.getElementById('year-input').value;
+
+    if((answer < 1980 || answer > 2013) || (answer === "")) {
+        $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
+    }
+    else {
+        $("#main-visual-2").fadeIn();
+        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. The correct answer is 1993, which is <u>" + Math.abs(1993 - answer) + "</u> years off from your prediction." );
+        document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    }
+
+}
+
+var vid = document.getElementById("intro-vid");
+vid.onended = function() {
+    $("#intro-vid").fadeOut("slow");
+    $("#full-intro").fadeIn("slow");
+    document.getElementById('full-intro').scrollIntoView({ behavior: 'smooth', block: 'start', });
+};

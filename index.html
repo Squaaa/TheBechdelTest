@@ -7,35 +7,45 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>The Bechdel Test: Representation of Women in Film</h1>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>What is the Bechdel Test?</h2>
-            <div id="intro">
-                <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
-                    It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
-                    Through three rules, it forms a relatively simple baseline for female representation in film:</p>
-                <ol>
-                    <li>There must be at least two women, </li>
-                    <li>Who talk to each other,</li>
-                    <li>About something other than a man.</li>
-                </ol>
-                <p>Easy enough, right?</p>
-                <button type="button" class="btn btn-light" onclick="typeWrite()">Next</button>
+
+    <video width="100%" id="intro-vid" muted autoplay>
+        <source src="video/countdown.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div id="full-intro">
+        <h1>The Bechdel Test: Representation of Women in Film</h1>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>What is the Bechdel Test?</h2>
+                <div id="intro">
+                    <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
+                        It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
+                        Through three rules, it forms a relatively simple baseline for female representation in film:</p>
+                    <ol>
+                        <li>There must be at least two women, </li>
+                        <li>Who talk to each other,</li>
+                        <li>About something other than a man.</li>
+                    </ol>
+                    <p>Easy enough, right?</p>
+                    <button type="button" class="btn btn-light" onclick="showQOne()">Next</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="img/comic.png" id="comic">
             </div>
         </div>
-        <div class="col-md-6">
-            <img src="img/comic.png" id="comic">
-        </div>
     </div>
+
     <br>
     <br>
 
     <div class = "row">
         <div class = "col" id="firstQ">
-            <p id="first-question"></p>
+            <p id="first-question">Out of the top 10 grossing films from 2016, how many do you think passed the Bechdel Test?</p>
         </div>
+        <div id="bottom-view-1"></div>
         <div class = "col">
             <div id="guess" align="center">
                 <p>Enter your guess: </p>
@@ -59,38 +69,39 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>Box Office & Bechdel Test Results</h3>
-                <h5>Select bar to view more detail</h5>
-                <div id="top-10-bar-chart">BAR CHART</div>
-                <div class="row">
-                    <div id="word-cloud-pass">PASSED BECHDEL TEST</div>
-                    <div id="word-cloud-fail">FAILED BECHDEL TEST</div>
-                </div>
+                <h5>Click any bar to view more details</h5>
+                <br>
+                <br>
+                <div id="top-10-bar-chart"></div>
             </div>
             <div class="col-md-6">
                 <div id="top-10-detail-area">
                     <h3 id="top-10-movie-title"></h3>
                     <p id="top-10-movie-revenue"></p>
                     <p id="top-10-movie-bechdel"></p>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="sort-type">Sort Breakdown By</label>
-                            <select class="form-control" id="sort-type" onchange="updateCastIconChart()">
-                                <option value="billing">Billing Rank  </option>
-                                <option value="gender">Gender  </option>
-                            </select>
-                        </div>
-                    </form>
-                    <h4>Cast Gender Breakdown</h4>
-                    <div id="cast-icon-chart"></div>
-                    <h4>Crew Gender Breakdown</h4>
-                    <div id="crew-icon-chart"></div>
-                    <div id="dialogue-bubble-chart">DIALOGUE BUBBLE CHART (TODO)</div>
+                    <p id="top-10-movie-video">TODO VIDEO</p>
                 </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Cast Gender Breakdown</h4>
+                <div id="cast-icon-chart-error"></div>
+                <div id="cast-icon-chart"></div>
+            </div>
+            <div class="col-md-6">
+                <h4>Cast Gender Dialogue Breakdown</h4>
+                <p>TODO update with bar chart selection</p>
+                <div id="cast-dialogue-chart"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>VIDEO (TODO)</p>
+                <h4>Crew Gender Breakdown</h4>
+                <div id="crew-icon-chart-error"></div>
+                <div id="crew-icon-chart"></div>
             </div>
             <div class="col-md-6">
                 <p>DATA ANALYSIS (In Progress)</p>
@@ -100,11 +111,40 @@
                     with more female producers than male producers. And only two movies have female writers, while a
                     total of zero movies have more female writers than male writers. Even when looking at cast and crew
                     as a whole, the average breakdown is 71% male for cast and 74% for crew. The Bechdel Test is a
-                    very small baseline, that most of these movies do past, but the spirit of idea equal representation
+                    very small baseline, that most of these movies do pass, but the spirit of idea equal representation
                     is clearly missed.</p>
             </div>
         </div>
-        <h2>Bechdel Test Over Time</h2>
+        <button type="button" class="btn btn-light" onclick="showQTwo()">Next</button>
+    </div>
+
+    <div class = "row">
+        <div class = "col" id="secondQ">
+            <br>
+            <p id="second-question">Given what you know about 2016, what was the first year between 1980 - 2013 where at least half of the films passed the Bechdel test</p>
+        <div id="end-second"></div>
+        </div>
+        <div class = "col">
+            <div id="guess-two" align="center">
+                <p>Enter your guess: </p>
+                <div class="form-group">
+                    <input class="form-control" type="number" id="year-input">
+                </div>
+                    <p id="answer-feedback-2"></p>
+                    <button type="button" class="btn btn-light" onclick="showVisTwo()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-visual-2">
+        <div id="topViewTwo">
+            <br>
+            <p id="show-answer-2"></p>
+            <h2>Bechdel Test Results Over Time</h2>
+            <h4>More movies are passing, but the film industry is still struggling to meet the low bar set by the Bechdel test</h4>
+            <p>Drag over the area chart to view a specific time period.</p>
+            <br>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <!-- Select box to choose the data type -->
@@ -114,8 +154,8 @@
                         <select class="form-control" id="select-box" onchange="updateAxes()">
                             <option value="number">Number of movies</option>
                             <option value="proportion">Proportion of movies</option>
-                            <option value="budget">Total budget</option>
-                            <option value="gross">Total domestic gross</option>
+                            <option value="budget">Total budget (billions)</option>
+                            <option value="gross">Total domestic gross (billions)</option>
                         </select>
                     </div>
                 </form>
@@ -128,12 +168,17 @@
             </div>
             <div class="col-md-6">
                 <div id="time-data-analysis">
-                    <ul>
-                        <li>In recent years, about half of movies have passed the Bechdel test</li>
-                        <li>The proportion of movies that pass the test seems to be growing very slowly over time</li>
-                        <li>Over 70% of musicals have passed the Bechdel test, while at the other end of the spectrum, just over 20% of documentaries have passed the test</li>
-                        <li>In 2013, the most recent year for which we have data, movies that passed the Bechdel test made up 35% of the total budget but 48% of the total gross</li>
-                    </ul>
+                    <p class="number proportion">The proportion of movies that pass the Bechdel test seems to be
+                        growing very slowly over time, with about half of movies passing the test in recent years.</p>
+                    <p class="genre-info">There are large differences between movies of different genres: 80% of
+                        musicals have passed the Bechdel test, while at the other end of the spectrum, just 25%
+                        of documentaries have passed the test.</p>
+                    <p>There also appears to be a difference between the economic success of movies that pass the test
+                        and movies that fail it.</p>
+                    <p class="budget gross">In 2013, the most recent year for which we have data, movies that passed
+                        the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
+                    <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
+                        more money domestically relative to the size of their budgets.</p>
                 </div>
             </div>
         </div>
@@ -141,17 +186,60 @@
         <div class="row">
             <div class="col-md-12">
                 <p>From our website it's clear to see that there's still a lot that needs to be done in terms of female
-                    representation in film. All though we're clearly making process, it's important to recognize that
-                    our current level isn't enough.</p>
+                    representation in film. Although we're clearly making process, it's important to recognize that
+                    our current level of representation is still lacking.</p>
                 <p>The Bechdel Test is an incredibly trivial baseline for a movie to meet. One non-male centered
-                    conversation between two female characters isn't a difficult task. And accomplishing doesn't even
-                    guarantee that the film (with it's cast, crew, and content) promotes gender equality.</p>
-                <p>Still the Bechdel Test serves an intuitive evaluation for whether a film ignores the importance of
-                    diverse representation in media. It's our duty to push for diversity and representation not just out
-                moral obligation, but to instill values of equality in media consumers of all generations.</p>
+                    conversation between two female characters isn't a difficult task. And accomplishing this doesn't even
+                    guarantee that the film (with its cast, crew, and content) promotes gender equality.</p>
+                <p>Still, the Bechdel Test serves as an intuitive evaluation for whether a film ignores the importance of
+                    diverse representation in media. It's our duty to push for diversity and representation not just out of
+                    moral obligation, but to instill values of equality in media consumers of all generations.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About Us</h2>
+                <p>This was a final project for Harvard's CS171 course in fall 2018, created by Jess Eng, Cassandra
+                    Kane, Lucy Li, and Jarele Soyinka.</p>
+                <h4>To learn more:</h4>
+                <ol>
+                    <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
+                    <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
+                    <li>Watch the screencast below</li>
+                </ol>
+                <p>TODO: INCLUDE SCREENCAST</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Credits</h2>
+                <h4>Data Sources</h4>
+                <ol>
+                    <li>Box Office and Bechdel Test Results:
+                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                    </li>
+                    <li>Cast and Crew Gender Breakdowns:
+                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                    </li>
+                    <li>Dialogue Breakdowns:
+                        <a href="https://data.world/popculture/2016-movie-dialogue">2016 Movie Dialogue</a>
+                    </li>
+                    <li>Bechdel Test Over Time:
+                        <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">Bechdel Results</a>,
+                        <a href="https://data.world/sharon/bechdel-test">Genre Data</a>
+                    </li>
+                </ol>
+                <h4>Images</h4>
+                <ol>
+                    <li><a href="http://dykestowatchoutfor.com/the-rule">"The Rule"</a>
+                        by Alison Bechdel, from the comic strip <i>Dykes to Watch Out For</i></li>
+                </ol>
+                <p>Thank you to the CS171 course staff and especially our advisor,
+                    Nam Wook Kim, for all their help with this project!</p>
             </div>
         </div>
     </div>
+
+
+
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
@@ -161,11 +249,13 @@
     <script src="js/d3-tip.js"></script>
     <script src="js/queue.v1.min.js"></script>
     <script src="js/wordcloud.js"></script>
+    <script src="js/d3-annotation.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/areachart.js"></script>
     <script src="js/iconchart.js"></script>
     <script src="js/barchart2016.js"></script>
     <script src="js/genrechart.js"></script>
+    <script src="js/bubblechart.js"></script>
 
 </body>
 </html>

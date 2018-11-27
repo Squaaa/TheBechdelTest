@@ -28,7 +28,6 @@ StackedBarChart.prototype.initVis = function() {
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-
     // Scales and axes
     vis.x = d3.scaleBand()
         .range([0, vis.width])
@@ -51,14 +50,13 @@ StackedBarChart.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
-    /* // Y-axis label
-    vis.svg.append("text")
-        .attr("class", "y-axis")
+    // Y-axis label
+    vis.yLabel = vis.svg.append("text")
+        .attr("class", "y-label")
         .attr("transform", "rotate(-90)")
-        .attr("y", -vis.margin.left)
+        .attr("y", -35)
         .attr("x", 0 - (vis.height / 2))
-        .style("text-anchor", "middle")
-        .text("Number of movies"); */
+        .style("text-anchor", "middle");
 
     vis.wrangleData();
 
@@ -89,25 +87,25 @@ StackedBarChart.prototype.wrangleData = function(){
             propFail: (v.length - d3.sum(v, function(d) { return d.bechdel; })) / v.length,
             passBudget: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failBudget: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             passGross: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failGross: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             })
@@ -117,15 +115,20 @@ StackedBarChart.prototype.wrangleData = function(){
     var genreData = [];
 
     for (i=0; i<nestedData.length; i++) {
-        genreData.push({
-            genre: nestedData[i].key,
-            count: nestedData[i].value.count,
-            pass: nestedData[i].value[parameters[0]],
-            fail: nestedData[i].value[parameters[1]]
-        })
+        if (nestedData[i].key !== "null") {
+            genreData.push({
+                genre: nestedData[i].key,
+                count: nestedData[i].value.count,
+                pass: nestedData[i].value[parameters[0]],
+                fail: nestedData[i].value[parameters[1]]
+            })
+        }
     };
 
     genreData.sort(function(a,b) {
+        if (yValue === "proportion") {
+            return b.fail - a.fail;
+        }
         return (b.pass + b.fail) - (a.pass + a.fail);
     });
 
@@ -138,8 +141,12 @@ StackedBarChart.prototype.wrangleData = function(){
 StackedBarChart.prototype.updateVis = function(){
     var vis = this;
 
-    vis.x.domain(vis.displayData.map(function(d) {return d.genre}));
+    // Update y-axis labels
+    var selectedText = d3.select('#select-box option:checked').text();
+    vis.yLabel.text(selectedText);
 
+    // Update domains
+    vis.x.domain(vis.displayData.map(function(d) {return d.genre}));
     vis.y.domain([
         0,
         d3.max(vis.displayData, function(d) {return d.pass + d.fail})
@@ -187,9 +194,18 @@ StackedBarChart.prototype.updateVis = function(){
         .attr("width", vis.x.bandwidth())
         .attr("height", function(d) {
             return vis.height - vis.y(d.pass);
-        });
+        })
 
     pass.exit().remove();
+
+    d3.select("#time-genre-bar-chart")
+        .on("mouseover", function() {
+            d3.select(".genre-info").style("font-weight", "bold")
+        })
+        .on("mouseout", function() {
+            d3.select(".genre-info").style("font-weight", "normal")
+        });
+
 
     // Create axes
     vis.svg.select(".x-axis")

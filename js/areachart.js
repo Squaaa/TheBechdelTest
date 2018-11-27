@@ -96,13 +96,13 @@ StackedAreaChart.prototype.initVis = function() {
 StackedAreaChart.prototype.wrangleData = function(){
     var vis = this;
 
-    var yValue = d3.select("#select-box").property("value");
+    vis.yValue = d3.select("#select-box").property("value");
     var parameters = [];
-    if (yValue === "number") {
+    if (vis.yValue === "number") {
         parameters = ["pass", "fail"];
-    } else if (yValue === "proportion") {
+    } else if (vis.yValue === "proportion") {
         parameters = ["propPass", "propFail"];
-    } else if (yValue === "budget") {
+    } else if (vis.yValue === "budget") {
         parameters = ["passBudget", "failBudget"];
     } else {
         parameters = ["passGross", "failGross"];
@@ -240,6 +240,14 @@ StackedAreaChart.prototype.updateVis = function(){
         });
 
     categories.exit().remove();
+
+    d3.select("#time-area-chart")
+        .on("mouseover", function() {
+            d3.select("." + vis.yValue).style("font-weight", "bold")
+        })
+        .on("mouseout", function() {
+            d3.select("." + vis.yValue).style("font-weight", "normal")
+        });
 
     vis.brushGroup.attr("clip-path", "url(#clip)").call(vis.brush);
 

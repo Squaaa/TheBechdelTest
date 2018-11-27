@@ -58,6 +58,15 @@ img {
     font-size: 20px;
 }
 
+#time-data-analysis {
+    margin-top: 2rem;
+    margin-right: 2rem;
+}
+
+#time-data-analysis p {
+    display: inline;
+}
+
 /*********************/
 /*  TOOLTIP OVERLAY  */
 /*********************/

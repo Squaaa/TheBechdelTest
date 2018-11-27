@@ -115,12 +115,14 @@ StackedBarChart.prototype.wrangleData = function(){
     var genreData = [];
 
     for (i=0; i<nestedData.length; i++) {
-        genreData.push({
-            genre: nestedData[i].key,
-            count: nestedData[i].value.count,
-            pass: nestedData[i].value[parameters[0]],
-            fail: nestedData[i].value[parameters[1]]
-        })
+        if (nestedData[i].key !== "null") {
+            genreData.push({
+                genre: nestedData[i].key,
+                count: nestedData[i].value.count,
+                pass: nestedData[i].value[parameters[0]],
+                fail: nestedData[i].value[parameters[1]]
+            })
+        }
     };
 
     genreData.sort(function(a,b) {
@@ -198,10 +200,10 @@ StackedBarChart.prototype.updateVis = function(){
 
     d3.select("#time-genre-bar-chart")
         .on("mouseover", function() {
-            d3.select("#genre-info").style("font-weight", "bold")
+            d3.select(".genre-info").style("font-weight", "bold")
         })
         .on("mouseout", function() {
-            d3.select("#genre-info").style("font-weight", "normal")
+            d3.select(".genre-info").style("font-weight", "normal")
         });
 
 

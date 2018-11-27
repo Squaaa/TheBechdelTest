@@ -83,7 +83,7 @@ StackedAreaChart.prototype.initVis = function() {
 
     // Y-axis label
     vis.yLabel = vis.svg.append("text")
-        .attr("class", "y-axis")
+        .attr("class", "y-label")
         .attr("transform", "rotate(-90)")
         .attr("y", -35)
         .attr("x", 0 - (vis.height / 2))

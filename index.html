@@ -7,28 +7,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>The Bechdel Test: Representation of Women in Film</h1>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>What is the Bechdel Test?</h2>
-            <div id="intro">
-                <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
-                    It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
-                    Through three rules, it forms a relatively simple baseline for female representation in film:</p>
-                <ol>
-                    <li>There must be at least two women, </li>
-                    <li>Who talk to each other,</li>
-                    <li>About something other than a man.</li>
-                </ol>
-                <p>Easy enough, right?</p>
-                <button type="button" class="btn btn-light" onclick="showQOne()">Next</button>
+
+    <video width="100%" id="intro-vid" muted autoplay>
+        <source src="video/countdown.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div id="full-intro">
+        <h1>The Bechdel Test: Representation of Women in Film</h1>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>What is the Bechdel Test?</h2>
+                <div id="intro">
+                    <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
+                        It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
+                        Through three rules, it forms a relatively simple baseline for female representation in film:</p>
+                    <ol>
+                        <li>There must be at least two women, </li>
+                        <li>Who talk to each other,</li>
+                        <li>About something other than a man.</li>
+                    </ol>
+                    <p>Easy enough, right?</p>
+                    <button type="button" class="btn btn-light" onclick="showQOne()">Next</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="img/comic.png" id="comic">
             </div>
         </div>
-        <div class="col-md-6">
-            <img src="img/comic.png" id="comic">
-        </div>
     </div>
+
     <br>
     <br>
 
@@ -61,7 +70,9 @@
             <div class="col-md-6">
                 <h3>Box Office & Bechdel Test Results</h3>
                 <h5>Click any bar to view more details</h5>
-                <div id="top-10-bar-chart">BAR CHART</div>
+                <br>
+                <br>
+                <div id="top-10-bar-chart"></div>
             </div>
             <div class="col-md-6">
                 <div id="top-10-detail-area">
@@ -72,6 +83,8 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <h4>Cast Gender Breakdown</h4>
@@ -108,7 +121,7 @@
     <div class = "row">
         <div class = "col" id="secondQ">
             <br>
-            <p id="second-question">Given what you know about 2016, what was the first year between 1980 - 2013 where more than half of the films passed the Bechdel test?</p>
+            <p id="second-question">Given what you know about 2016, what was the first year between 1980 - 2013 where at least half of the films passed the Bechdel test</p>
         <div id="end-second"></div>
         </div>
         <div class = "col">
@@ -129,6 +142,8 @@
             <p id="show-answer-2"></p>
             <h2>Bechdel Test Results Over Time</h2>
             <h4>More movies are passing, but the film industry is still struggling to meet the low bar set by the Bechdel test</h4>
+            <p>Drag over the area chart to view a specific time period.</p>
+            <br>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -188,11 +203,11 @@
                     Kane, Lucy Li, and Jarele Soyinka.</p>
                 <h4>To learn more:</h4>
                 <ol>
-                    <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest">GitHub</a></li>
-                    <li>Read our process book</li>
+                    <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
+                    <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
                     <li>Watch the screencast below</li>
                 </ol>
-                <p>TODO: LINK PROCESS BOOK, INCLUDE SCREENCAST</p>
+                <p>TODO: INCLUDE SCREENCAST</p>
             </div>
             <div class="col-md-6">
                 <h2>Credits</h2>

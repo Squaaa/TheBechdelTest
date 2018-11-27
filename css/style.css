@@ -51,11 +51,18 @@ img {
     text-align: center;
 }
 
+#year-input {
+    width: 400px;
+    line-height: 100px;
+    font-size: 100px;
+    text-align: center;
+}
+
 #intro {
     font-size: 22px;
 }
 
-#show-answer {
+#show-answer, #show-answer-2 {
     font-size: 50px;
 }
 

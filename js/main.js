@@ -64,23 +64,14 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         }
 
         let castData = [];
-        for (let i = 0; i < top10castGender.length; i++) {
-            let currActor = top10castGender[i];
-            if (currActor['MOVIE'] === movie['title']) {
+        for (let j = 0; j < top10castGender.length; j++) {
+            let currActor = top10castGender[j];
+            // exception for Rogue One (title discrepancy)
+            if (currActor['MOVIE'] === movie['title'] ||
+                (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story")) {
                 let actorData = {
                     'name': currActor['ACTOR'],
                     'gender': currActor['GENDER'].toLowerCase(),
-                    'character': currActor['CHARACTER_NAME'],
-                    'characterType': currActor['TYPE'],
-                    'billing': +currActor['BILLING']
-                };
-                castData.push(actorData);
-            }
-            // exception for Rogue One (title discrepancy)
-            if (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story") {
-                let actorData = {
-                    'name': currActor['ACTOR'],
-                    'gender': currActor['GENDER'],
                     'character': currActor['CHARACTER_NAME'],
                     'characterType': currActor['TYPE'],
                     'billing': +currActor['BILLING']
@@ -92,8 +83,8 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 
         // NOTE: missing crewData available for 'Fantastic Beasts and Where to Find Them' and 'Suicide Squad'
         let crewData = [];
-        for (let i = 0; i < top10crewGender.length; i++) {
-            let currCrew = top10crewGender[i];
+        for (let j = 0; j < top10crewGender.length; j++) {
+            let currCrew = top10crewGender[j];
             if (currCrew['MOVIE'] === movie['title'] + "_(2016)") {
                 if (currCrew['GENDER_GUESS'] && currCrew['GENDER_GUESS'] !== "null") {
                     let crewMember = {
@@ -114,7 +105,8 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
                 'character': character['Character'],
                 'gender': character['Gender'],
                 'words': +character['Total_Words'],
-                'speakingTurns': +character['speaking_turns']
+                'speakingTurns': +character['speaking_turns'],
+                'role': character['role']
             };
             dialogueData.push(characterData);
         }

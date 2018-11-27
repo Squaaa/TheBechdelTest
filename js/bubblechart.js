@@ -43,7 +43,9 @@ BubbleChart.prototype.updateVis = function(){
     var wordCountMax = d3.max(vis.displayData, function (d) {return d.words });
     var radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 40]);
 
-    var forceXSplit = d3.forceX(d => vis.width * (d.gender === "male" ? 0.3 : 0.7))
+    var forceXSplitRole = d3.forceX(d => vis.width * (d.role === "lead" ? 0.3 : 0.7))
+        .strength(0.2);
+    var forceXSplitGender = d3.forceX(d => vis.width * (d.gender === "female" ? 0.3 : 0.7))
         .strength(0.2);
 
     var forceXCombine = d3.forceX((vis.width)/2).strength(0.1);
@@ -55,7 +57,7 @@ BubbleChart.prototype.updateVis = function(){
     var simulation = d3.forceSimulation()
         .force("x", forceXCombine)
         .force("y", d3.forceY((vis.height / 3) + 10).strength(0.15))
-        .force("center", d3.forceCenter(vis.width / 2, vis.height / 3))
+        .force("center", d3.forceCenter(vis.width / 2, vis.height / 2))
         .force("collide", forceCollide)
         .nodes(vis.displayData)
         .on('tick', ticked);
@@ -96,7 +98,7 @@ BubbleChart.prototype.updateVis = function(){
 
     var onClick = function(){
         simulation
-            .force("x", atRight ? forceXSplit : forceXCombine)
+            .force("x", atRight ? forceXSplitRole : forceXCombine)
             .alpha(0.7)
             .restart();
         setAtRight(!atRight);
@@ -128,7 +130,44 @@ BubbleChart.prototype.updateVis = function(){
             .attr("cx", (atRight? (27) : (51)))
             .style("fill", "white");
         rect.transition().duration(250)
-            .style("fill", atRight? "lightgray" : "#ff4a6b");
+            .style("fill", atRight? "lightgray" : "#55efc4");
+    };
+
+    var onClick2 = function(){
+        simulation
+            .force("x", atRight2 ? forceXSplitGender : forceXCombine)
+            .alpha(0.7)
+            .restart();
+        setAtRight2(!atRight2);
+    };
+
+    var atRight2 = true;
+
+    var rect2 = vis.svg.append("rect")
+        .attr("x", 77)
+        .attr("y", 7)
+        .attr("rx", 22)
+        .attr("ry", 22)
+        .style("fill", "lightgray")
+        .attr("width", 64)
+        .attr("height", 40)
+        .on("click", onClick2)
+
+    var circle2 = vis.svg.append("circle")
+        .attr("cx", 97)
+        .attr("cy", 27)
+        .attr("r", 16)
+        .style("fill", "white")
+        .on("click", onClick2)
+
+
+    var setAtRight2 = function(newValue) {
+        atRight2 = newValue;
+        circle2.transition().duration(250)
+            .attr("cx", (atRight2? (97) : (121)))
+            .style("fill", "white");
+        rect2.transition().duration(250)
+            .style("fill", atRight2? "lightgray" : "#55efc4");
     };
 
     function ticked() {

@@ -89,6 +89,31 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("x", 0 - (vis.height / 2))
         .style("text-anchor", "middle");
 
+    // Annotations
+    /*
+    const type = d3.annotationXYThreshold;
+
+    const annotations = [{
+        note: {
+            label: "Longer text to show text wrapping",
+            title: "Annotations :)"
+        },
+        x: 50,
+        y: 150,
+        dy: 137,
+        dx: 162
+    }]
+
+    var makeAnnotations = d3.annotation()
+        .type(type)
+        .annotations(annotations)
+
+    console.log(makeAnnotations)
+
+    vis.svg.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations); */
+
     vis.wrangleData();
 
 };

@@ -181,9 +181,7 @@ function typeWrite() {
 
 function showVis() {
     var answer = document.getElementById('number-input').value;
-    console.log(answer);
-    console.log((Number.isInteger(answer)));
-    if((answer < 0 || answer > 10)) {
+    if((answer < 0 || answer > 10) || answer === "") {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {

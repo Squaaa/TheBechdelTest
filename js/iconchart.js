@@ -52,7 +52,7 @@ IconChart.prototype.wrangleData = function(){
         }
         return b_val - a_val;
     });
-    
+
     // Update the visualization
     vis.updateVis();
     vis.updateVis();

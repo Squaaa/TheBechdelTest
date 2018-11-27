@@ -172,16 +172,23 @@ function updateAxes() {
     genrechart.wrangleData();
 }
 
-function typeWrite() {
-    document.getElementById('firstQ').scrollIntoView({ behavior: 'smooth', block: 'start', });
+function showQOne() {
     $("#first-question").fadeIn(2000);
     $("#guess").fadeIn(2000);
+    document.getElementById('bottom-view-1').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
 
+function showQTwo() {
+    $("#second-question").fadeIn(2000);
+    $("#guess-two").fadeIn(2000);
+    document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 function showVis() {
     var answer = document.getElementById('number-input').value;
-    if((answer < 0 || answer > 10) || answer === "") {
+    console.log(answer);
+    console.log((Number.isInteger(answer)));
+    if((answer < 0 || answer > 10) || (answer === "")) {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {
@@ -189,4 +196,18 @@ function showVis() {
         $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. <b>Here is what 2016 actually looked like. </b>");
         document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
     }
+}
+
+function showVisTwo() {
+    var answer = document.getElementById('year-input').value;
+
+    if((answer < 1980 || answer > 2013) || (answer === "")) {
+        $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
+    }
+    else {
+        $("#main-visual-2").fadeIn();
+        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where more than half of the films passed the Bechdel test. The correct answer is 1996 which is <u>" + Math.abs(1996 - answer) + "</u> years off from your prediction." );
+        document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    }
+
 }

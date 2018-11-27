@@ -99,7 +99,17 @@ BarChart2016.prototype.initVis = function() {
             vis.casticonchart.wrangleData();
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();
-        });
+        })
+        .on("mouseover", function(d) {
+            d3.select(this).attr("fill", function () {
+                return !d.bechdel ? "#b02e11" : "#6097cf";
+            });
+        })
+        .on("mouseout", function(d) {
+            d3.select(this).attr("fill", function () {
+                return !d.bechdel ? "#d32727" : "#74b9ff";
+            });
+        });;
 
     // add the x Axis
     vis.svg.append("g")

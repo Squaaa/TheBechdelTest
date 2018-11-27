@@ -126,6 +126,9 @@ StackedBarChart.prototype.wrangleData = function(){
     };
 
     genreData.sort(function(a,b) {
+        if (yValue === "proportion") {
+            return b.fail - a.fail;
+        }
         return (b.pass + b.fail) - (a.pass + a.fail);
     });
 

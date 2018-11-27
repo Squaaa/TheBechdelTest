@@ -42,6 +42,7 @@ StackedAreaChart.prototype.initVis = function() {
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
 
+
     // Initialize brushing component
     vis.currentBrushRegion = null;
 
@@ -50,11 +51,15 @@ StackedAreaChart.prototype.initVis = function() {
         .on("brush", function(){
             // User just selected a specific region
             vis.currentBrushRegion = d3.event.selection;
+            console.log(vis.currentBrushRegion)
             vis.currentBrushRegion = vis.currentBrushRegion.map(vis.x.invert);
 
             // 3. Trigger the event 'selectionChanged' of our event handler
             $(vis.eventHandler).trigger("selectionChanged", vis.currentBrushRegion);
         });
+
+    vis.brushGroup = vis.svg.append("g")
+        .attr("class", "brush");
 
     // Scales and axes
     vis.x = d3.scaleLinear()
@@ -233,11 +238,9 @@ StackedAreaChart.prototype.updateVis = function(){
 
     categories.exit().remove();
 
-    vis.brushGroup = vis.svg.append("g")
-        .attr("class", "brush")
-        .attr("clip-path", "url(#clip)")
-        .call(vis.brush);
+    vis.brushGroup.attr("clip-path", "url(#clip)").call(vis.brush);
 
+    vis.brushGroup.moveToFront();
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
@@ -246,3 +249,10 @@ StackedAreaChart.prototype.updateVis = function(){
         .duration(800)
         .call(vis.yAxis);
 }
+
+// Bring a D3 element to the front
+d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
+};

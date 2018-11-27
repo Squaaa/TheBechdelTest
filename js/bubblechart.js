@@ -94,42 +94,42 @@ BubbleChart.prototype.updateVis = function(){
     circles.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);
 
-    // var onClick = function(){
-    //     simulation
-    //         .force("x", atRight ? forceXSplit : forceXCombine)
-    //         .alpha(0.7)
-    //         .restart();
-    //     setAtRight(!atRight);
-    // };
-    //
-    // var atRight = true;
-    //
-    // var rect = vis.svg.append("rect")
-    //     .attr("x", 7)
-    //     .attr("y", 7)
-    //     .attr("rx", 22)
-    //     .attr("ry", 22)
-    //     .style("fill", "lightgray")
-    //     .attr("width", 64)
-    //     .attr("height", 40)
-    //     .on("click", onClick)
-    //
-    // var circle = vis.svg.append("circle")
-    //     .attr("cx", 27)
-    //     .attr("cy", 27)
-    //     .attr("r", 16)
-    //     .style("fill", "white")
-    //     .on("click", onClick)
-    //
-    //
-    // var setAtRight = function(newValue) {
-    //     atRight = newValue;
-    //     circle.transition().duration(250)
-    //         .attr("cx", (atRight? (27) : (51)))
-    //         .style("fill", "white");
-    //     rect.transition().duration(250)
-    //         .style("fill", atRight? "lightgray" : "#ff4a6b");
-    // };
+    var onClick = function(){
+        simulation
+            .force("x", atRight ? forceXSplit : forceXCombine)
+            .alpha(0.7)
+            .restart();
+        setAtRight(!atRight);
+    };
+
+    var atRight = true;
+
+    var rect = vis.svg.append("rect")
+        .attr("x", 7)
+        .attr("y", 7)
+        .attr("rx", 22)
+        .attr("ry", 22)
+        .style("fill", "lightgray")
+        .attr("width", 64)
+        .attr("height", 40)
+        .on("click", onClick)
+
+    var circle = vis.svg.append("circle")
+        .attr("cx", 27)
+        .attr("cy", 27)
+        .attr("r", 16)
+        .style("fill", "white")
+        .on("click", onClick)
+
+
+    var setAtRight = function(newValue) {
+        atRight = newValue;
+        circle.transition().duration(250)
+            .attr("cx", (atRight? (27) : (51)))
+            .style("fill", "white");
+        rect.transition().duration(250)
+            .style("fill", atRight? "lightgray" : "#ff4a6b");
+    };
 
     function ticked() {
         circles

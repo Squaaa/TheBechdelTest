@@ -51,7 +51,6 @@ StackedAreaChart.prototype.initVis = function() {
         .on("brush", function(){
             // User just selected a specific region
             vis.currentBrushRegion = d3.event.selection;
-            console.log(vis.currentBrushRegion)
             vis.currentBrushRegion = vis.currentBrushRegion.map(vis.x.invert);
 
             // 3. Trigger the event 'selectionChanged' of our event handler
@@ -119,25 +118,25 @@ StackedAreaChart.prototype.wrangleData = function(){
             propFail: (v.length - d3.sum(v, function(d) { return d.bechdel; })) / v.length,
             passBudget: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failBudget: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.budget;
+                    return d.budget / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             passGross: d3.sum(v, function(d) {
                 if (d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             }),
             failGross: d3.sum(v, function(d) {
                 if (!d.bechdel) {
-                    return d.domesticGross;
+                    return d.domesticGross / 1000000000; // convert to billions
                 }
                 return 0;
             })
@@ -169,6 +168,10 @@ StackedAreaChart.prototype.wrangleData = function(){
 
 StackedAreaChart.prototype.updateVis = function(){
     var vis = this;
+
+    // Update y-axis labels
+    var selectedText = d3.select('#select-box option:checked').text();
+    vis.yLabel.text(selectedText);
 
     // Update domain
     vis.x.domain(d3.extent(vis.bechdelData, function(d) { return d.year; }));

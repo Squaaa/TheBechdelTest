@@ -113,9 +113,9 @@
                         <label for="select-box">Chart data:</label>
                         <select class="form-control" id="select-box" onchange="updateAxes()">
                             <option value="number">Number of movies</option>
-                            <option value="proportion">Proportion of movies</option>
-                            <option value="budget">Total budget</option>
-                            <option value="gross">Total domestic gross</option>
+                            <option value="proportion">Percent of movies</option>
+                            <option value="budget">Total budget (billions)</option>
+                            <option value="gross">Total domestic gross (billions)</option>
                         </select>
                     </div>
                 </form>
@@ -128,12 +128,10 @@
             </div>
             <div class="col-md-6">
                 <div id="time-data-analysis">
-                    <ul>
-                        <li>In recent years, about half of movies have passed the Bechdel test</li>
-                        <li>The proportion of movies that pass the test seems to be growing very slowly over time</li>
-                        <li>Over 70% of musicals have passed the Bechdel test, while at the other end of the spectrum, just over 20% of documentaries have passed the test</li>
-                        <li>In 2013, the most recent year for which we have data, movies that passed the Bechdel test made up 35% of the total budget but 48% of the total gross</li>
-                    </ul>
+                    <p>In recent years, about half of movies have passed the Bechdel test.</p>
+                    <p>The proportion of movies that pass the test seems to be growing very slowly over time.</p>
+                    <p id="genre-info">Over 70% of musicals have passed the Bechdel test, while at the other end of the spectrum, just over 20% of documentaries have passed the test.</p>
+                    <p>In 2013, the most recent year for which we have data, movies that passed the Bechdel test made up 35% of the total budget but 48% of the total gross.</p>
                 </div>
             </div>
         </div>

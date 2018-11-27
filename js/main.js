@@ -179,6 +179,12 @@ function typeWrite() {
 
 }
 
+function showQTwo() {
+    $("#second-question").fadeIn(2000);
+    $("#guess-two").fadeIn(2000);
+    document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
 function showVis() {
     var answer = document.getElementById('number-input').value;
     console.log(answer);
@@ -191,4 +197,10 @@ function showVis() {
         $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. <b>Here is what 2016 actually looked like. </b>");
         document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
     }
+}
+
+function showVisTwo() {
+    $("#main-visual-2").fadeIn();
+    document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    console.log("hey");
 }

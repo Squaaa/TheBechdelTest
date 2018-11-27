@@ -101,7 +101,31 @@
                     is clearly missed.</p>
             </div>
         </div>
-        <h2>Bechdel Test Over Time</h2>
+        <button type="button" class="btn btn-light" onclick="showQTwo()">Next</button>
+    </div>
+
+    <div class = "row">
+        <div class = "col" id="secondQ">
+            <br>
+            <p id="second-question">Given what you now know about 2016, which do you think was the first year between 1980 - Present Day that had 50% or more films that passed the Bechdel test?</p>
+        <div id="end-second"></div>
+        </div>
+        <div class = "col">
+            <div id="guess-two" align="center">
+                <p>Enter your guess: </p>
+                <div class="form-group">
+                    <input class="form-control" type="month" id="year-input">
+                </div>
+                    <button type="button" class="btn btn-light" onclick="showVisTwo()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-visual-2">
+        <div id="topViewTwo">
+            <br>
+            <h2>Bechdel Test Over Time</h2>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <!-- Select box to choose the data type -->
@@ -150,7 +174,7 @@
                     guarantee that the film (with it's cast, crew, and content) promotes gender equality.</p>
                 <p>Still the Bechdel Test serves an intuitive evaluation for whether a film ignores the importance of
                     diverse representation in media. It's our duty to push for diversity and representation not just out
-                moral obligation, but to instill values of equality in media consumers of all generations.</p>
+                    moral obligation, but to instill values of equality in media consumers of all generations.</p>
             </div>
         </div>
         <div class="row">
@@ -194,6 +218,9 @@
             </div>
         </div>
     </div>
+
+
+
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>

@@ -25,26 +25,23 @@ img {
     height: 100%;
 }
 
-#guess {
+#guess, #guess-two {
     display:none;
     font-size: 22px;
 }
 
-#first-question {
+#first-question, #second-question {
     display: none;
+    font-size: 40px;
+    text-align: center;
 }
 
-#main-visual {
+#main-visual, #main-visual-2 {
     display: none;
 }
 
 #comic {
     width: 100%;
-}
-
-#first-question {
-    font-size: 40px;
-    text-align: center;
 }
 
 #number-input {

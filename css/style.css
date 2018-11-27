@@ -1,11 +1,23 @@
 /* custom css rules */
 
+@font-face {
+    font-family: 'Blockletter'; /*a name to be used later*/
+    src: url('Blockletter.otf'); /*URL to font*/
+}
+
 body {
     margin: 2rem 2rem 2rem 4rem;
+    font-family: "Avenir Next";
 }
 
 h1 {
+    font-size: 75px;
+    font-family: "Blockletter", serif;
+}
+
+h2 {
     font-size: 50px;
+    font-family: "Blockletter", serif;
 }
 
 text.legend {
@@ -63,7 +75,7 @@ img {
 }
 
 #show-answer, #show-answer-2 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 #time-data-analysis {

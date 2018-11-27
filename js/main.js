@@ -172,18 +172,10 @@ function updateAxes() {
     genrechart.wrangleData();
 }
 
-var i = 0;
-var textq = 'Blank Blank Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?';
-var speed = 2;
-
 function typeWrite() {
     document.getElementById('firstQ').scrollIntoView({ behavior: 'smooth', block: 'start', });
-    if (i < textq.length) {
-        document.getElementById("first-question").innerHTML += textq.charAt(i);
-        i++;
-        setTimeout(typeWrite, speed);
-    }
-    $("#guess").fadeIn(4000);
+    $("#first-question").fadeIn(2000);
+    $("#guess").fadeIn(2000);
 
 }
 
@@ -196,7 +188,7 @@ function showVis() {
     }
     else {
         $("#main-visual").fadeIn();
-        $("#show-answer").html("You thought " + answer + " movies or " + (answer * 10) + "% of the top 10 grossing films from 2016 passed the Bechdel Test. Here is what 2016 actually looked like.");
+        $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. <b>Here is what 2016 actually looked like. </b>");
         document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
     }
 }

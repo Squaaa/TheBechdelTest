@@ -164,11 +164,10 @@ function updateAxes() {
     genrechart.wrangleData();
 }
 
-function typeWrite() {
-    document.getElementById('firstQ').scrollIntoView({ behavior: 'smooth', block: 'start', });
+function showQOne() {
     $("#first-question").fadeIn(2000);
     $("#guess").fadeIn(2000);
-
+    document.getElementById('bottom-view-1').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 function showQTwo() {
@@ -181,7 +180,7 @@ function showVis() {
     var answer = document.getElementById('number-input').value;
     console.log(answer);
     console.log((Number.isInteger(answer)));
-    if((answer < 0 || answer > 10)) {
+    if((answer < 0 || answer > 10) || (answer === "")) {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {
@@ -192,7 +191,15 @@ function showVis() {
 }
 
 function showVisTwo() {
-    $("#main-visual-2").fadeIn();
-    document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
-    console.log("hey");
+    var answer = document.getElementById('year-input').value;
+
+    if((answer < 1980 || answer > 2013) || (answer === "")) {
+        $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
+    }
+    else {
+        $("#main-visual-2").fadeIn();
+        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where more than half of the films passed the Bechdel test. The correct answer is 1996 which is <u>" + Math.abs(1996 - answer) + "</u> years off from your prediction." );
+        document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    }
+
 }

@@ -22,7 +22,7 @@
                     <li>About something other than a man.</li>
                 </ol>
                 <p>Easy enough, right?</p>
-                <button type="button" class="btn btn-light" onclick="typeWrite()">Next</button>
+                <button type="button" class="btn btn-light" onclick="showQOne()">Next</button>
             </div>
         </div>
         <div class="col-md-6">
@@ -36,6 +36,7 @@
         <div class = "col" id="firstQ">
             <p id="first-question">Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?</p>
         </div>
+        <div id="bottom-view-1"></div>
         <div class = "col">
             <div id="guess" align="center">
                 <p>Enter your guess: </p>
@@ -107,15 +108,16 @@
     <div class = "row">
         <div class = "col" id="secondQ">
             <br>
-            <p id="second-question">Given what you now know about 2016, which do you think was the first year between 1980 - Present Day that had 50% or more films that passed the Bechdel test?</p>
+            <p id="second-question">Given what you know about 2016, what was the first year between 1980 - 2013 where more than half of the films passed the Bechdel test?</p>
         <div id="end-second"></div>
         </div>
         <div class = "col">
             <div id="guess-two" align="center">
                 <p>Enter your guess: </p>
                 <div class="form-group">
-                    <input class="form-control" type="month" id="year-input">
+                    <input class="form-control" type="number" id="year-input">
                 </div>
+                    <p id="answer-feedback-2"></p>
                     <button type="button" class="btn btn-light" onclick="showVisTwo()">Submit</button>
             </div>
         </div>
@@ -124,6 +126,7 @@
     <div id="main-visual-2">
         <div id="topViewTwo">
             <br>
+            <p id="show-answer-2"></p>
             <h2>Bechdel Test Over Time</h2>
         </div>
         <div class="row">
@@ -151,15 +154,15 @@
                 <div id="time-data-analysis">
                     <p class="number proportion">The proportion of movies that pass the Bechdel test seems to be
                         growing very slowly over time, with about half of movies passing the test in recent years.</p>
-                    <p class="genre-info">There are large differences between movies of different genres: over 70% of
-                        musicals have passed the Bechdel test, while at the other end of the spectrum, just over 20%
+                    <p class="genre-info">There are large differences between movies of different genres: 80% of
+                        musicals have passed the Bechdel test, while at the other end of the spectrum, just 25%
                         of documentaries have passed the test.</p>
                     <p>There also appears to be a difference between the economic success of movies that pass the test
                         and movies that fail it.</p>
                     <p class="budget gross">In 2013, the most recent year for which we have data, movies that passed
-                        the Bechdel test made up 35% of the total budget but 48% of the total domestic gross.</p>
+                        the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
                     <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
-                        more money domestically in comparison to the size of their budgets.</p>
+                        more money domestically relative to the size of their budgets.</p>
                 </div>
             </div>
         </div>
@@ -230,6 +233,7 @@
     <script src="js/d3-tip.js"></script>
     <script src="js/queue.v1.min.js"></script>
     <script src="js/wordcloud.js"></script>
+    <script src="js/d3-annotation.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/areachart.js"></script>
     <script src="js/iconchart.js"></script>

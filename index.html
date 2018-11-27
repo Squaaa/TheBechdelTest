@@ -61,36 +61,30 @@
                 <h3>Box Office & Bechdel Test Results</h3>
                 <h5>Select bar to view more detail</h5>
                 <div id="top-10-bar-chart">BAR CHART</div>
-                <div class="row">
-                    <div id="word-cloud-pass">PASSED BECHDEL TEST</div>
-                    <div id="word-cloud-fail">FAILED BECHDEL TEST</div>
-                </div>
             </div>
             <div class="col-md-6">
                 <div id="top-10-detail-area">
                     <h3 id="top-10-movie-title"></h3>
                     <p id="top-10-movie-revenue"></p>
                     <p id="top-10-movie-bechdel"></p>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="sort-type">Sort Breakdown By</label>
-                            <select class="form-control" id="sort-type" onchange="updateCastIconChart()">
-                                <option value="billing">Billing Rank  </option>
-                                <option value="gender">Gender  </option>
-                            </select>
-                        </div>
-                    </form>
-                    <h4>Cast Gender Breakdown</h4>
-                    <div id="cast-icon-chart"></div>
-                    <h4>Crew Gender Breakdown</h4>
-                    <div id="crew-icon-chart"></div>
-                    <div id="dialogue-bubble-chart">DIALOGUE BUBBLE CHART (TODO)</div>
+                    <p id="top-10-movie-video">TODO VIDEO</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>VIDEO (TODO)</p>
+                <h4>Cast Gender Breakdown</h4>
+                <div id="cast-icon-chart"></div>
+            </div>
+            <div class="col-md-6">
+                <h4>Cast Dialogue</h4>
+                TODO DIALOGUE BUBBLE CHART
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Crew Gender Breakdown</h4>
+                <div id="crew-icon-chart"></div>
             </div>
             <div class="col-md-6">
                 <p>DATA ANALYSIS (In Progress)</p>

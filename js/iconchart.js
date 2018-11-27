@@ -65,26 +65,17 @@ IconChart.prototype.wrangleData = function(){
     vis.displayData = vis.data.filter(function (d) {
         return d['gender'].toLowerCase() === "male" || d['gender'].toLowerCase() === "female";
     });
-    let value = d3.select("#sort-type").property("value");
-    if (value === "billing") {
-        vis.displayData.sort(function (a, b) {
-            return a[value] - b[value];
-        });
-    }
-    if (value === "gender") {
-        vis.displayData.sort(function (a, b) {
-            let a_val = 0;
-            let b_val = 0;
-            if (a["gender"].toLowerCase() === "female") {
-                a_val = 1;
-            }
-            if (b["gender"].toLowerCase() === "female") {
-                b_val = 1;
-            }
-            return b_val - a_val;
-        });
-    }
-    console.log(vis.displayData);
+    vis.displayData.sort(function (a, b) {
+        let a_val = 0;
+        let b_val = 0;
+        if (a["gender"].toLowerCase() === "female") {
+            a_val = 1;
+        }
+        if (b["gender"].toLowerCase() === "female") {
+            b_val = 1;
+        }
+        return b_val - a_val;
+    });
 
     // Update the visualization
     vis.updateVis();

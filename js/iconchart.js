@@ -28,7 +28,8 @@ IconChart.prototype.initVis = function() {
 
     document.getElementById("top-10-movie-title").innerHTML = "#" + vis.allData['rank'] + " " + vis.allData['title'];
     document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + vis.allData['boxOffice'] + "000000";
-    document.getElementById("top-10-movie-bechdel").innerHTML = vis.allData['bechdel'] ? "Passes Bechdel Test" : "Fails Bechdel Test";
+    document.getElementById("top-10-movie-bechdel").innerHTML = vis.allData['analysis'];
+    document.getElementById("top-10-movie-video").innerHTML = vis.allData['clips'];
 
     vis.wrangleData();
 };

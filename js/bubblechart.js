@@ -16,7 +16,7 @@ BubbleChart = function(_parentElement, _data){
 BubbleChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.width = 500;
+    vis.width = 1100;
     vis.height = 350;
 
     vis.svg = d3.select("#" + vis.parentElement)
@@ -25,6 +25,28 @@ BubbleChart.prototype.initVis = function() {
         .attr("width", vis.width)
         .append("g")
         .attr("transform", "translate(0,0)");
+
+    console.log("test");
+
+    var genderLabel = ["Gender"];
+    vis.svg.selectAll("text.gender-label")
+        .data(genderLabel)
+        .enter()
+        .append("text")
+        .attr("class", ".gender-label")
+        .attr("x", 0)
+        .attr("y", 20)
+        .text(function (d) { return d });
+
+    var wordsLabel = ["Number of Words Spoken"];
+    vis.svg.selectAll("text.words-label")
+        .data(wordsLabel)
+        .enter()
+        .append("text")
+        .attr("class", ".words-label")
+        .attr("x", 0)
+        .attr("y", 110)
+        .text(function (d) { return d });
 
     vis.wrangleData();
 };
@@ -42,14 +64,14 @@ BubbleChart.prototype.updateVis = function(){
 
     var wordCountMin = d3.min(vis.displayData, function (d) {return d.words });
     var wordCountMax = d3.max(vis.displayData, function (d) {return d.words });
-    vis.radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 40]);
+    vis.radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 60]);
 
-    var forceXSplitRole = d3.forceX(d => vis.width * (d.role === "lead" ? 0.3 : 0.7))
+    var forceXSplitRole = d3.forceX(d => vis.width * (d.role === "lead" ? 0.6 : 0.9))
         .strength(0.2);
-    var forceXSplitGender = d3.forceX(d => vis.width * (d.gender === "female" ? 0.3 : 0.7))
+    var forceXSplitGender = d3.forceX(d => vis.width * (d.gender === "female" ? 0.6 : 0.9))
         .strength(0.2);
 
-    var forceXCombine = d3.forceX((vis.width) * 2/5).strength(0.1);
+    var forceXCombine = d3.forceX((vis.width) * 0.75).strength(0.1);
 
     var forceCollide = d3.forceCollide(function(d){
         return vis.radiusScale(d.words) + 1
@@ -57,8 +79,8 @@ BubbleChart.prototype.updateVis = function(){
 
     var simulation = d3.forceSimulation()
         .force("x", forceXCombine)
-        .force("y", d3.forceY((vis.height / 3) + 10).strength(0.15))
-        .force("center", d3.forceCenter(vis.width * 2 / 5, vis.height * 2 / 5))
+        .force("y", d3.forceY((vis.height * 0.4) + 10).strength(0.15))
+        .force("center", d3.forceCenter(vis.width * 0.75, vis.height * 0.4))
         .force("collide", forceCollide)
         .nodes(vis.displayData)
         .on('tick', ticked);
@@ -115,14 +137,14 @@ BubbleChart.prototype.updateVis = function(){
         .style("opacity", 0)
         .attr("x", function (d, i) {
             if (i === 0) {
-                return vis.width / 6;
+                return vis.width * 0.5;
             }
             if (i === 1) {
-                return vis.width / 2 + 25;
+                return vis.width * 0.8;
             }
             return 0;
         })
-        .attr("y", vis.height - 75)
+        .attr("y", vis.height - 25)
         .text(function (d) { return d; });
 
     var splitGenderLabels = vis.svg.selectAll("text.split-gender")
@@ -132,22 +154,22 @@ BubbleChart.prototype.updateVis = function(){
         .style("opacity", 0)
         .attr("x", function (d, i) {
             if (i === 0) {
-                return vis.width / 6;
+                return vis.width * 0.5;
             }
             if (i === 1) {
-                return vis.width / 2 + 25;
+                return vis.width * 0.8;
             }
             return 0;
         })
-        .attr("y", vis.height - 75)
+        .attr("y", vis.height - 25)
         .text(function (d) { return d; });
 
     var splitRole = false;
     var splitGender = false;
 
     var rectRole = vis.svg.append("rect")
-        .attr("x", 7)
-        .attr("y", vis.height - 57)
+        .attr("x", 225)
+        .attr("y", 175)
         .attr("rx", 22)
         .attr("ry", 22)
         .style("fill", "lightgray")
@@ -156,8 +178,8 @@ BubbleChart.prototype.updateVis = function(){
         .on("click", onRoleClick)
 
     var circleRole = vis.svg.append("circle")
-        .attr("cx", 27)
-        .attr("cy", vis.height - 37)
+        .attr("cx", 245)
+        .attr("cy", 195)
         .attr("r", 16)
         .style("fill", "white")
         .on("click", onRoleClick)
@@ -165,7 +187,7 @@ BubbleChart.prototype.updateVis = function(){
 
     var setRoleAtRight = function(newValue) {
         circleRole.transition().duration(250)
-            .attr("cx", (newValue? (51) : (27)))
+            .attr("cx", (newValue? 268 : 245))
             .style("fill", "white");
         rectRole.transition().duration(250)
             .style("fill", newValue? "#55efc4" : "lightgray");
@@ -185,8 +207,8 @@ BubbleChart.prototype.updateVis = function(){
     };
 
     var rectGender = vis.svg.append("rect")
-        .attr("x", vis.width / 2)
-        .attr("y", vis.height - 57)
+        .attr("x", 225)
+        .attr("y", 125)
         .attr("rx", 22)
         .attr("ry", 22)
         .style("fill", "lightgray")
@@ -195,8 +217,8 @@ BubbleChart.prototype.updateVis = function(){
         .on("click", onGenderClick);
 
     var circleGender = vis.svg.append("circle")
-        .attr("cx", vis.width / 2 + 20)
-        .attr("cy", vis.height - 37)
+        .attr("cx", 245)
+        .attr("cy", 145)
         .attr("r", 16)
         .style("fill", "white")
         .on("click", onGenderClick);
@@ -204,7 +226,7 @@ BubbleChart.prototype.updateVis = function(){
 
     var setGenderAtRight = function(newValue) {
         circleGender.transition().duration(250)
-            .attr("cx", (newValue? (vis.width / 2 + 44) : (vis.width / 2 + 20)))
+            .attr("cx", (newValue? 268 : 245))
             .style("fill", "white");
         rectGender.transition().duration(250)
             .style("fill", newValue? "#55efc4" : "lightgray");
@@ -236,7 +258,7 @@ BubbleChart.prototype.updateVis = function(){
         .attr("height", 15)
         .merge(vis.legend)
         .attr("x", 0)
-        .attr("y", function(d, i) {return i * 20})
+        .attr("y", function(d, i) {return i * 20 + 30})
         .attr("fill", function(d){
             if (d === "Male") {
                 return "#ccc";
@@ -281,7 +303,7 @@ BubbleChart.prototype.updateVis = function(){
         .merge(legendLabels)
         .attr("x", 20)
         .attr("y", function (d, i) {
-            return i * 20 + 13;
+            return i * 20 + 43;
         })
         .text(function (d) {
             return d + " (Characters " + getGenderCharacterPercentage(d) +
@@ -290,7 +312,7 @@ BubbleChart.prototype.updateVis = function(){
 
     legendLabels.exit().remove();
 
-    vis.toggleCategories = ["Split by Role", "Split by Gender"];
+    vis.toggleCategories = ["Split by Gender", "Split by Role"];
 
     var toggleLabels = vis.svg.selectAll("text.toggle")
         .data(vis.toggleCategories);
@@ -298,22 +320,22 @@ BubbleChart.prototype.updateVis = function(){
     toggleLabels.enter().append("text")
         .attr("class", "toggle")
         .merge(toggleLabels)
-        .attr("x", function (d, i) {
+        .attr("x", 300)
+        .attr("y", function (d, i) {
             if (i === 0) {
-                return 7 + 75;
+                return 150;
             }
             if (i === 1) {
-                return vis.width / 2 + 75;
+                return 200;
             }
-            return 0;
+            return 0
         })
-        .attr("y", vis.height - 32)
         .text(function (d) { return d; });
 
     toggleLabels.exit().remove();
 
     var valueDiff = wordCountMax - wordCountMin;
-    var valueRange = [valueDiff / 4, valueDiff / 2, valueDiff * 3 / 4];
+    var valueRange = [valueDiff / 6, valueDiff / 2, valueDiff * 5 / 6];
 
     var legendCircles = vis.svg.selectAll("circle.size-legend")
         .data(valueRange);
@@ -321,7 +343,7 @@ BubbleChart.prototype.updateVis = function(){
     var sizeLabels = vis.svg.selectAll("text.size-legend")
         .data(valueRange);
 
-    var padding = 60;
+    var legendCirclesRadius = valueRange.map(d => vis.radiusScale(d));
 
     legendCircles.enter()
         .append("circle")
@@ -332,9 +354,9 @@ BubbleChart.prototype.updateVis = function(){
         })
         .attr("fill", "none")
         .attr("stroke", "black")
-        .attr("cx", vis.width - 100)
-        .attr("cy", function (d, index) {
-            return (index) * padding + 20;
+        .attr("cx", 75)
+        .attr("cy", function (d) {
+            return 250 - vis.radiusScale(d);
         });
 
     sizeLabels.enter()
@@ -344,9 +366,9 @@ BubbleChart.prototype.updateVis = function(){
         .text(function(d) {
             return Math.round(wordCountMin + d).toString();
         })
-        .attr("x", vis.width - 50)
-        .attr("y", function (d, index) {
-            return (index) * padding + 20;
+        .attr("x", 60)
+        .attr("y", function (d, i) {
+            return 247 - 2 * legendCirclesRadius[i];
         });
 
     legendCircles.exit().remove();

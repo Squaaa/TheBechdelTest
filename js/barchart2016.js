@@ -6,10 +6,9 @@
  */
 
 
-BarChart2016 = function(_parentElement, _data, _casticonchart, _crewiconchart){
+BarChart2016 = function(_parentElement, _data, _crewiconchart){
     this.parentElement = _parentElement;
     this.data = _data;
-    this.casticonchart = _casticonchart;
     this.crewiconchart = _crewiconchart;
 
     this.initVis();
@@ -96,8 +95,6 @@ BarChart2016.prototype.initVis = function() {
             document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + d['boxOffice'] + "000000";
             document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
             document.getElementById("top-10-movie-video").innerHTML = d['clips'];
-                vis.casticonchart.data = d['castData'];
-            vis.casticonchart.wrangleData();
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();
         })

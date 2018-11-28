@@ -30,17 +30,16 @@
                         <li>About something other than a man.</li>
                     </ol>
                     <p>Easy enough, right?</p>
-                    <button type="button" class="btn btn-light" onclick="showQOne()">Next</button>
+                    <button type="button" class="btn btn-light" id="button1" onclick="showQOne()">Next</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <img src="img/comic.png" id="comic">
             </div>
         </div>
+        <br>
+        <br>
     </div>
-
-    <br>
-    <br>
 
     <div class = "row">
         <div class = "col" id="firstQ">
@@ -54,18 +53,17 @@
                     <input class="form-control" type="number" id="number-input" min="0" max="10" step="1">
                 </div>
                 <p id="answer-feedback"></p>
-                <button type="button" class="btn btn-light" onclick="showAnswerOne()">Next</button>
+                <button type="button" id="button2" class="btn btn-light" onclick="showAnswerOne()">Submit</button>
             </div>
         </div>
     </div>
 
-    <br>
-    <br>
 
     <div class="row">
+        <br>
         <div id="answer-one">
             <p id="show-answer"></p>
-            <button type="button" class="btn btn-light" onclick="showVis()">Next</button>
+            <button type="button" id="button3" class="btn btn-light" onclick="showVis()">Next</button>
         </div>
     </div>
 
@@ -125,7 +123,7 @@
                     is clearly missed.</p>
             </div>
         </div>
-        <button type="button" class="btn btn-light" onclick="showQTwo()">Next</button>
+        <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
     </div>
 
     <div class = "row">
@@ -141,7 +139,7 @@
                     <input class="form-control" type="number" id="year-input">
                 </div>
                     <p id="answer-feedback-2"></p>
-                    <button type="button" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
+                    <button type="button" id="button5" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
             </div>
         </div>
     </div>
@@ -151,7 +149,7 @@
     <div class="row">
         <div id="answer-two">
             <p id="show-answer-2"></p>
-            <button type="button" class="btn btn-light" onclick="showVisTwo()">Next</button>
+            <button type="button" id="button6" class="btn btn-light" onclick="showVisTwo()">Next</button>
         </div>
     </div>
     <br>
@@ -201,9 +199,9 @@
                 </div>
             </div>
         </div>
-        <h2>So What? (I'm Still A Rockstar)</h2>
+        <h2>So What?</h2>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <p>From our website it's clear to see that there's still a lot that needs to be done in terms of female
                     representation in film. Although we're clearly making process, it's important to recognize that
                     our current level of representation is still lacking. The Bechdel Test is an incredibly trivial baseline for a movie to meet. One non-male centered
@@ -212,7 +210,16 @@
                     diverse representation in media. It's our duty to push for diversity and representation not just out of
                     moral obligation, but to instill values of equality in media consumers of all generations.</p>
             </div>
+            <div class="col-md-6">
+                <img src="img/womendirectors.jpg">
+                <br>
+                <br>
+                <p>Source: <a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html" target="_blank">Vulture</a></p>
+            </div>
         </div>
+        <br>
+        <br>
+        <br>
         <div class="row">
             <div class="col-md-6">
                 <h2>About Us</h2>

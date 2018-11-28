@@ -82,6 +82,12 @@ img {
     border-radius: 25px;
 }
 
+#credits, #about {
+    background-color: #EEE4D7;
+    padding: 10px;
+    border-radius: 25px;
+}
+
 #answer-one, #answer-two {
     display: none;
 }

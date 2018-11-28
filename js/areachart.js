@@ -114,6 +114,30 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("class", "annotation-group")
         .call(makeAnnotations); */
 
+    vis.annotationGroup = vis.svg.append("g")
+        .attr("class", "annotation-group");
+
+    d3.select("g.annotation-group").append("line")
+        .attr("y1", 0)
+        .attr("y2", vis.height)
+        .attr("stroke-width", "1px")
+        .attr("stroke", "black")
+        .attr("stroke-dasharray", 4);
+
+    d3.select("g.annotation-group").append("text")
+        .attr("y", 10)
+        .attr("x", 10)
+        .attr("fill", "black")
+        .attr("font-size", "14px")
+        .append('tspan')
+        .attr('x', 10)
+        .attr('dy', 5)
+        .text("In 1993, 50% of movies")
+        .append('tspan')
+        .attr('x', 10)
+        .attr('dy', 20)
+        .text("passed the Bechdel test")
+
     vis.wrangleData();
 
 };
@@ -266,6 +290,13 @@ StackedAreaChart.prototype.updateVis = function(){
 
     categories.exit().remove();
 
+    // Position annotation
+    vis.annotationGroup
+        .attr("transform", "translate(" + vis.x(1993) + ", 0)");
+
+    vis.annotationGroup.moveToFront();
+
+    // Hover effects for text
     d3.select("#time-area-chart")
         .on("mouseover", function() {
             d3.select("." + vis.yValue).style("font-weight", "bold")

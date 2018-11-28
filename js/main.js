@@ -179,13 +179,8 @@ function updateAxes() {
 function showQOne() {
     $("#first-question").fadeIn(2000);
     $("#guess").fadeIn(2000);
+    $("#button1").fadeTo(500, 0);
     document.getElementById('bottom-view-1').scrollIntoView({ behavior: 'smooth', block: 'start', });
-}
-
-function showQTwo() {
-    $("#second-question").fadeIn(2000);
-    $("#guess-two").fadeIn(2000);
-    document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 function showAnswerOne() {
@@ -194,11 +189,26 @@ function showAnswerOne() {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {
+        $("#button2").fadeTo(500, 0);
         $("#answer-one").fadeIn();
         $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. " +
             "<b>In 2016, 60% of the top grossing films passed the Bechdel Test.</b> Let's dive deeper into 2016.");
         document.getElementById('answer-one').scrollIntoView({ behavior: 'smooth', block: "end", });
     }
+}
+
+function showVis() {
+    $("#button3").fadeTo(500, 0);
+    $("#main-visual").fadeIn();
+    document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+
+function showQTwo() {
+    $("#button4").fadeTo(500, 0);
+    $("#second-question").fadeIn(2000);
+    $("#guess-two").fadeIn(2000);
+    document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 
@@ -208,6 +218,7 @@ function showAnswerTwo() {
         $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
     }
     else {
+        $("#button5").fadeTo(500, 0);
         $("#answer-two").fadeIn();
         $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
             + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
@@ -215,14 +226,10 @@ function showAnswerTwo() {
     }
 }
 
-function showVis() {
-    $("#main-visual").fadeIn();
-    document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
-}
-
 function showVisTwo() {
+    $("#button6").fadeTo(500, 0);
     $("#main-visual-2").fadeIn();
-    document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'end', });
+    document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
 
 }
 

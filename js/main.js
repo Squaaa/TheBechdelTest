@@ -198,8 +198,15 @@ function showVisTwo() {
     }
     else {
         $("#main-visual-2").fadeIn();
-        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where more than half of the films passed the Bechdel test. The correct answer is 1996 which is <u>" + Math.abs(1996 - answer) + "</u> years off from your prediction." );
+        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. The correct answer is 1993, which is <u>" + Math.abs(1993 - answer) + "</u> years off from your prediction." );
         document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
     }
 
 }
+
+var vid = document.getElementById("intro-vid");
+vid.onended = function() {
+    $("#intro-vid").fadeOut("slow");
+    $("#full-intro").fadeIn("slow");
+    document.getElementById('full-intro').scrollIntoView({ behavior: 'smooth', block: 'start', });
+};

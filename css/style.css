@@ -8,6 +8,7 @@
 body {
     margin: 2rem 2rem 2rem 4rem;
     font-family: "Avenir Next";
+    background-color: #e3dac9;
 }
 
 h1 {
@@ -33,7 +34,7 @@ label {
 }
 
 img {
-    width: 60%;
+    width: 100%;
     height: 100%;
 }
 
@@ -76,6 +77,19 @@ img {
 
 #show-answer, #show-answer-2 {
     font-size: 40px;
+    background-color: #EEE4D7;
+    padding: 20px;
+    border-radius: 25px;
+
+}
+
+#answer-one, #answer-two {
+    display: none;
+}
+
+#button3, #button4, #button6 {
+    margin:auto;
+    display:block;
 }
 
 #time-data-analysis {

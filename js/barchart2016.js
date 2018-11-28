@@ -95,7 +95,8 @@ BarChart2016.prototype.initVis = function() {
             document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];
             document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + d['boxOffice'] + "000000";
             document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
-            vis.casticonchart.data = d['castData'];
+            document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+                vis.casticonchart.data = d['castData'];
             vis.casticonchart.wrangleData();
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();

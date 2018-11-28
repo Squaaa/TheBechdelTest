@@ -34,16 +34,27 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
     let top10dialogue = [civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData, secretLifeofPetsData,
                         batmanVSupermanData, fantasticBeastsData, deadpoolData, suicideSquadData];
     let top10BoxOffice = [1153, 1056, 1029, 1024, 966, 875, 872, 812, 783, 746];
-    let top10Analysis = ["Passes all three tests, barely. Natasha (Black Widow) and Wanda (Scarlet Witch) briefly discuss the latter's inexperience with her powers.",
+    let top10Analysis = ["Passes all three tests, barely. The team is collectively discussing mission details, during which Natasha (Black Widow) and Wanda (Scarlet Witch) briefly address one another.",
     "Passes all three tests, barely. Jyn and Lyra (her mother) exchange a few words about hiding. Jyn and Mon Mothma exchange a few words, but mostly talk to the group.",
         "Passes all three tests, thoroughly. Dory and Destiny have several conversations with each other. Dory, her mom, and several supporting characters do as well.",
         "Passes all three tests, with flying colors. Judy Hopps, Gazelle, Mrs. Otterton, Judy's Mom, Dharma Armadillo, Fru Fru, and Bellweather have several conversations.",
         "Passes only two tests. Kaa (the snake) and Raksha (the wolf) do talk to each other, but it's about Mowgli's father.",
         "Passes only two tests. Gidget and Chloe both talk to each other, but only about their male love interests.",
-        "Passes only two tests. Lois and Martha talk about the former's relationship with Kent. Jenny also says a total of five words to Lois, but she doesn't respond.",
+        "Passes only two tests. Lois and Martha talk about the former's relationship with Kent. Jenny also says a total of five words to Lois, but she doesn't respond. In the extended edition, however, there is a deleted scene where they talk.",
         "Passes all three tests, barely. Mary Lou, Modesty, Seraphina, Tina, the MACUSA president, and Newt have brief or dubiously non-male centered conversations.",
         "Passes only one test. The film has a few named female characters such as Vanessa, NTW, and Angel Dust, but they never talk with each other.",
         "Passes all three tests, barely. Amanda Waller, Harleen Quinzel, and June Moone have very brief conversations."];
+
+    let top10clips = ["<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/At5bfdda67988ed/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"480\" height=\"360\" src=\"https://www.youtube.com/embed/FQSgnwGsnzg\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"640\" height=\"480\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"640\" height=\"480\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "8",
+    "9",
+    "10"];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {
@@ -51,7 +62,8 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             'bechdel': null,
             'rank': i + 1,
             'boxOffice': top10BoxOffice[i],
-            'analysis': top10Analysis[i]
+            'analysis': top10Analysis[i],
+            'clips': top10clips[i]
         };
 
         let testIndex = 0;

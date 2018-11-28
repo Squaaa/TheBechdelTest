@@ -14,14 +14,15 @@
     </video>
 
     <div id="full-intro">
-        <h1>The Bechdel Test: Representation of Women in Film</h1>
+        <h1>The Bechdel Test:</h1>
+        <h1>Representation of Women in Film</h1>
         <br>
         <div class="row">
             <div class="col-md-6">
                 <h2>What is the Bechdel Test?</h2>
                 <div id="intro">
                     <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
-                        It was originally coined by Allison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
+                        It was originally coined by Alison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
                         Through three rules, it forms a relatively simple baseline for female representation in film:</p>
                     <ol>
                         <li>There must be at least two women, </li>
@@ -53,16 +54,23 @@
                     <input class="form-control" type="number" id="number-input" min="0" max="10" step="1">
                 </div>
                 <p id="answer-feedback"></p>
-                <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+                <button type="button" class="btn btn-light" onclick="showAnswerOne()">Next</button>
             </div>
         </div>
     </div>
 
+    <br>
+    <br>
+
+    <div class="row">
+        <div id="answer-one">
+            <p id="show-answer"></p>
+            <button type="button" class="btn btn-light" onclick="showVis()">Next</button>
+        </div>
+    </div>
 
     <div id="main-visual">
         <div id="top-view">
-            <br>
-            <p id="show-answer"></p>
             <br>
             <br>
             <h2>Top 10 Grossing Movies from 2016</h2>
@@ -81,7 +89,7 @@
                     <h3 id="top-10-movie-title"></h3>
                     <p id="top-10-movie-revenue"></p>
                     <p id="top-10-movie-bechdel"></p>
-                    <p id="top-10-movie-video">TODO VIDEO</p>
+                    <p id="top-10-movie-video"></p>
                 </div>
             </div>
         </div>
@@ -133,15 +141,24 @@
                     <input class="form-control" type="number" id="year-input">
                 </div>
                     <p id="answer-feedback-2"></p>
-                    <button type="button" class="btn btn-light" onclick="showVisTwo()">Submit</button>
+                    <button type="button" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
             </div>
         </div>
     </div>
 
+    <br>
+
+    <div class="row">
+        <div id="answer-two">
+            <p id="show-answer-2"></p>
+            <button type="button" class="btn btn-light" onclick="showVisTwo()">Next</button>
+        </div>
+    </div>
+    <br>
+    <br>
+
     <div id="main-visual-2">
         <div id="topViewTwo">
-            <br>
-            <p id="show-answer-2"></p>
             <h2>Bechdel Test Results Over Time</h2>
             <h4>More movies are passing, but the film industry is still struggling to meet the low bar set by the Bechdel test</h4>
             <p>Drag over the area chart to view a specific time period.</p>

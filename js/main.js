@@ -45,16 +45,16 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
         "Passes only one test. The film has a few named female characters such as Vanessa, NTW, and Angel Dust, but they never talk with each other.",
         "Passes all three tests, barely. Amanda Waller, Harleen Quinzel, and June Moone have very brief conversations."];
 
-    let top10clips = ["<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/At5bfdda67988ed/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://www.youtube.com/embed/FQSgnwGsnzg\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"480\" height=\"360\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>"];
+    let top10clips = ["<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/At5bfdda67988ed/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://www.youtube.com/embed/FQSgnwGsnzg\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>"];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {

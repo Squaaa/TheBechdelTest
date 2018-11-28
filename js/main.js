@@ -188,31 +188,41 @@ function showQTwo() {
     document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
-function showVis() {
+function showAnswerOne() {
     var answer = document.getElementById('number-input').value;
-    console.log(answer);
-    console.log((Number.isInteger(answer)));
     if((answer < 0 || answer > 10) || (answer === "")) {
         $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
     }
     else {
-        $("#main-visual").fadeIn();
-        $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. <b>Here is what 2016 actually looked like. </b>");
-        document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+        $("#answer-one").fadeIn();
+        $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. " +
+            "<b>In 2016, 60% of the top grossing films passed the Bechdel Test.</b> Let's dive deeper into 2016.");
+        document.getElementById('answer-one').scrollIntoView({ behavior: 'smooth', block: "end", });
     }
 }
 
-function showVisTwo() {
-    var answer = document.getElementById('year-input').value;
 
+function showAnswerTwo() {
+    var answer = document.getElementById('year-input').value;
     if((answer < 1980 || answer > 2013) || (answer === "")) {
         $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
     }
     else {
-        $("#main-visual-2").fadeIn();
-        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. The correct answer is 1993, which is <u>" + Math.abs(1993 - answer) + "</u> years off from your prediction." );
-        document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+        $("#answer-two").fadeIn();
+        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
+            + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
+        document.getElementById('answer-two').scrollIntoView({ behavior: 'smooth', block: 'end', });
     }
+}
+
+function showVis() {
+    $("#main-visual").fadeIn();
+    document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+function showVisTwo() {
+    $("#main-visual-2").fadeIn();
+    document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'end', });
 
 }
 

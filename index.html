@@ -54,16 +54,23 @@
                     <input class="form-control" type="number" id="number-input" min="0" max="10" step="1">
                 </div>
                 <p id="answer-feedback"></p>
-                <button type="button" class="btn btn-light" onclick="showVis()">Submit</button>
+                <button type="button" class="btn btn-light" onclick="showAnswerOne()">Next</button>
             </div>
         </div>
     </div>
 
+    <br>
+    <br>
+
+    <div class="row">
+        <div id="answer-one">
+            <p id="show-answer"></p>
+            <button type="button" class="btn btn-light" onclick="showVis()">Next</button>
+        </div>
+    </div>
 
     <div id="main-visual">
         <div id="top-view">
-            <br>
-            <p id="show-answer"></p>
             <br>
             <br>
             <h2>Top 10 Grossing Movies from 2016</h2>
@@ -134,15 +141,24 @@
                     <input class="form-control" type="number" id="year-input">
                 </div>
                     <p id="answer-feedback-2"></p>
-                    <button type="button" class="btn btn-light" onclick="showVisTwo()">Submit</button>
+                    <button type="button" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
             </div>
         </div>
     </div>
 
+    <br>
+
+    <div class="row">
+        <div id="answer-two">
+            <p id="show-answer-2"></p>
+            <button type="button" class="btn btn-light" onclick="showVisTwo()">Next</button>
+        </div>
+    </div>
+    <br>
+    <br>
+
     <div id="main-visual-2">
         <div id="topViewTwo">
-            <br>
-            <p id="show-answer-2"></p>
             <h2>Bechdel Test Results Over Time</h2>
             <h4>More movies are passing, but the film industry is still struggling to meet the low bar set by the Bechdel test</h4>
             <p>Drag over the area chart to view a specific time period.</p>

@@ -283,8 +283,14 @@ function showVid() {
     vid.scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
+function showYear() {
+    $("#range-answer").html(document.getElementById("year-input").value)
+}
+
 vid.onended = function() {
     $("#intro-vid").fadeOut("slow");
     $("#full-intro").fadeIn("slow");
     document.getElementById('full-intro').scrollIntoView({ behavior: 'smooth', block: 'start', });
 };
+
+// $("#year-input").on("input change", function() { $("#range-answer").html(document.getElementById("year-input").value); });

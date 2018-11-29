@@ -61,18 +61,18 @@ img {
 }
 
 .intro-txt {
-    font-size: 225px;
+    font-size: 10rem;
     color: white;
 }
 
 .intro-txt-2 {
-    font-size: 75px;
+    font-size: 4rem;
     color: white;
     font-family: "Avenir Next";
 }
 
 #intro-all {
-    transform: translateY(30%);
+    transform: translateY(20%);
 }
 
 #guess, #guess-two {
@@ -113,10 +113,10 @@ img {
 }
 
 #enter-site {
-    width: 200px;
-    height: 100px;
+    width: 160px;
+    height: 80px;
     border-radius: 100px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #year-input {

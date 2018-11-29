@@ -157,14 +157,16 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 }
 
 function createVis() {
+    var vis = this;
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     //var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
-    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
-    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
+
+    vis.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
+    vis.castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, vis.crewiconchart, vis.castdialoguechart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
@@ -174,6 +176,27 @@ function createVis() {
 function updateAxes() {
     areachart.wrangleData();
     genrechart.wrangleData();
+}
+
+function updateTop10() {
+    var vis = this;
+    var selectedIndex = d3.select('#movie-select-box').property("value");
+    var d = {}
+    for (var index in top10Data) {
+        if (top10Data[index]['rank'] === +selectedIndex) {
+            d = top10Data[index];
+            break;
+        }
+    }
+    document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];
+    document.getElementById("top-10-movie-revenue").innerHTML = "<b>Box Office Revenue</b>: $" +
+        d['boxOffice'].toLocaleString() + "M";
+    document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
+    document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+    vis.crewiconchart.data = d['crewData'];
+    vis.crewiconchart.wrangleData();
+    vis.castdialoguechart.data = d['dialogueData'];
+    vis.castdialoguechart.wrangleData();
 }
 
 function showQOne() {
@@ -260,8 +283,14 @@ function showVid() {
     vid.scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
+function showYear() {
+    $("#range-answer").html(document.getElementById("year-input").value)
+}
+
 vid.onended = function() {
     $("#intro-vid").fadeOut("slow");
     $("#full-intro").fadeIn("slow");
     document.getElementById('full-intro').scrollIntoView({ behavior: 'smooth', block: 'start', });
 };
+
+// $("#year-input").on("input change", function() { $("#range-answer").html(document.getElementById("year-input").value); });

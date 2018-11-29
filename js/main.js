@@ -255,6 +255,12 @@ function showVisTwo() {
 }
 
 var vid = document.getElementById("intro-vid");
+function showVid() {
+    $("#big-intro").fadeOut("slow");
+    $("#intro-vid").fadeIn("slow");
+    vid.scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
 vid.onended = function() {
     $("#intro-vid").fadeOut("slow");
     $("#full-intro").fadeIn("slow");

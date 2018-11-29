@@ -17,7 +17,7 @@ BubbleChart.prototype.initVis = function() {
     var vis = this;
 
     vis.width = 1100;
-    vis.height = 350;
+    vis.height = 300;
 
     vis.svg = d3.select("#" + vis.parentElement)
         .append("svg")

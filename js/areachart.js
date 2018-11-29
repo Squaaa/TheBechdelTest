@@ -114,29 +114,43 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("class", "annotation-group")
         .call(makeAnnotations); */
 
-    vis.annotationGroup = vis.svg.append("g")
+    vis.correctAnnotation = vis.svg.append("g")
         .attr("class", "annotation-group");
 
-    d3.select("g.annotation-group").append("line")
+    vis.guessAnnotation = vis.svg.append("g")
+        .attr("class", "annotation-group");
+
+    vis.correctAnnotation.append("line")
+        .attr("y1", 0)
+        .attr("y2", vis.height)
+        .attr("stroke-width", "1px")
+        .attr("stroke", "black");
+
+    vis.correctText = vis.correctAnnotation.append("text")
+        .attr("y", 15)
+        .attr("fill", "black")
+        .attr("font-size", "14px")
+        .text("In 1993, 50% of movies passed the Bechdel test")
+
+    vis.guessAnnotation.append("line")
         .attr("y1", 0)
         .attr("y2", vis.height)
         .attr("stroke-width", "1px")
         .attr("stroke", "black")
         .attr("stroke-dasharray", 4);
 
-    d3.select("g.annotation-group").append("text")
-        .attr("y", 10)
-        .attr("x", 10)
+    vis.guessText = vis.guessAnnotation.append("text")
+        .attr("y", 15)
         .attr("fill", "black")
         .attr("font-size", "14px")
-        .append('tspan')
-        .attr('x', 10)
-        .attr('dy', 5)
-        .text("In 1993, 50% of movies")
-        .append('tspan')
-        .attr('x', 10)
-        .attr('dy', 20)
-        .text("passed the Bechdel test")
+        .text("Your guess");
+
+    /* vis.differenceAnnotation = vis.svg.append("line")
+        .attr("y1", vis.height / 2)
+        .attr("y2", vis.height / 2)
+        .attr("stroke-width", "1px")
+        .attr("stroke", "black")
+        .attr("stroke-dasharray", 4); */
 
     vis.wrangleData();
 
@@ -290,11 +304,11 @@ StackedAreaChart.prototype.updateVis = function(){
 
     categories.exit().remove();
 
-    // Position annotation
-    vis.annotationGroup
+    // Position annotations
+    vis.correctAnnotation
         .attr("transform", "translate(" + vis.x(1993) + ", 0)");
 
-    vis.annotationGroup.moveToFront();
+    vis.correctAnnotation.moveToFront();
 
     // Hover effects for text
     d3.select("#time-area-chart")

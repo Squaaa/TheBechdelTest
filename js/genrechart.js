@@ -134,6 +134,8 @@ StackedBarChart.prototype.wrangleData = function(){
 
     vis.displayData = genreData;
 
+    console.log(vis.displayData);
+
     // Update the visualization
     vis.updateVis();
 }

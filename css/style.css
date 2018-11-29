@@ -132,6 +132,10 @@ img {
     font-size: 22px;
 }
 
+#conclusion {
+    font-size: 17px;
+}
+
 #top-10-movie-revenue{
     font-size: 22px;
 }
@@ -146,7 +150,7 @@ img {
     border-radius: 25px;
 }
 
-#about {
+#about, #resources {
     background-color: #EEE4D7;
     padding: 10px;
     border-radius: 25px;

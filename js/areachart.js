@@ -48,7 +48,7 @@ StackedAreaChart.prototype.initVis = function() {
 
     vis.brush = d3.brushX()
         .extent([[0,0],[vis.width, vis.height]])
-        .on("brush", function(){
+        .on("end", function(){
             // User just selected a specific region
             vis.currentBrushRegion = d3.event.selection;
             vis.currentBrushRegion = vis.currentBrushRegion.map(vis.x.invert);

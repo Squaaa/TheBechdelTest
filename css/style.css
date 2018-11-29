@@ -38,6 +38,10 @@ img {
     height: 100%;
 }
 
+.directors {
+    width: 100%;
+}
+
 #guess, #guess-two {
     display:none;
     font-size: 22px;

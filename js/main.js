@@ -148,7 +148,7 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             }
         }
 
-        if (movie['year'] > 1980) {
+        if (movie['year'] >= 1980) {
             alltimeData.push(movie);
         }
     }
@@ -223,6 +223,27 @@ function showAnswerTwo() {
         $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
             + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
         document.getElementById('answer-two').scrollIntoView({ behavior: 'smooth', block: 'end', });
+        areachart.guessAnnotation
+            .attr("transform", "translate(" + areachart.x(answer) + ", 0)");
+        areachart.guessAnnotation.moveToFront();
+        areachart.correctText
+            .attr("x", function() {
+                return (answer > 1993) ? -10 : 10;
+            })
+            .attr("text-anchor", function() {
+                return (answer > 1993) ? "end" : "start";
+            })
+        areachart.guessText
+            .attr("x", function() {
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? 10 : -10;
+            })
+            .attr("text-anchor", function() {
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
+            });
+        /* areachart.differenceAnnotation
+            .attr("x1", areachart.x(answer))
+            .attr("x2", areachart.x(1993));
+        areachart.differenceAnnotation.moveToFront(); */
     }
 }
 
@@ -230,10 +251,15 @@ function showVisTwo() {
     $("#button6").fadeTo(500, 0);
     $("#main-visual-2").fadeIn();
     document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
-
 }
 
 var vid = document.getElementById("intro-vid");
+function showVid() {
+    $("#big-intro").fadeOut("slow");
+    $("#intro-vid").fadeIn("slow");
+    vid.scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
 vid.onended = function() {
     $("#intro-vid").fadeOut("slow");
     $("#full-intro").fadeIn("slow");

@@ -8,18 +8,26 @@
 </head>
 <body>
 
+    <div id="big-intro">
+        <div id="intro-all">
+            <h1 class="intro-txt">The Bechdel Test</h1>
+            <br>
+            <h2 class="intro-txt-2">Representation of Women</h2>
+            <h2 class="intro-txt-2">in Hollywood and Film</h2>
+            <br>
+            <button type="button" class="btn btn-light btn-lg intro-all" id="enter-site" onclick="showVid()">Enter Site</button>
+        </div>
+    </div>
+
     <video width="100%" id="intro-vid" muted autoplay>
         <source src="video/countdown.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
 
-    <div id="full-intro">
-        <h1>The Bechdel Test:</h1>
-        <h1>Representation of Women in Film</h1>
-        <br>
+    <div id="full-intro" class="get-margins">
         <div class="row">
             <div class="col-md-6">
-                <h2>What is the Bechdel Test?</h2>
+                <h1>What is the Bechdel Test?</h1>
                 <div id="intro">
                     <p>The Bechdel Test (also known as the Bechdel Rule or Mo Movie Measure) is a simple assessment used to indicate the active presence of women in Hollywood films and measure their dynamic character profile.
                         It was originally coined by Alison Bechdel in the comic strip <i>Dykes to Watch Out For</i> in 1985.
@@ -41,7 +49,7 @@
         <br>
     </div>
 
-    <div class = "row">
+    <div class = "row get-margins">
         <div class = "col" id="firstQ">
             <p id="first-question">Out of the top 10 grossing films from 2016, how many passed the Bechdel Test?</p>
         </div>
@@ -59,7 +67,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row get-margins">
         <br>
         <div id="answer-one">
             <p id="show-answer"></p>
@@ -67,7 +75,7 @@
         </div>
     </div>
 
-    <div id="main-visual">
+    <div id="main-visual" class="get-margins">
         <div id="top-view">
             <br>
             <br>
@@ -92,7 +100,7 @@
         </div>
         <br>
         <br>
-        <div id="breakdown">
+        <div id="breakdown" class="get-margins">
             <div class="row">
                 <div class="col-md-12">
                     <h4>Actors Regularly Outnumber Actresses & The Dialogue Disparity Is Often Wider</h4>
@@ -122,7 +130,7 @@
         <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
     </div>
 
-    <div class = "row">
+    <div class = "row get-margins">
         <div class = "col" id="secondQ">
             <br>
             <p id="second-question">Given what you know about 2016, what was the first year between 1980 - 2013 where at least half of the films passed the Bechdel test?</p>
@@ -142,7 +150,7 @@
 
     <br>
 
-    <div class="row">
+    <div class = "row get-margins">
         <div id="answer-two">
             <p id="show-answer-2"></p>
             <button type="button" id="button6" class="btn btn-light" onclick="showVisTwo()">Next</button>
@@ -151,7 +159,7 @@
     <br>
     <br>
 
-    <div id="main-visual-2">
+    <div id="main-visual-2" class="get-margins">
         <div id="topViewTwo">
             <h2>Bechdel Test Results Over Time</h2>
             <h4>More movies are passing, but the film industry is still struggling to meet the low bar set by the Bechdel test</h4>
@@ -183,7 +191,7 @@
                 <div id="time-data-analysis">
                     <p class="number proportion">The proportion of movies that pass the Bechdel test seems to be
                         growing very slowly over time, with about half of movies passing the test in recent years.</p>
-                    <p class="genre-info">There are large differences between movies of different genres: 80% of
+                    <p class="genre-info">There are large differences between movies of different genres: 77% of
                         musicals have passed the Bechdel test, while at the other end of the spectrum, just 25%
                         of documentaries have passed the test.</p>
                     <p>There also appears to be a difference between the economic success of movies that pass the test
@@ -195,9 +203,19 @@
                 </div>
             </div>
         </div>
+
         <h2>So What?</h2>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col"><img class="directors" src="img/andrea.png"></div>
+            <div class="col"><img class="directors" src="img/amma.png"></div>
+            <div class="col"><img class="directors" src="img/ana.png"></div>
+            <div class="col"><img class="directors" src="img/debbie.png"></div>
+            <div class="col"><img class="directors" src="img/domee.png"></div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
                 <p>The data makes the issue very apparent: there's still a lot that needs to be done in terms of female
                     representation in film. From our analysis of historical rate of success in passing the bechdel test,
                     it's very clear that we're making progress, but the process is too slow, and the metrics we use
@@ -213,13 +231,6 @@
                 <p><a href="https://www.elle.com/culture/movies-tv/news/a47090/women-underrepresented-in-film-study-usc/">
                     Analysis of USC Study on Female Representation in Film</a> </p>
                 <p><a href="https://bechdeltest.com/">Discuss The Bechdel Test Verdicts On Every Film</a></p>
-            </div>
-            <div class="col-md-6">
-                <img style="height: 80%" src="img/womendirectors.jpg">
-                <br>
-                <br>
-                <p>Source: <a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html" target="_blank">Vulture</a></p>
-            </div>
         </div>
         <br>
         <br>

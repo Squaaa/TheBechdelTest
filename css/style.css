@@ -88,6 +88,7 @@ img {
 
 #main-visual, #main-visual-2, #full-intro, #intro-vid {
     display: none;
+    padding: 15px;
 }
 
 #intro-vid {

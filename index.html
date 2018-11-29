@@ -76,28 +76,32 @@
     </div>
 
     <div id="main-visual" class="get-margins">
-        <div id="top-view">
-            <br>
-            <br>
-            <h2>2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation</h2>
-            <br>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Box Office & Bechdel Test Results</h3>
-                <h5>Click any bar to view more details</h5>
+        <div id="first-movies">
+            <div id="top-view">
                 <br>
-                <div id="top-10-bar-chart"></div>
+                <br>
+                <h2>2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation</h2>
+                <br>
             </div>
-            <div class="col-md-6">
-                <div id="top-10-detail-area">
-                    <h3 id="top-10-movie-title"></h3>
-                    <p id="top-10-movie-revenue"></p>
-                    <p id="top-10-movie-bechdel"></p>
-                    <p id="top-10-movie-video"></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Box Office & Bechdel Test Results</h3>
+                    <h5>Click any bar to view more details</h5>
+                    <br>
+                    <div id="top-10-bar-chart"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="top-10-detail-area">
+                        <h3 id="top-10-movie-title"></h3>
+                        <p id="top-10-movie-revenue"></p>
+                        <p id="top-10-movie-bechdel"></p>
+                        <p id="top-10-movie-video"></p>
+                    </div>
                 </div>
             </div>
+            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">View more movie details</button>
         </div>
+
         <br>
         <br>
         <div id="breakdown" class="get-margins">
@@ -149,8 +153,8 @@
                         is clearly missed.</p>
                 </div>
             </div>
+            <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
         </div>
-        <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
     </div>
 
     <div class = "row get-margins">
@@ -224,6 +228,7 @@
                         the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
                     <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
                         more money domestically relative to the size of their budgets.</p>
+                    <br>
                     <br>
                     <button type="button" id="button7" class="btn btn-light" onclick="showEnd()">Next</button>
                 </div>

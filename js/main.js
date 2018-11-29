@@ -222,8 +222,14 @@ function showAnswerOne() {
 
 function showVis() {
     $("#button3").fadeTo(500, 0);
-    $("#main-visual").fadeIn();
+    $("#first-movies").fadeIn();
     document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+function showDets() {
+    $("#button35").fadeTo(500, 0);
+    $("#breakdown").fadeIn();
+    document.getElementById('breakdown').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 
@@ -281,10 +287,10 @@ function showEnd() {
     $("#ending").fadeIn();
     document.getElementById('ending').scrollIntoView({ behavior: 'smooth', block: 'start', });
     $("#photo1").fadeIn(2000);
-    $("#photo2").fadeIn(4000);
-    $("#photo3").fadeIn(6000);
-    $("#photo4").fadeIn(8000);
-    $("#photo5").fadeIn(10000);
+    $("#photo2").fadeIn(2000);
+    $("#photo3").fadeIn(2000);
+    $("#photo4").fadeIn(2000);
+    $("#photo5").fadeIn(2000);
 }
 
 var vid = document.getElementById("intro-vid");

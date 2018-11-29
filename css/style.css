@@ -75,6 +75,13 @@ img {
     font-size: 22px;
 }
 
+#top-10-movie-revenue{
+    font-size: 22px;
+}
+#top-10-movie-bechdel {
+    font-size: 22px;
+}
+
 #show-answer, #show-answer-2 {
     font-size: 40px;
     background-color: #EEE4D7;

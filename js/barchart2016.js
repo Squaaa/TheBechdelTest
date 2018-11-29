@@ -92,7 +92,8 @@ BarChart2016.prototype.initVis = function() {
         })
         .on("click", function (d) {
             document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];
-            document.getElementById("top-10-movie-revenue").innerHTML = "Box Office Revenue: $" + d['boxOffice'] + "000000";
+            document.getElementById("top-10-movie-revenue").innerHTML = "<b> Box Office Revenue </b>: $" +
+                d['boxOffice'].toLocaleString() + "M";
             document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
             document.getElementById("top-10-movie-video").innerHTML = d['clips'];
             vis.crewiconchart.data = d['crewData'];

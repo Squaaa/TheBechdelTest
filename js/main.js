@@ -236,10 +236,10 @@ function showAnswerTwo() {
             })
         areachart.guessText
             .attr("x", function() {
-                return (answer > 1993) ? 10 : -10;
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? 10 : -10;
             })
             .attr("text-anchor", function() {
-                return (answer > 1993) ? "start" : "end";
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
             });
         /* areachart.differenceAnnotation
             .attr("x1", areachart.x(answer))

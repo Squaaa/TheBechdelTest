@@ -6,7 +6,8 @@
 }
 
 body {
-    margin: 2rem 2rem 2rem 4rem;
+
+    height: 100%;
     font-family: "Avenir Next";
     background-color: #e3dac9;
 }
@@ -42,6 +43,38 @@ img {
     width: 100%;
 }
 
+.get-margins {
+    margin: 2rem 2rem 2rem 4rem;
+}
+
+#big-intro {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+    text-align: center;
+    background-image: url("img/hollywood.jpeg");
+}
+
+.intro-txt {
+    font-size: 225px;
+    color: white;
+}
+
+.intro-txt-2 {
+    font-size: 75px;
+    color: white;
+    font-family: "Avenir Next";
+}
+
+#intro-all {
+    transform: translateY(30%);
+}
+
 #guess, #guess-two {
     display:none;
     font-size: 22px;
@@ -53,8 +86,19 @@ img {
     text-align: center;
 }
 
-#main-visual, #main-visual-2, #full-intro {
+#main-visual, #main-visual-2, #full-intro, #intro-vid {
     display: none;
+}
+
+#intro-vid {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
 #comic {
@@ -66,6 +110,13 @@ img {
     line-height: 100px;
     font-size: 100px;
     text-align: center;
+}
+
+#enter-site {
+    width: 200px;
+    height: 100px;
+    border-radius: 100px;
+    font-size: 30px;
 }
 
 #year-input {

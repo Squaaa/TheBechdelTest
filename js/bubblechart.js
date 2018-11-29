@@ -62,6 +62,8 @@ BubbleChart.prototype.wrangleData = function(){
 BubbleChart.prototype.updateVis = function(){
     var vis = this;
 
+    console.log(vis.data);
+
     var wordCountMin = d3.min(vis.displayData, function (d) {return d.words });
     var wordCountMax = d3.max(vis.displayData, function (d) {return d.words });
     vis.radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 60]);
@@ -77,13 +79,16 @@ BubbleChart.prototype.updateVis = function(){
         return vis.radiusScale(d.words) + 1
     }).iterations(10);
 
-    var simulation = d3.forceSimulation()
-        .force("x", forceXCombine)
-        .force("y", d3.forceY((vis.height * 0.4) + 10).strength(0.15))
-        .force("center", d3.forceCenter(vis.width * 0.75, vis.height * 0.4))
-        .force("collide", forceCollide)
-        .nodes(vis.displayData)
-        .on('tick', ticked);
+    if (!vis.simulation) {
+        vis.simulation = d3.forceSimulation(vis.displayData)
+            .force("x", forceXCombine)
+            .force("y", d3.forceY((vis.height * 0.4) + 10).strength(0.15))
+            .force("center", d3.forceCenter(vis.width * 0.75, vis.height * 0.4))
+            .alphaTarget(1)
+            .on('tick', ticked);
+        vis.circles = vis.svg.selectAll(".character");
+
+    }
 
     var tool_tip = d3.tip()
         .attr("class", "d3-tip")
@@ -96,9 +101,19 @@ BubbleChart.prototype.updateVis = function(){
 
     vis.displayData.forEach(d => d.words = +d.words);
 
-    var circles = vis.svg.selectAll(".character")
-        .data(vis.displayData)
-        .enter().append("circle")
+    vis.circles = vis.circles.data(vis.displayData);
+
+    var t = d3.transition()
+        .duration(750);
+
+    vis.circles.exit()
+        .style("fill", "#aaa")
+        .transition(t)
+        .attr("r", 1e-6)
+        .remove();
+
+    vis.circles
+        .transition(t)
         .attr("class", "character")
         .attr("cx", function(d) {
             return d.x
@@ -116,11 +131,32 @@ BubbleChart.prototype.updateVis = function(){
             return d.gender === "female" ? "#9b59b6" : "#ccc";
         });
 
-    circles.on("mouseover", tool_tip.show)
+    vis.circles = vis.circles.enter().append("circle")
+        .attr("class", "character")
+        .attr("cx", function(d) {
+            return d.x
+        })
+        .attr("cy", function(d) {
+            return d.y
+        })
+        .attr("r", function(d){
+            if (d.words) {
+                return vis.radiusScale(d.words)
+            }
+            return 0;
+        })
+        .style("fill", function (d) {
+            return d.gender === "female" ? "#9b59b6" : "#ccc";
+        }).merge(vis.circles);
+
+    vis.simulation.nodes(vis.displayData).force("collide", forceCollide.iterations(100));
+
+
+    vis.circles.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);
 
     var onRoleClick = function(){
-        simulation
+        vis.simulation
             .force("x", splitRole ? forceXCombine : forceXSplitRole)
             .alpha(0.7)
             .restart();
@@ -199,7 +235,7 @@ BubbleChart.prototype.updateVis = function(){
     };
 
     var onGenderClick = function(){
-        simulation
+        vis.simulation
             .force("x", splitGender ? forceXCombine : forceXSplitGender)
             .alpha(0.7)
             .restart();
@@ -238,7 +274,7 @@ BubbleChart.prototype.updateVis = function(){
     };
 
     function ticked() {
-        circles
+        vis.circles
             .attr("cx", function(d) {
                 return d.x
             })
@@ -373,5 +409,7 @@ BubbleChart.prototype.updateVis = function(){
 
     legendCircles.exit().remove();
     sizeLabels.exit().remove();
+
+
 };
 

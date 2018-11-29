@@ -6,10 +6,11 @@
  */
 
 
-BarChart2016 = function(_parentElement, _data, _crewiconchart){
+BarChart2016 = function(_parentElement, _data, _crewiconchart, _bubblechart){
     this.parentElement = _parentElement;
     this.data = _data;
     this.crewiconchart = _crewiconchart;
+    this.bubblechart = _bubblechart;
 
     this.initVis();
 }
@@ -98,6 +99,8 @@ BarChart2016.prototype.initVis = function() {
             document.getElementById("top-10-movie-video").innerHTML = d['clips'];
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();
+            vis.bubblechart.data = d['dialogueData'];
+            vis.bubblechart.wrangleData();
         })
         .on("mouseover", function(d) {
             d3.select(this).attr("fill", function () {

@@ -162,9 +162,9 @@ function createVis() {
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     //var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
-    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
+    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[2]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart, castdialoguechart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
@@ -223,7 +223,6 @@ function showAnswerTwo() {
         $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
             + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
         document.getElementById('answer-two').scrollIntoView({ behavior: 'smooth', block: 'end', });
-        console.log(areachart.x(answer))
         areachart.guessAnnotation
             .attr("transform", "translate(" + areachart.x(answer) + ", 0)");
         areachart.guessAnnotation.moveToFront();
@@ -236,10 +235,10 @@ function showAnswerTwo() {
             })
         areachart.guessText
             .attr("x", function() {
-                return (answer > 1993) ? 10 : -10;
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? 10 : -10;
             })
             .attr("text-anchor", function() {
-                return (answer > 1993) ? "start" : "end";
+                return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
             });
         /* areachart.differenceAnnotation
             .attr("x1", areachart.x(answer))

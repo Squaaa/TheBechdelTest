@@ -162,9 +162,9 @@ function createVis() {
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     //var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
     var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
-    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
+    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[2]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart, castdialoguechart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);

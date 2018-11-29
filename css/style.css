@@ -86,7 +86,7 @@ img {
     text-align: center;
 }
 
-#main-visual, #main-visual-2, #full-intro, #intro-vid {
+#main-visual, #main-visual-2, #full-intro, #intro-vid, #ending {
     display: none;
     padding: 15px;
 }
@@ -149,6 +149,10 @@ img {
     background-color: #EEE4D7;
     padding: 10px;
     border-radius: 25px;
+}
+
+#photo1, #photo2, #photo3, #photo4, #photo5 {
+    display: none;
 }
 
 #answer-one, #answer-two {

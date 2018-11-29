@@ -47,14 +47,14 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 
     let top10clips = ["<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/At5bfdda67988ed/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
     "<iframe width=\"500\" height=\"375\" src=\"https://www.youtube.com/embed/FQSgnwGsnzg\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>"];
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>"];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {
@@ -274,6 +274,17 @@ function showVisTwo() {
     $("#button6").fadeTo(500, 0);
     $("#main-visual-2").fadeIn();
     document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+function showEnd() {
+    $("#button7").fadeTo(500, 0);
+    $("#ending").fadeIn();
+    document.getElementById('ending').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    $("#photo1").fadeIn(2000);
+    $("#photo2").fadeIn(4000);
+    $("#photo3").fadeIn(6000);
+    $("#photo4").fadeIn(8000);
+    $("#photo5").fadeIn(10000);
 }
 
 var vid = document.getElementById("intro-vid");

@@ -224,22 +224,25 @@
                         the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
                     <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
                         more money domestically relative to the size of their budgets.</p>
+                    <br>
+                    <button type="button" id="button7" class="btn btn-light" onclick="showEnd()">Next</button>
                 </div>
             </div>
         </div>
 
-        <h2>So What?</h2>
-        <br>
-        <div class="row">
-            <div class="col"><img class="directors" src="img/ava.png"></div>
-            <div class="col"><img class="directors" src="img/amma.png"></div>
-            <div class="col"><img class="directors" src="img/ana.png"></div>
-            <div class="col"><img class="directors" src="img/debbie.png"></div>
-            <div class="col"><img class="directors" src="img/domee.png"></div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
+        <div id="ending">
+            <h2>So What?</h2>
+            <br>
+            <div class="row">
+                <div class="col"><img class="directors" id="photo1" src="img/ava.png"></div>
+                <div class="col"><img class="directors" id="photo2" src="img/amma.png"></div>
+                <div class="col"><img class="directors" id="photo3" src="img/ana.png"></div>
+                <div class="col"><img class="directors" id="photo4" src="img/debbie.png"></div>
+                <div class="col"><img class="directors" id="photo5" src="img/domee.png"></div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
                 <p>The data makes the issue very apparent: there's still a lot that needs to be done in terms of female
                     representation in film. From our analysis of historical rate of success in passing the bechdel test,
                     it's very clear that we're making progress, but the process is too slow, and the metrics we use
@@ -255,64 +258,66 @@
                 <p><a href="https://www.elle.com/culture/movies-tv/news/a47090/women-underrepresented-in-film-study-usc/">
                     Analysis of USC Study on Female Representation in Film</a> </p>
                 <p><a href="https://bechdeltest.com/">Discuss The Bechdel Test Verdicts On Every Film</a></p>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="row" id="about">
-            <div class="col-md-6">
-                <h2>About Us</h2>
-                <p>This was a final project for Harvard's CS171 course in fall 2018, created by Jess Eng, Cassandra
-                    Kane, Lucy Li, and Jarele Soyinka.</p>
-                <h4>To learn more:</h4>
-                <ol>
-                    <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
-                    <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
-                    <li>Watch the screencast below</li>
-                </ol>
-                <p>TODO: INCLUDE SCREENCAST</p>
             </div>
-            <div class="col-md-6">
-                <h2>Credits</h2>
-                <h4>Data Sources</h4>
-                <ol>
-                    <li>Box Office and Bechdel Test Results:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
-                    </li>
-                    <li>Cast and Crew Gender Breakdowns:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
-                    </li>
-                    <li>Dialogue Breakdowns:
-                        <a href="https://data.world/popculture/2016-movie-dialogue">2016 Movie Dialogue</a>
-                    </li>
-                    <li>Bechdel Test Over Time:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">Bechdel Results</a>,
-                        <a href="https://data.world/sharon/bechdel-test">Genre Data</a>
-                    </li>
-                </ol>
-                <h4>Images</h4>
-                <ol>
-                    <li><a href="http://dykestowatchoutfor.com/the-rule">"The Rule"</a>
-                        by Alison Bechdel, from the comic strip <i>Dykes to Watch Out For</i></li>
-                    <li><a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html">"100 Women Directors Hollywood Should Be Hiring"</a>
-                        from Vulture</li>
-                    <li><a href="https://www.nytimes.com/2018/07/24/magazine/domee-shi-thinks-kids-can-handle-dark-stories.html">"Domee Shi Thinks Kids Can Handle Dark Stories"</a>
-                        from The New York Times</li>
-                    <li><a href="https://variety.com/2015/tv/features/debbie-allen-greys-director-anatomy-executive-producer-season-12-1201585698/">"Debbie Allen Discusses Her Many Roles in ‘Grey’s Anatomy’ Season 12"</a>
-                        from Variety</li>
-                    <li><a href="http://www.jasonward.co.uk/film-writing/ana-lily-amirpour/">"Ana Lily Amipour"</a>
-                        from Jason Ward</li>
-                    <li><a href="https://www.indiewire.com/2018/02/amma-asante-mentor-female-filmmakers-1201932033/">"Amma Asante Has Been Quietly Mentoring Fellow Female Filmmakers in Hopes of Changing Hollywood’s Equality Problem"</a>
-                        from Indie Wire</li>
-                    <li><a href="https://www.hypehair.com/66666/ava-duvernay-shares-secret-fabulous-locs/">"Ava DuVernay Shares Secret to Her Fabulous Locs"</a>
-                        from HypeHair</li>
-                    
-                </ol>
-                <p>Thank you to the CS171 course staff and especially our advisor,
-                    Nam Wook Kim, for all their help with this project!</p>
+            <br>
+            <br>
+            <br>
+            <div class="row" id="about">
+                <div class="col-md-6">
+                    <h2>About Us</h2>
+                    <p>This was a final project for Harvard's CS171 course in fall 2018, created by Jess Eng, Cassandra
+                        Kane, Lucy Li, and Jarele Soyinka.</p>
+                    <h4>To learn more:</h4>
+                    <ol>
+                        <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
+                        <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
+                        <li>Watch the screencast below</li>
+                    </ol>
+                    <p>TODO: INCLUDE SCREENCAST</p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Credits</h2>
+                    <h4>Data Sources</h4>
+                    <ol>
+                        <li>Box Office and Bechdel Test Results:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                        </li>
+                        <li>Cast and Crew Gender Breakdowns:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                        </li>
+                        <li>Dialogue Breakdowns:
+                            <a href="https://data.world/popculture/2016-movie-dialogue">2016 Movie Dialogue</a>
+                        </li>
+                        <li>Bechdel Test Over Time:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">Bechdel Results</a>,
+                            <a href="https://data.world/sharon/bechdel-test">Genre Data</a>
+                        </li>
+                    </ol>
+                    <h4>Images</h4>
+                    <ol>
+                        <li><a href="http://dykestowatchoutfor.com/the-rule">"The Rule"</a>
+                            by Alison Bechdel, from the comic strip <i>Dykes to Watch Out For</i></li>
+                        <li><a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html">"100 Women Directors Hollywood Should Be Hiring"</a>
+                            from Vulture</li>
+                        <li><a href="https://www.nytimes.com/2018/07/24/magazine/domee-shi-thinks-kids-can-handle-dark-stories.html">"Domee Shi Thinks Kids Can Handle Dark Stories"</a>
+                            from The New York Times</li>
+                        <li><a href="https://variety.com/2015/tv/features/debbie-allen-greys-director-anatomy-executive-producer-season-12-1201585698/">"Debbie Allen Discusses Her Many Roles in ‘Grey’s Anatomy’ Season 12"</a>
+                            from Variety</li>
+                        <li><a href="http://www.jasonward.co.uk/film-writing/ana-lily-amirpour/">"Ana Lily Amipour"</a>
+                            from Jason Ward</li>
+                        <li><a href="https://www.indiewire.com/2018/02/amma-asante-mentor-female-filmmakers-1201932033/">"Amma Asante Has Been Quietly Mentoring Fellow Female Filmmakers in Hopes of Changing Hollywood’s Equality Problem"</a>
+                            from Indie Wire</li>
+                        <li><a href="https://www.hypehair.com/66666/ava-duvernay-shares-secret-fabulous-locs/">"Ava DuVernay Shares Secret to Her Fabulous Locs"</a>
+                            from HypeHair</li>
+
+                    </ol>
+                    <p>Thank you to the CS171 course staff and especially our advisor,
+                        Nam Wook Kim, for all their help with this project!</p>
+                </div>
             </div>
         </div>
-    </div>
+        </div>
+
 
 
 

@@ -220,9 +220,9 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = false;
             vis.svg.selectAll("text.split-role").style("opacity", 0);
             vis.svg.selectAll("text.split-gender").style("opacity", 0);
-            d3.select("#default-filter-text").style("font-size", 22);
-            d3.select("#gender-filter-text").style("font-size", 0);
-            d3.select("#role-filter-text").style("font-size", 0);
+            d3.select("#default-filter-text").style("display", "block");
+            d3.select("#gender-filter-text").style("display", "none");
+            d3.select("#role-filter-text").style("display", "none");
         }
         else if (this.value === 'gender') {
             vis.simulation
@@ -233,9 +233,9 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = true;
             vis.svg.selectAll("text.split-role").style("opacity", 0);
             vis.svg.selectAll("text.split-gender").style("opacity", 100);
-            d3.select("#default-filter-text").style("font-size", 0);
-            d3.select("#gender-filter-text").style("font-size", 22);
-            d3.select("#role-filter-text").style("font-size", 0);
+            d3.select("#default-filter-text").style("display", "none");
+            d3.select("#gender-filter-text").style("display", "block");
+            d3.select("#role-filter-text").style("display", "none");
         }
         else if (this.value === 'role') {
             vis.simulation
@@ -246,9 +246,9 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = false;
             vis.svg.selectAll("text.split-role").style("opacity", 100);
             vis.svg.selectAll("text.split-gender").style("opacity", 0);
-            d3.select("#default-filter-text").style("font-size", 0);
-            d3.select("#gender-filter-text").style("font-size", 0);
-            d3.select("#role-filter-text").style("font-size", 22);
+            d3.select("#default-filter-text").style("display", "none");
+            d3.select("#gender-filter-text").style("display", "none");
+            d3.select("#role-filter-text").style("display", "block");
         }
     });
 

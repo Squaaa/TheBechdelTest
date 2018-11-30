@@ -136,13 +136,6 @@ img {
     font-size: 16px;
 }
 
-#top-10-movie-revenue{
-    font-size: 22px;
-}
-#top-10-movie-bechdel {
-    font-size: 22px;
-}
-
 #show-answer, #show-answer-2 {
     font-size: 40px;
     background-color: #EEE4D7;
@@ -185,6 +178,18 @@ img {
     padding-right: 20px;
     border-radius: 25px;
     margin-bottom: 20px;
+}
+
+#default-filter-text {
+    display: block;
+}
+
+#gender-filter-text {
+    display: none;
+}
+
+#role-filter-text {
+    display: none;
 }
 
 /* RADIO BUTTONS */
@@ -249,7 +254,9 @@ img {
     background: white;
 }
 
-
+.vis-text {
+    font-size: 22px;
+}
 
 /*********************/
 /*  TOOLTIP OVERLAY  */

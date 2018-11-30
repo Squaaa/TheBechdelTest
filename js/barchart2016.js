@@ -133,7 +133,7 @@ BarChart2016.prototype.revealBars = function() {
 
     vis.svg.selectAll(".bar")
         .transition()
-        .duration(800)
+        .duration(1000)
         .attr("fill", function(d) {
             var userGuess = d3.select(this).attr("fill")
             if (d.bechdel) {

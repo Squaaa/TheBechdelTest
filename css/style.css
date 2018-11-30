@@ -76,12 +76,12 @@ img {
     transform: translateY(20%);
 }
 
-#guess, #guess-two {
+#guess-two {
     display:none;
     font-size: 22px;
 }
 
-#first-question, #second-question {
+#second-question {
     display: none;
     font-size: 40px;
     text-align: center;
@@ -143,7 +143,7 @@ img {
     font-size: 22px;
 }
 
-#show-answer, #show-answer-2 {
+#show-answer-2 {
     font-size: 40px;
     background-color: #EEE4D7;
     padding: 20px;
@@ -164,7 +164,7 @@ img {
     display: none;
 }
 
-#button3, #button35, #button4, #button6 {
+#button35, #button4, #button6, #check-button {
     margin:auto;
     display:block;
 }
@@ -185,6 +185,14 @@ img {
     padding-right: 20px;
     border-radius: 25px;
     margin-bottom: 20px;
+}
+
+#question1 {
+    margin-bottom: 2rem;
+}
+
+#result {
+    margin-top: 2rem;
 }
 
 

@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">View more movie details</button>
+            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">Learn More</button>
         </div>
 
         <br>
@@ -130,8 +130,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div id="cast-dialogue-chart"></div>
+                </div>
+                <div class="col-md-3">
+                    <label>Split by </label>
+                    <label class="container">None
+                        <input type="radio" checked="checked" name="split" value="none">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Gender
+                        <input type="radio" name="split" value="gender">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Role
+                        <input type="radio" name="split" value="role">
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
             </div>
             <div class="row">

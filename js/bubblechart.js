@@ -4,6 +4,9 @@
  * @param _data						-- the
  */
 
+var currSplitGender = false;
+var currSplitRole = false;
+
 BubbleChart = function(_parentElement, _data){
     this.parentElement = _parentElement;
     this.data = _data;
@@ -16,7 +19,7 @@ BubbleChart = function(_parentElement, _data){
 BubbleChart.prototype.initVis = function() {
     var vis = this;
 
-    vis.width = 1100;
+    vis.width = 800;
     vis.height = 300;
 
     vis.svg = d3.select("#" + vis.parentElement)
@@ -26,8 +29,6 @@ BubbleChart.prototype.initVis = function() {
         .append("g")
         .attr("transform", "translate(0,0)");
 
-    console.log("test");
-
     var genderLabel = ["Gender"];
     vis.svg.selectAll("text.gender-label")
         .data(genderLabel)
@@ -35,7 +36,7 @@ BubbleChart.prototype.initVis = function() {
         .append("text")
         .attr("class", ".gender-label")
         .attr("x", 0)
-        .attr("y", 20)
+        .attr("y", 15)
         .text(function (d) { return d });
 
     var wordsLabel = ["Number of Words Spoken"];
@@ -62,18 +63,16 @@ BubbleChart.prototype.wrangleData = function(){
 BubbleChart.prototype.updateVis = function(){
     var vis = this;
 
-    console.log(vis.data);
-
     var wordCountMin = d3.min(vis.displayData, function (d) {return d.words });
     var wordCountMax = d3.max(vis.displayData, function (d) {return d.words });
-    vis.radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 60]);
+    vis.radiusScale = d3.scaleSqrt().domain([1, wordCountMax]).range([1, 50]);
 
-    var forceXSplitRole = d3.forceX(d => vis.width * (d.role === "lead" ? 0.6 : 0.9))
+    var forceXSplitRole = d3.forceX(d => vis.width * (d.role === "lead" ? 0.57 : 0.85))
         .strength(0.2);
-    var forceXSplitGender = d3.forceX(d => vis.width * (d.gender === "female" ? 0.6 : 0.9))
+    var forceXSplitGender = d3.forceX(d => vis.width * (d.gender === "female" ? 0.57 : 0.85))
         .strength(0.2);
 
-    var forceXCombine = d3.forceX((vis.width) * 0.75).strength(0.1);
+    var forceXCombine = d3.forceX((vis.width) * 0.65).strength(0.1);
 
     var forceCollide = d3.forceCollide(function(d){
         return vis.radiusScale(d.words) + 1
@@ -82,8 +81,8 @@ BubbleChart.prototype.updateVis = function(){
     if (!vis.simulation) {
         vis.simulation = d3.forceSimulation(vis.displayData)
             .force("x", forceXCombine)
-            .force("y", d3.forceY((vis.height * 0.4) + 10).strength(0.15))
-            .force("center", d3.forceCenter(vis.width * 0.75, vis.height * 0.4))
+            .force("y", d3.forceY((vis.height * 0.65) + 10).strength(0.15))
+            .force("center", d3.forceCenter(vis.width * 0.6, vis.height * 0.5))
             .alphaTarget(1)
             .on('tick', ticked);
         vis.circles = vis.svg.selectAll(".character");
@@ -151,127 +150,8 @@ BubbleChart.prototype.updateVis = function(){
 
     vis.simulation.nodes(vis.displayData).force("collide", forceCollide.iterations(100));
 
-
     vis.circles.on("mouseover", tool_tip.show)
         .on("mouseout", tool_tip.hide);
-
-    var onRoleClick = function(){
-        vis.simulation
-            .force("x", splitRole ? forceXCombine : forceXSplitRole)
-            .alpha(0.7)
-            .restart();
-        setRoleAtRight(!splitRole);
-    };
-
-    vis.splitRoleCategories = ["Lead", "Supporting"];
-    vis.splitGenderCategories = ["Female", "Male"];
-
-    var splitRoleLabels = vis.svg.selectAll("text.split-role")
-        .data(vis.splitRoleCategories)
-        .enter().append("text")
-        .attr("class", "split-role")
-        .style("opacity", 0)
-        .attr("x", function (d, i) {
-            if (i === 0) {
-                return vis.width * 0.5;
-            }
-            if (i === 1) {
-                return vis.width * 0.8;
-            }
-            return 0;
-        })
-        .attr("y", vis.height - 25)
-        .text(function (d) { return d; });
-
-    var splitGenderLabels = vis.svg.selectAll("text.split-gender")
-        .data(vis.splitGenderCategories)
-        .enter().append("text")
-        .attr("class", "split-gender")
-        .style("opacity", 0)
-        .attr("x", function (d, i) {
-            if (i === 0) {
-                return vis.width * 0.5;
-            }
-            if (i === 1) {
-                return vis.width * 0.8;
-            }
-            return 0;
-        })
-        .attr("y", vis.height - 25)
-        .text(function (d) { return d; });
-
-    var splitRole = false;
-    var splitGender = false;
-
-    var rectRole = vis.svg.append("rect")
-        .attr("x", 225)
-        .attr("y", 175)
-        .attr("rx", 22)
-        .attr("ry", 22)
-        .style("fill", "lightgray")
-        .attr("width", 64)
-        .attr("height", 40)
-        .on("click", onRoleClick)
-
-    var circleRole = vis.svg.append("circle")
-        .attr("cx", 245)
-        .attr("cy", 195)
-        .attr("r", 16)
-        .style("fill", "white")
-        .on("click", onRoleClick)
-
-
-    var setRoleAtRight = function(newValue) {
-        circleRole.transition().duration(250)
-            .attr("cx", (newValue? 268 : 245))
-            .style("fill", "white");
-        rectRole.transition().duration(250)
-            .style("fill", newValue? "#55efc4" : "lightgray");
-        splitRoleLabels.style("opacity", newValue? 100 : 0);
-        if(splitGender) {
-            setGenderAtRight(false);
-        }
-        splitRole = newValue;
-    };
-
-    var onGenderClick = function(){
-        vis.simulation
-            .force("x", splitGender ? forceXCombine : forceXSplitGender)
-            .alpha(0.7)
-            .restart();
-        setGenderAtRight(!splitGender);
-    };
-
-    var rectGender = vis.svg.append("rect")
-        .attr("x", 225)
-        .attr("y", 125)
-        .attr("rx", 22)
-        .attr("ry", 22)
-        .style("fill", "lightgray")
-        .attr("width", 64)
-        .attr("height", 40)
-        .on("click", onGenderClick);
-
-    var circleGender = vis.svg.append("circle")
-        .attr("cx", 245)
-        .attr("cy", 145)
-        .attr("r", 16)
-        .style("fill", "white")
-        .on("click", onGenderClick);
-
-
-    var setGenderAtRight = function(newValue) {
-        circleGender.transition().duration(250)
-            .attr("cx", (newValue? 268 : 245))
-            .style("fill", "white");
-        rectGender.transition().duration(250)
-            .style("fill", newValue? "#55efc4" : "lightgray");
-        splitGenderLabels.style("opacity", newValue? 100 : 0);
-        if (splitRole) {
-            setRoleAtRight(false);
-        }
-        splitGender = newValue;
-    };
 
     function ticked() {
         vis.circles
@@ -282,6 +162,88 @@ BubbleChart.prototype.updateVis = function(){
                 return d.y
             })
     }
+
+    // SPLIT LABELS
+
+    vis.splitRoleCategories = ["Lead", "Supporting"];
+    vis.splitGenderCategories = ["Female", "Male"];
+
+    var splitRoleLabels = vis.svg.selectAll("text.split-role")
+        .data(vis.splitRoleCategories);
+
+    splitRoleLabels.enter().append("text")
+        .merge(splitRoleLabels)
+        .attr("class", "split-role")
+        .style("opacity", currSplitRole ? 100 : 0)
+        .attr("x", function (d, i) {
+            if (i === 0) {
+                return vis.width * 0.4;
+            }
+            if (i === 1) {
+                return vis.width * 0.65;
+            }
+            return 0;
+        })
+        .attr("y", 15)
+        .text(function (d) { return d; });
+
+    splitRoleLabels.exit().remove();
+
+    var splitGenderLabels = vis.svg.selectAll("text.split-gender")
+        .data(vis.splitGenderCategories);
+
+    splitGenderLabels.enter().append("text")
+        .merge(splitGenderLabels)
+        .attr("class", "split-gender")
+        .style("opacity", currSplitGender ? 100 : 0)
+        .attr("x", function (d, i) {
+            if (i === 0) {
+                return vis.width * 0.4;
+            }
+            if (i === 1) {
+                return vis.width * 0.65;
+            }
+            return 0;
+        })
+        .attr("y", 15)
+        .text(function (d) { return d; });
+
+    splitGenderLabels.exit().remove();
+
+    $('input[type=radio][name=split]').change(function() {
+        if (this.value === 'none') {
+            vis.simulation
+                .force("x", forceXCombine)
+                .alpha(0.7)
+                .restart();
+            currSplitRole = false;
+            currSplitGender = false;
+            vis.svg.selectAll("text.split-role").style("opacity", 0);
+            vis.svg.selectAll("text.split-gender").style("opacity", 0);
+        }
+        else if (this.value === 'gender') {
+            vis.simulation
+                .force("x", forceXSplitGender)
+                .alpha(0.7)
+                .restart();
+            currSplitRole = false;
+            currSplitGender = true;
+            vis.svg.selectAll("text.split-role").style("opacity", 0);
+            vis.svg.selectAll("text.split-gender").style("opacity", 100);
+        }
+        else if (this.value === 'role') {
+            vis.simulation
+                .force("x", forceXSplitRole)
+                .alpha(0.7)
+                .restart();
+            currSplitRole = true;
+            currSplitGender = false;
+            vis.svg.selectAll("text.split-role").style("opacity", 100);
+            vis.svg.selectAll("text.split-gender").style("opacity", 0);
+        }
+    });
+
+    // LEGEND
 
     vis.dataCategories = ["Male", "Female"];
 
@@ -348,30 +310,8 @@ BubbleChart.prototype.updateVis = function(){
 
     legendLabels.exit().remove();
 
-    vis.toggleCategories = ["Split by Gender", "Split by Role"];
-
-    var toggleLabels = vis.svg.selectAll("text.toggle")
-        .data(vis.toggleCategories);
-
-    toggleLabels.enter().append("text")
-        .attr("class", "toggle")
-        .merge(toggleLabels)
-        .attr("x", 300)
-        .attr("y", function (d, i) {
-            if (i === 0) {
-                return 150;
-            }
-            if (i === 1) {
-                return 200;
-            }
-            return 0
-        })
-        .text(function (d) { return d; });
-
-    toggleLabels.exit().remove();
-
     var valueDiff = wordCountMax - wordCountMin;
-    var valueRange = [valueDiff / 6, valueDiff / 2, valueDiff * 5 / 6];
+    var valueRange = [valueDiff / 10, valueDiff * 2 / 5, valueDiff * 9 / 10];
 
     var legendCircles = vis.svg.selectAll("circle.size-legend")
         .data(valueRange);
@@ -390,9 +330,9 @@ BubbleChart.prototype.updateVis = function(){
         })
         .attr("fill", "none")
         .attr("stroke", "black")
-        .attr("cx", 75)
+        .attr("cx", 50)
         .attr("cy", function (d) {
-            return 250 - vis.radiusScale(d);
+            return 240 - vis.radiusScale(d);
         });
 
     sizeLabels.enter()
@@ -402,14 +342,12 @@ BubbleChart.prototype.updateVis = function(){
         .text(function(d) {
             return Math.round(wordCountMin + d).toString();
         })
-        .attr("x", 60)
+        .attr("x", 35)
         .attr("y", function (d, i) {
-            return 247 - 2 * legendCirclesRadius[i];
+            return 237 - 2 * legendCirclesRadius[i];
         });
 
     legendCircles.exit().remove();
     sizeLabels.exit().remove();
-
-
 };
 

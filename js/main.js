@@ -181,7 +181,7 @@ function updateAxes() {
 function updateTop10() {
     var vis = this;
     var selectedIndex = d3.select('#movie-select-box').property("value");
-    var d = {}
+    var d = {};
     for (var index in top10Data) {
         if (top10Data[index]['rank'] === +selectedIndex) {
             d = top10Data[index];

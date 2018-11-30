@@ -73,13 +73,13 @@
                     </div>
                     <div id="top-10-detail-area">
                         <h3 id="top-10-movie-title"></h3>
-                        <p id="top-10-movie-revenue"></p>
-                        <p id="top-10-movie-bechdel"></p>
+                        <p id="top-10-movie-revenue" class="vis-text"></p>
+                        <p id="top-10-movie-bechdel" class="vis-text"></p>
                         <p id="top-10-movie-video"></p>
                     </div>
                 </div>
             </div>
-            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">View more movie details</button>
+            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">Learn More</button>
         </div>
 
         <br>
@@ -87,7 +87,7 @@
         <div id="breakdown" class="get-margins">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>Actors Regularly Outnumber Actresses & The Dialogue Disparity Is Often Wider</h4>
+                    <h4>Actors Regularly Outnumber Actresses & The Dialogue Disparity Can Be Even Wider</h4>
                 </div>
                 <div class="col-md-6">
                     <form class="form-inline">
@@ -110,8 +110,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div id="cast-dialogue-chart"></div>
+                </div>
+                <div class="col-md-3">
+                    <label>Split by </label>
+                    <label class="container">None
+                        <input type="radio" checked="checked" name="split" value="none">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Gender
+                        <input type="radio" name="split" value="gender">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Role
+                        <input type="radio" name="split" value="role">
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
             </div>
             <div class="row">
@@ -122,15 +137,17 @@
                 </div>
                 <div class="col-md-6">
                     <h4>What does this show us?</h4>
-                    <p>Although the majority of the top 10 movies of 2018 passed the Bechdel Test, only a few them passed
+                    <div id="default-filter-text" class="vis-text">Although the majority of the top 10 movies of 2018 passed the Bechdel Test, only a few them passed
                         the test with more than a few lines of dialogue. The Suicide Squad movie clip is one of the
-                        worst offenders with the qualifying conversation being 5 words total. In multiple ways these movies failed on the
-                        representation front. The amount of female directors for all 10 movies is 0. And interestingly enough, that's the same number of movies
-                        with more female producers than male producers. And while grand total of two films have female writers, a solid
-                        total of zero have more female writers than male writers. Even when looking at cast and crew
+                        worst offenders with the qualifying conversation being 5 words total. With numbers like those, its
+                        hard to say that these movies succeeded on the representation front. </div>
+                    <div id="gender-filter-text" class="vis-text not-default">The amount of female directors for all 10 movies is zero. And interestingly enough, that's the same number of movies
+                        with more female producers than male producers. And while a grand total of two films have female writers, there isn't a
+                        single one of them with more female writers than male writers. </div>
+                    <div id="role-filter-text" class="vis-text not-default">Even when looking at cast and crew
                         as a whole, the average breakdown is 71% male for cast and 74% male for crew. The Bechdel Test is a
                         very easy baseline, that most of these movies do pass, but the spirit of test, the idea of equal representation,
-                        is clearly missed.</p>
+                        is clearly missed.</div>
                 </div>
             </div>
             <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
@@ -147,9 +164,9 @@
             <div id="guess-two" align="center">
                 <p>Enter your guess: </p>
                 <div class="form-group">
-                    <input type="range" name="year" min="1980" max="2013" id="year-input" oninput="showYear()" onchange="showYear()">
+                    <input type="range" name="year" value="1980" min="1980" max="2013" id="year-input" oninput="showYear()" onchange="showYear()">
                 </div>
-                    <p id="range-answer">1997</p>
+                    <p id="range-answer">1980</p>
                     <p id="answer-feedback-2"></p>
                     <button type="button" id="button5" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
             </div>
@@ -197,17 +214,16 @@
             </div>
             <div class="col-md-6">
                 <div id="time-data-analysis">
-                    <p class="number proportion">The proportion of movies that pass the Bechdel test seems to be
-                        growing very slowly over time, with about half of movies passing the test in recent years.</p>
-                    <p class="genre-info">There are large differences between movies of different genres: 77% of
+                    <div class="number proportion vis-text not-default">The proportion of movies that pass the Bechdel test seems to be
+                        growing very slowly over time, with about half of movies passing the test in recent years.</div>
+                    <div class="genre-info vis-text not-default">There are large differences between movies of different genres: 77% of
                         musicals have passed the Bechdel test, while at the other end of the spectrum, just 25%
-                        of documentaries have passed the test.</p>
-                    <p>There also appears to be a difference between the economic success of movies that pass the test
-                        and movies that fail it.</p>
-                    <p class="budget gross">In 2013, the most recent year for which we have data, movies that passed
-                        the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
-                    <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
-                        more money domestically relative to the size of their budgets.</p>
+                        of documentaries have passed the test.</div>
+                    <div class="budget gross vis-text not-default">In 2013, the most recent year for which we have data, movies that passed
+                        the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</div>
+                    <div class="time-data vis-text">There are plenty of conclusions to draw with growth of the Bechdel success over time,
+                        and the diversity in results between genres, but it's worth noting that, though it may not be causal,
+                        movies that pass the test have greater profits overall. </div>
                     <br>
                     <br>
                     <button type="button" id="button7" class="btn btn-light" onclick="showEnd()">Next</button>
@@ -302,7 +318,6 @@
                             from Indie Wire</li>
                         <li><a href="https://www.hypehair.com/66666/ava-duvernay-shares-secret-fabulous-locs/">"Ava DuVernay Shares Secret to Her Fabulous Locs"</a>
                             from HypeHair</li>
-
                     </ol>
                     <p>Thank you to the CS171 course staff and especially our advisor,
                         Nam Wook Kim, for all their help with this project!</p>
@@ -311,10 +326,6 @@
         </div>
         </div>
 
-
-
-
-
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -322,7 +333,6 @@
     <script src="js/d3.layout.cloud.js"></script>
     <script src="js/d3-tip.js"></script>
     <script src="js/queue.v1.min.js"></script>
-    <script src="js/wordcloud.js"></script>
     <script src="js/d3-annotation.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/areachart.js"></script>

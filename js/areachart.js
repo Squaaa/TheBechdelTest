@@ -314,9 +314,11 @@ StackedAreaChart.prototype.updateVis = function(){
     d3.select("#time-area-chart")
         .on("mouseover", function() {
             d3.select("." + vis.yValue).style("font-weight", "bold")
+            d3.select("." + vis.yValue).style("display", "block")
         })
         .on("mouseout", function() {
             d3.select("." + vis.yValue).style("font-weight", "normal")
+            d3.select("." + vis.yValue).style("display", "none")
         });
 
     vis.brushGroup.attr("clip-path", "url(#clip)").call(vis.brush);

@@ -135,7 +135,7 @@ BarChart2016.prototype.revealBars = function() {
 
     vis.svg.selectAll(".bar")
         .transition()
-        .duration(2000)
+        .duration(1800)
         .attr("fill", function(d) {
             var userGuess = d3.select(this).attr("fill")
             if (d.bechdel) {
@@ -145,9 +145,9 @@ BarChart2016.prototype.revealBars = function() {
             }
             if (userGuess === correctFill) {
                 vis.numberCorrect += 1;
-                vis.correctMovies.push(d.title);
+                vis.correctMovies.unshift(d.title);
             } else {
-                vis.incorrectMovies.push(d.title);
+                vis.incorrectMovies.unshift(d.title);
             }
             return correctFill;
         })

@@ -180,7 +180,7 @@ img {
     margin-bottom: 20px;
 }
 
-#question1 {
+#question1, #user-results{
     margin-bottom: 2rem;
     font-size: 36px;
 }

@@ -184,6 +184,7 @@ function updateTop10() {
 function showVis() {
     $("#button3").fadeTo(500, 0);
     $("#first-movies").fadeIn();
+    $("#2016-section-title").hide();
     $("#top-10-detail-area").hide();
     $("#button35").hide();
     document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
@@ -198,17 +199,20 @@ function showBars() {
 function checkAnswers() {
     var vis = this;
 
-    document.getElementById("2016-section-title").innerHTML =
-        "2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation";
+    $("#2016-initial-title").hide("slow");
+    $("#2016-section-title").fadeIn();
+    /* document.getElementById("2016-section-title").innerHTML =
+        "2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation"; */
+    $("#quiz").hide("slow");
     document.getElementById("click-instruction").innerHTML = "Click any bar to view more details";
-    document.getElementById("button2").style.display='none';
-    console.log(vis.barchart2016.correctMovies)
-    document.getElementById("question1").innerHTML = "You got <u>" + vis.barchart2016.numberCorrect +
+    // document.getElementById("button2").style.display='none';
+    document.getElementById("user-results").innerHTML = "You got <u>" + vis.barchart2016.numberCorrect +
         "</u> out of 10 movies correct. Click any bar to view more details about that movie.";
     document.getElementById("correct-movies").innerHTML = "<b>Movies you guessed correctly:</b> " +
         vis.barchart2016.correctMovies.join(', ');
     document.getElementById("incorrect-movies").innerHTML = "<b>Movies you guessed incorrectly:</b> " +
         vis.barchart2016.incorrectMovies.join(', ');
+    $("#results").show("slow");
     $("#button35").show();
 }
 

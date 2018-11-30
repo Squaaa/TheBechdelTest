@@ -89,31 +89,6 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("x", 0 - (vis.height / 2))
         .style("text-anchor", "middle");
 
-    // Annotations
-    /*
-    const type = d3.annotationXYThreshold;
-
-    const annotations = [{
-        note: {
-            label: "Longer text to show text wrapping",
-            title: "Annotations :)"
-        },
-        x: 50,
-        y: 150,
-        dy: 137,
-        dx: 162
-    }]
-
-    var makeAnnotations = d3.annotation()
-        .type(type)
-        .annotations(annotations)
-
-    console.log(makeAnnotations)
-
-    vis.svg.append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations); */
-
     vis.correctAnnotation = vis.svg.append("g")
         .attr("class", "annotation-group");
 
@@ -144,13 +119,6 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("fill", "black")
         .attr("font-size", "14px")
         .text("Your guess");
-
-    /* vis.differenceAnnotation = vis.svg.append("line")
-        .attr("y1", vis.height / 2)
-        .attr("y2", vis.height / 2)
-        .attr("stroke-width", "1px")
-        .attr("stroke", "black")
-        .attr("stroke-dasharray", 4); */
 
     vis.wrangleData();
 

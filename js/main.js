@@ -227,7 +227,7 @@ function showAnswerTwo() {
         $("#button5").fadeTo(500, 0);
         $("#answer-two").fadeIn();
         $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
-            + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
+            + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how Bechdel test results change over time, from 1980 to 2013." );
         document.getElementById('answer-two').scrollIntoView({ behavior: 'smooth', block: 'end', });
         vis.areachart.guessAnnotation
             .attr("transform", "translate(" + areachart.x(answer) + ", 0)");
@@ -246,10 +246,6 @@ function showAnswerTwo() {
             .attr("text-anchor", function() {
                 return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
             });
-        /* areachart.differenceAnnotation
-            .attr("x1", areachart.x(answer))
-            .attr("x2", areachart.x(1993));
-        areachart.differenceAnnotation.moveToFront(); */
     }
 }
 

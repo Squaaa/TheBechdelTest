@@ -270,13 +270,18 @@ BubbleChart.prototype.updateVis = function(){
     vis.legend.exit().remove();
 
     var getGenderCharacterPercentage = function (d) {
+        console.log(vis.displayData);
         var count = 0;
+        var total = 0;
         vis.displayData.forEach(function (e) {
-            if (e['gender'] && e['gender'].toLowerCase() === d.toLowerCase()) {
-                count++;
+            if (e['gender'] && e['gender'] !== "unknown") {
+                total++;
+                if (e['gender'].toLowerCase() === d.toLowerCase()) {
+                    count++;
+                }
             }
         });
-        return Math.round(100 * count / vis.displayData.length);
+        return Math.round(100 * count / total);
     };
 
     var getGenderDialoguePercentage = function (d) {

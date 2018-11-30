@@ -3,7 +3,6 @@ let alltimeData = [];
 
 queue()
     .defer(d3.csv,"data/top10_data/nextBechdel_allTests.csv")
-    .defer(d3.csv,"data/top10_data/nextBechdel_castGender.csv")
     .defer(d3.csv,"data/top10_data/nextBechdel_crewGender.csv")
     .defer(d3.csv,"data/top10_data/dialogue/CivilWar.csv")
     .defer(d3.csv,"data/top10_data/dialogue/RogueOne.csv")
@@ -19,7 +18,7 @@ queue()
     .defer(d3.csv,"data/alltime_data/Bechdel-master_revenue.csv")
     .await(wrangleData);
 
-function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
+function wrangleData(error, top10bechdelTests, top10crewGender,
                      civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData,
                      secretLifeofPetsData, batmanVSupermanData, fantasticBeastsData, deadpoolData,
                      suicideSquadData, allTimeMovies, allTimeGenre) {
@@ -74,24 +73,6 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             }
             testIndex++;
         }
-
-        let castData = [];
-        for (let j = 0; j < top10castGender.length; j++) {
-            let currActor = top10castGender[j];
-            // exception for Rogue One (title discrepancy)
-            if (currActor['MOVIE'] === movie['title'] ||
-                (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story")) {
-                let actorData = {
-                    'name': currActor['ACTOR'],
-                    'gender': currActor['GENDER'].toLowerCase(),
-                    'character': currActor['CHARACTER_NAME'],
-                    'characterType': currActor['TYPE'],
-                    'billing': +currActor['BILLING']
-                };
-                castData.push(actorData);
-            }
-        }
-        movie['castData'] = castData;
 
         // NOTE: missing crewData available for 'Fantastic Beasts and Where to Find Them' and 'Suicide Squad'
         let crewData = [];
@@ -161,8 +142,6 @@ function createVis() {
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    //var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
-
     vis.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
     vis.castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);

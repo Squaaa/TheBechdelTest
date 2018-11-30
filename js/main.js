@@ -202,8 +202,13 @@ function checkAnswers() {
         "2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation";
     document.getElementById("click-instruction").innerHTML = "Click any bar to view more details";
     document.getElementById("button2").style.display='none';
+    console.log(vis.barchart2016.correctMovies)
     document.getElementById("question1").innerHTML = "You got <u>" + vis.barchart2016.numberCorrect +
         "</u> out of 10 movies correct. Click any bar to view more details about that movie.";
+    document.getElementById("correct-movies").innerHTML = "<b>Movies you guessed correctly:</b> " +
+        vis.barchart2016.correctMovies.join(', ');
+    document.getElementById("incorrect-movies").innerHTML = "<b>Movies you guessed incorrectly:</b> " +
+        vis.barchart2016.incorrectMovies.join(', ');
     $("#button35").show();
 }
 

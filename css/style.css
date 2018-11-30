@@ -185,6 +185,10 @@ img {
     font-size: 36px;
 }
 
+#incorrect-movies {
+    margin-top: 1rem;
+}
+
 #default-filter-text {
     display: block;
 }

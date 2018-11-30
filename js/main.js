@@ -174,6 +174,7 @@ function updateTop10() {
         d['boxOffice'].toLocaleString() + "M";
     document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
     document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+    $("#results").hide();
     $("#top-10-detail-area").show();
     vis.crewiconchart.data = d['crewData'];
     vis.crewiconchart.wrangleData();

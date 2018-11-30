@@ -133,7 +133,7 @@ BarChart2016.prototype.revealBars = function() {
 
     vis.svg.selectAll(".bar")
         .transition()
-        .duration(1000)
+        .duration(1200)
         .attr("fill", function(d) {
             var userGuess = d3.select(this).attr("fill")
             if (d.bechdel) {
@@ -146,6 +146,9 @@ BarChart2016.prototype.revealBars = function() {
             }
             return correctFill;
         })
+        .on("end", function() {
+            checkAnswers();
+        });
 
     vis.svg.selectAll(".bar")
         .on("click", function (d) {
@@ -172,6 +175,7 @@ BarChart2016.prototype.revealBars = function() {
                 return !d.bechdel ? "#d32727" : "#74b9ff";
             });
         });
+
 }
 
 

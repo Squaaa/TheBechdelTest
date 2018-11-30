@@ -183,7 +183,7 @@ function updateTop10() {
 }
 
 function showVis() {
-    $("#button3").fadeTo(500, 0);
+    $("#button1").fadeTo(500, 0);
     $("#first-movies").fadeIn();
     $("#2016-section-title").hide();
     $("#top-10-detail-area").hide();

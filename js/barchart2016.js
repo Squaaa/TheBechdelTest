@@ -97,6 +97,7 @@ BarChart2016.prototype.initVis = function() {
                 d['boxOffice'].toLocaleString() + "M";
             document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
             document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+            document.getElementById("movie-select-box").value = d['rank'].toString();
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();
             vis.bubblechart.data = d['dialogueData'];

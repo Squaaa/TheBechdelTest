@@ -25,7 +25,7 @@
     </video>
 
     <div id="full-intro" class="get-margins">
-        <div class="row">
+        <div class="row" >
             <div class="col-md-6">
                 <h1>What is the Bechdel Test?</h1>
                 <div id="intro">
@@ -76,35 +76,77 @@
     </div>
 
     <div id="main-visual" class="get-margins">
-        <div id="top-view">
-            <br>
-            <br>
-            <h2>2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation</h2>
-            <br>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Box Office & Bechdel Test Results</h3>
-                <h5>Click any bar to view more details</h5>
+        <div id="first-movies">
+            <div id="top-view">
                 <br>
-                <div id="top-10-bar-chart"></div>
+                <br>
+                <h2>2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation</h2>
+                <br>
             </div>
-            <div class="col-md-6">
-                <div id="top-10-detail-area">
-                    <h3 id="top-10-movie-title"></h3>
-                    <p id="top-10-movie-revenue"></p>
-                    <p id="top-10-movie-bechdel"></p>
-                    <p id="top-10-movie-video"></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Box Office & Bechdel Test Results</h3>
+                    <h5>Click any bar to view more details</h5>
+                    <br>
+                    <div id="top-10-bar-chart"></div>
+                </div>
+                <div class="col-md-6">
+                    <div id="top-10-detail-area">
+                        <h3 id="top-10-movie-title"></h3>
+                        <p id="top-10-movie-revenue"></p>
+                        <p id="top-10-movie-bechdel"></p>
+                        <p id="top-10-movie-video"></p>
+                    </div>
                 </div>
             </div>
+            <button type="button" id="button35" class="btn btn-light" onclick="showDets()">Learn More</button>
         </div>
+
         <br>
         <br>
         <div id="breakdown" class="get-margins">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <h4>Actors Regularly Outnumber Actresses & The Dialogue Disparity Is Often Wider</h4>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="select-box">Select Movie: </label>
+                            <select class="form-control" id="movie-select-box" onchange="updateTop10()">
+                                <option value="1">Captain America: Civil War</option>
+                                <option value="2">Rogue One</option>
+                                <option value="3">Finding Dory</option>
+                                <option value="4">Zootopia</option>
+                                <option value="5">The Jungle Book</option>
+                                <option value="6">The Secret Life of Pets</option>
+                                <option value="7">Batman v Superman: Dawn of Justice</option>
+                                <option value="8">Fantastic Beasts and Where to Find Them</option>
+                                <option value="9">Deadpool</option>
+                                <option value="10">Suicide Squad</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
                     <div id="cast-dialogue-chart"></div>
+                </div>
+                <div class="col-md-3">
+                    <label>Split by </label>
+                    <label class="container">None
+                        <input type="radio" checked="checked" name="split" value="none">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Gender
+                        <input type="radio" name="split" value="gender">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container">Role
+                        <input type="radio" name="split" value="role">
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
             </div>
             <div class="row">
@@ -126,8 +168,8 @@
                         is clearly missed.</p>
                 </div>
             </div>
+            <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
         </div>
-        <button type="button" id="button4" class="btn btn-light" onclick="showQTwo()">Next</button>
     </div>
 
     <div class = "row get-margins">
@@ -140,8 +182,9 @@
             <div id="guess-two" align="center">
                 <p>Enter your guess: </p>
                 <div class="form-group">
-                    <input class="form-control" type="number" id="year-input">
+                    <input type="range" name="year" value="1980" min="1980" max="2013" id="year-input" oninput="showYear()" onchange="showYear()">
                 </div>
+                    <p id="range-answer">1980</p>
                     <p id="answer-feedback-2"></p>
                     <button type="button" id="button5" class="btn btn-light" onclick="showAnswerTwo()">Submit</button>
             </div>
@@ -200,87 +243,107 @@
                         the Bechdel test made up 36% of the total budget but 48% of the total domestic gross.</p>
                     <p>While we can't say this effect is causal, movies that pass the Bechdel test seem to be generating
                         more money domestically relative to the size of their budgets.</p>
+                    <br>
+                    <br>
+                    <button type="button" id="button7" class="btn btn-light" onclick="showEnd()">Next</button>
                 </div>
             </div>
         </div>
 
-        <h2>So What?</h2>
-
-        <div class="row">
-            <div class="col"><img class="directors" src="img/andrea.png"></div>
-            <div class="col"><img class="directors" src="img/amma.png"></div>
-            <div class="col"><img class="directors" src="img/ana.png"></div>
-            <div class="col"><img class="directors" src="img/debbie.png"></div>
-            <div class="col"><img class="directors" src="img/domee.png"></div>
-        </div>
-        <br>
-        <br>
-        <div class="row">
-                <p>The data makes the issue very apparent: there's still a lot that needs to be done in terms of female
-                    representation in film. From our analysis of historical rate of success in passing the bechdel test,
-                    it's very clear that we're making progress, but the process is too slow, and the metrics we use
-                    aren't even holistically evaluative. The Bechdel Test is an incredibly trivial baseline for a movie
-                    to meet. One non-male centered conversation between two female characters isn't a difficult task
-                    some of the movies passed the test with less than 20 words spoken in the passing conversation.
-                    Accomplishing Bechdel's benchmark in no way guarantees that the film (with its cast, crew, and
-                    content) promotes gender equality. Still, the test serves as an intuitive evaluation for whether a
-                    film ignores the importance of diverse representation in media. It's our duty to push for diversity
-                    and representation not just out of moral obligation, but to instill values of equality in media
-                    consumers of all generations. But don't just take our word learn more about the Bechdel test and
-                    representation:</p>
-                <p><a href="https://www.elle.com/culture/movies-tv/news/a47090/women-underrepresented-in-film-study-usc/">
-                    Analysis of USC Study on Female Representation in Film</a> </p>
-                <p><a href="https://bechdeltest.com/">Discuss The Bechdel Test Verdicts On Every Film</a></p>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="row" id="about">
-            <div class="col-md-6">
-                <h2>About Us</h2>
-                <p>This was a final project for Harvard's CS171 course in fall 2018, created by Jess Eng, Cassandra
-                    Kane, Lucy Li, and Jarele Soyinka.</p>
-                <h4>To learn more:</h4>
-                <ol>
-                    <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
-                    <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
-                    <li>Watch the screencast below</li>
-                </ol>
-                <p>TODO: INCLUDE SCREENCAST</p>
+        <div id="ending">
+            <h2>So What?</h2>
+            <br>
+            <div class="row">
+                <div class="col"><img class="directors" id="photo1" src="img/ava.png"></div>
+                <div class="col"><img class="directors" id="photo2" src="img/amma.png"></div>
+                <div class="col"><img class="directors" id="photo3" src="img/ana.png"></div>
+                <div class="col"><img class="directors" id="photo4" src="img/debbie.png"></div>
+                <div class="col"><img class="directors" id="photo5" src="img/domee.png"></div>
             </div>
-            <div class="col-md-6" id="credits">
-                <h2>Credits</h2>
-                <h4>Data Sources</h4>
-                <ol>
-                    <li>Box Office and Bechdel Test Results:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
-                    </li>
-                    <li>Cast and Crew Gender Breakdowns:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
-                    </li>
-                    <li>Dialogue Breakdowns:
-                        <a href="https://data.world/popculture/2016-movie-dialogue">2016 Movie Dialogue</a>
-                    </li>
-                    <li>Bechdel Test Over Time:
-                        <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">Bechdel Results</a>,
-                        <a href="https://data.world/sharon/bechdel-test">Genre Data</a>
-                    </li>
-                </ol>
-                <h4>Images</h4>
-                <ol>
-                    <li><a href="http://dykestowatchoutfor.com/the-rule">"The Rule"</a>
-                        by Alison Bechdel, from the comic strip <i>Dykes to Watch Out For</i></li>
-                    <li><a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html">"100 Women Directors Hollywood Should Be Hiring"</a>
-                        from Vulture</li>
-                </ol>
-                <p>Thank you to the CS171 course staff and especially our advisor,
-                    Nam Wook Kim, for all their help with this project!</p>
+            <br>
+            <br>
+            <div class="row" id="conclusion">
+                <div class="col-md-6">
+                    <p>The data makes the issue very apparent: there's still a lot that needs to be done in terms of female
+                        representation in film. From our analysis of historical rate of success in passing the Bechdel test,
+                        it's very clear that we're making progress, but the process is too slow, and the metrics we use
+                        aren't even holistically evaluative. The Bechdel Test is an incredibly trivial baseline for a movie
+                        to meet. One non-male centered conversation between two female characters isn't a difficult task
+                        some of the movies passed the test with less than 20 words spoken in the passing conversation.
+                        Accomplishing Bechdel's benchmark in no way guarantees that the film (with its cast, crew, and
+                        content) promotes gender equality. Still, the test serves as an intuitive evaluation for whether a
+                        film ignores the importance of diverse representation in media. It's our duty to push for diversity
+                        and representation not just out of moral obligation, but to instill values of equality in media
+                        consumers of all generations.</p>
+                </div>
+                <div id="resources" class="col-md-6">
+                    <h2>More Reading</h2>
+                    <ol>
+                        <li><a href="https://www.elle.com/culture/movies-tv/news/a47090/women-underrepresented-in-film-study-usc/" target="_blank">
+                            Analysis of USC Study on Female Representation in Film</a></li>
+                        <li><a href="https://bechdeltest.com/" target="_blank">Discuss The Bechdel Test Verdicts On Every Film</a></li>
+                        <li><a href="https://www.google.com/about/main/gender-equality-films/" target="_blank">Google's Gender Equality in Films Study</a></li>
+                        <li><a href="https://seejane.org/research-informs-empowers/data/#_ga=2.54931947.1178035117.1543525026-152244802.1543426425" target="_blank">Geena Davis Institute on Gender in Media</a></li>
+                    </ol>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row" id="about">
+                <div class="col-md-6">
+                    <h2>About Us</h2>
+                    <p>This was a final project for Harvard's CS171 course in fall 2018, created by Jess Eng, Cassandra
+                        Kane, Lucy Li, and Jarele Soyinka.</p>
+                    <h4>To learn more:</h4>
+                    <ol>
+                        <li>View this project on <a href="https://github.com/Squaaa/TheBechdelTest" target="_blank">GitHub</a></li>
+                        <li>Read our <a href="https://docs.google.com/document/d/1KxiIQmQO06daOWw_9xG_oByagpASEJuk7esA09U9X_Y/edit?usp=sharing" target="_blank">process book</a></li>
+                        <li>Watch the screencast below</li>
+                    </ol>
+                    <p>TODO: INCLUDE SCREENCAST</p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Credits</h2>
+                    <h4>Data Sources</h4>
+                    <ol>
+                        <li>Box Office and Bechdel Test Results:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                        </li>
+                        <li>Cast and Crew Gender Breakdowns:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/next-bechdel">The Next Bechdel Test</a>
+                        </li>
+                        <li>Dialogue Breakdowns:
+                            <a href="https://data.world/popculture/2016-movie-dialogue">2016 Movie Dialogue</a>
+                        </li>
+                        <li>Bechdel Test Over Time:
+                            <a href="https://github.com/fivethirtyeight/data/tree/master/bechdel">Bechdel Results</a>,
+                            <a href="https://data.world/sharon/bechdel-test">Genre Data</a>
+                        </li>
+                    </ol>
+                    <h4>Images</h4>
+                    <ol>
+                        <li><a href="http://dykestowatchoutfor.com/the-rule">"The Rule"</a>
+                            by Alison Bechdel, from the comic strip <i>Dykes to Watch Out For</i></li>
+                        <li><a href="https://www.vulture.com/2015/10/100-women-directors-hollywood-should-be-hiring.html">"100 Women Directors Hollywood Should Be Hiring"</a>
+                            from Vulture</li>
+                        <li><a href="https://www.nytimes.com/2018/07/24/magazine/domee-shi-thinks-kids-can-handle-dark-stories.html">"Domee Shi Thinks Kids Can Handle Dark Stories"</a>
+                            from The New York Times</li>
+                        <li><a href="https://variety.com/2015/tv/features/debbie-allen-greys-director-anatomy-executive-producer-season-12-1201585698/">"Debbie Allen Discusses Her Many Roles in ‘Grey’s Anatomy’ Season 12"</a>
+                            from Variety</li>
+                        <li><a href="http://www.jasonward.co.uk/film-writing/ana-lily-amirpour/">"Ana Lily Amipour"</a>
+                            from Jason Ward</li>
+                        <li><a href="https://www.indiewire.com/2018/02/amma-asante-mentor-female-filmmakers-1201932033/">"Amma Asante Has Been Quietly Mentoring Fellow Female Filmmakers in Hopes of Changing Hollywood’s Equality Problem"</a>
+                            from Indie Wire</li>
+                        <li><a href="https://www.hypehair.com/66666/ava-duvernay-shares-secret-fabulous-locs/">"Ava DuVernay Shares Secret to Her Fabulous Locs"</a>
+                            from HypeHair</li>
+                    </ol>
+                    <p>Thank you to the CS171 course staff and especially our advisor,
+                        Nam Wook Kim, for all their help with this project!</p>
+                </div>
             </div>
         </div>
-    </div>
-
-
-
+        </div>
 
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
@@ -289,7 +352,6 @@
     <script src="js/d3.layout.cloud.js"></script>
     <script src="js/d3-tip.js"></script>
     <script src="js/queue.v1.min.js"></script>
-    <script src="js/wordcloud.js"></script>
     <script src="js/d3-annotation.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/areachart.js"></script>

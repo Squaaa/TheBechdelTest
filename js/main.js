@@ -3,7 +3,6 @@ let alltimeData = [];
 
 queue()
     .defer(d3.csv,"data/top10_data/nextBechdel_allTests.csv")
-    .defer(d3.csv,"data/top10_data/nextBechdel_castGender.csv")
     .defer(d3.csv,"data/top10_data/nextBechdel_crewGender.csv")
     .defer(d3.csv,"data/top10_data/dialogue/CivilWar.csv")
     .defer(d3.csv,"data/top10_data/dialogue/RogueOne.csv")
@@ -19,7 +18,7 @@ queue()
     .defer(d3.csv,"data/alltime_data/Bechdel-master_revenue.csv")
     .await(wrangleData);
 
-function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
+function wrangleData(error, top10bechdelTests, top10crewGender,
                      civilWarData, rogueOneData, findingDoryData, zootopiaData, junglebookData,
                      secretLifeofPetsData, batmanVSupermanData, fantasticBeastsData, deadpoolData,
                      suicideSquadData, allTimeMovies, allTimeGenre) {
@@ -47,14 +46,14 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 
     let top10clips = ["<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/At5bfdda67988ed/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
     "<iframe width=\"500\" height=\"375\" src=\"https://www.youtube.com/embed/FQSgnwGsnzg\" frameborder=\"0\" allow=\"accelerometer; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>",
-    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\">via ytCropper</a>"];
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/If5bfdeb8534d84/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/Oq5bfdea0d48fe5/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/qc5bfdefb76110f/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/4G5bfdf1f7dc8d2/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/V05bfdf34e08807/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/dJ5bfdfb906c1ef/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/XV5bfdfc5b50593/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>",
+    "<iframe width=\"500\" height=\"375\" src=\"https://ytcropper.com/embed/6E5bfdfd0756a4e/loop/noautoplay/\" frameborder=\"0\" allowfullscreen></iframe><a href=\"/\" target=\"_blank\"><br>via ytCropper</a>"];
 
     for (let i = 0; i < top10titles.length; i++) {
         let movie = {
@@ -74,24 +73,6 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
             }
             testIndex++;
         }
-
-        let castData = [];
-        for (let j = 0; j < top10castGender.length; j++) {
-            let currActor = top10castGender[j];
-            // exception for Rogue One (title discrepancy)
-            if (currActor['MOVIE'] === movie['title'] ||
-                (movie['title'] === "Rogue One" && currActor['MOVIE'] === "Rogue One: A Star Wars Story")) {
-                let actorData = {
-                    'name': currActor['ACTOR'],
-                    'gender': currActor['GENDER'].toLowerCase(),
-                    'character': currActor['CHARACTER_NAME'],
-                    'characterType': currActor['TYPE'],
-                    'billing': +currActor['BILLING']
-                };
-                castData.push(actorData);
-            }
-        }
-        movie['castData'] = castData;
 
         // NOTE: missing crewData available for 'Fantastic Beasts and Where to Find Them' and 'Suicide Squad'
         let crewData = [];
@@ -157,14 +138,14 @@ function wrangleData(error, top10bechdelTests, top10castGender, top10crewGender,
 }
 
 function createVis() {
+    var vis = this;
     var areachartBrush = {};
 
     areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
-    //var casticonchart = new IconChart("cast-icon-chart", top10Data[0]['castData'], top10Data[0], "cast-icon-chart-error");
-    var crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
-    var castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[2]['dialogueData']);
+    vis.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
+    vis.castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
     genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, crewiconchart, castdialoguechart);
+    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, vis.crewiconchart, vis.castdialoguechart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
         genrechart.onSelectionChange(rangeStart, rangeEnd);
@@ -174,6 +155,27 @@ function createVis() {
 function updateAxes() {
     areachart.wrangleData();
     genrechart.wrangleData();
+}
+
+function updateTop10() {
+    var vis = this;
+    var selectedIndex = d3.select('#movie-select-box').property("value");
+    var d = {};
+    for (var index in top10Data) {
+        if (top10Data[index]['rank'] === +selectedIndex) {
+            d = top10Data[index];
+            break;
+        }
+    }
+    document.getElementById("top-10-movie-title").innerHTML = "#" + d['rank'] + " " + d['title'];
+    document.getElementById("top-10-movie-revenue").innerHTML = "<b>Box Office Revenue</b>: $" +
+        d['boxOffice'].toLocaleString() + "M";
+    document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
+    document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+    vis.crewiconchart.data = d['crewData'];
+    vis.crewiconchart.wrangleData();
+    vis.castdialoguechart.data = d['dialogueData'];
+    vis.castdialoguechart.wrangleData();
 }
 
 function showQOne() {
@@ -199,8 +201,14 @@ function showAnswerOne() {
 
 function showVis() {
     $("#button3").fadeTo(500, 0);
-    $("#main-visual").fadeIn();
+    $("#first-movies").fadeIn();
     document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+function showDets() {
+    $("#button35").fadeTo(500, 0);
+    $("#breakdown").fadeIn();
+    document.getElementById('breakdown').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
 
@@ -253,6 +261,17 @@ function showVisTwo() {
     document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
+function showEnd() {
+    $("#button7").fadeTo(500, 0);
+    $("#ending").fadeIn();
+    document.getElementById('ending').scrollIntoView({ behavior: 'smooth', block: 'start', });
+    $("#photo1").fadeIn(2000);
+    $("#photo2").fadeIn(2000);
+    $("#photo3").fadeIn(2000);
+    $("#photo4").fadeIn(2000);
+    $("#photo5").fadeIn(2000);
+}
+
 var vid = document.getElementById("intro-vid");
 function showVid() {
     $("#big-intro").fadeOut("slow");
@@ -260,8 +279,14 @@ function showVid() {
     vid.scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
+function showYear() {
+    $("#range-answer").html(document.getElementById("year-input").value)
+}
+
 vid.onended = function() {
     $("#intro-vid").fadeOut("slow");
     $("#full-intro").fadeIn("slow");
     document.getElementById('full-intro').scrollIntoView({ behavior: 'smooth', block: 'start', });
 };
+
+// $("#year-input").on("input change", function() { $("#range-answer").html(document.getElementById("year-input").value); });

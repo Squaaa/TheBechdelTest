@@ -184,14 +184,6 @@ img {
     display: block;
 }
 
-#gender-filter-text {
-    display: none;
-}
-
-#role-filter-text {
-    display: none;
-}
-
 /* RADIO BUTTONS */
 
 /* Customize the label (the container) */
@@ -256,6 +248,10 @@ img {
 
 .vis-text {
     font-size: 22px;
+}
+
+.not-default{
+    display: none;
 }
 
 /*********************/

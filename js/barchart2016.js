@@ -201,6 +201,7 @@ BarChart2016.prototype.revealBars = function() {
                 d['boxOffice'].toLocaleString() + "M";
             document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
             document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+            document.getElementById("2016-breakdown-title").innerHTML = "A Closer Look into " + d['title'];
             document.getElementById("movie-select-box").value = d['rank'].toString();
             vis.crewiconchart.data = d['crewData'];
             vis.crewiconchart.wrangleData();

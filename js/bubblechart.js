@@ -220,9 +220,6 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = false;
             vis.svg.selectAll("text.split-role").style("opacity", 0);
             vis.svg.selectAll("text.split-gender").style("opacity", 0);
-            d3.select("#default-filter-text").style("display", "block");
-            d3.select("#gender-filter-text").style("display", "none");
-            d3.select("#role-filter-text").style("display", "none");
         }
         else if (this.value === 'gender') {
             vis.simulation
@@ -233,9 +230,6 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = true;
             vis.svg.selectAll("text.split-role").style("opacity", 0);
             vis.svg.selectAll("text.split-gender").style("opacity", 100);
-            d3.select("#default-filter-text").style("display", "none");
-            d3.select("#gender-filter-text").style("display", "block");
-            d3.select("#role-filter-text").style("display", "none");
         }
         else if (this.value === 'role') {
             vis.simulation
@@ -246,9 +240,6 @@ BubbleChart.prototype.updateVis = function(){
             currSplitGender = false;
             vis.svg.selectAll("text.split-role").style("opacity", 100);
             vis.svg.selectAll("text.split-gender").style("opacity", 0);
-            d3.select("#default-filter-text").style("display", "none");
-            d3.select("#gender-filter-text").style("display", "none");
-            d3.select("#role-filter-text").style("display", "block");
         }
     });
 
@@ -325,7 +316,7 @@ BubbleChart.prototype.updateVis = function(){
     legendLabels.exit().remove();
 
     var valueDiff = wordCountMax - wordCountMin;
-    var valueRange = [valueDiff / 10, valueDiff * 2 / 5, valueDiff * 9 / 10];
+    var valueRange = [valueDiff * 9 / 10, valueDiff * 2 / 5, valueDiff / 10];
 
     var legendCircles = vis.svg.selectAll("circle.size-legend")
         .data(valueRange);
@@ -342,8 +333,9 @@ BubbleChart.prototype.updateVis = function(){
         .attr("r", function (d) {
             return vis.radiusScale(d);
         })
-        .attr("fill", "none")
-        .attr("stroke", "black")
+        .attr("fill", "#ccc")
+        .attr("stroke", "#EEE4D7")
+        .attr("stroke-width", 3)
         .attr("cx", 50)
         .attr("cy", function (d) {
             return 240 - vis.radiusScale(d);
@@ -354,11 +346,11 @@ BubbleChart.prototype.updateVis = function(){
         .attr("class", "size-legend")
         .merge(sizeLabels)
         .text(function(d) {
-            return Math.round(wordCountMin + d).toString();
+            return Math.round(wordCountMin + d).toLocaleString();
         })
         .attr("x", 35)
         .attr("y", function (d, i) {
-            return 237 - 2 * legendCirclesRadius[i];
+            return 235 - 2 * legendCirclesRadius[i];
         });
 
     legendCircles.exit().remove();

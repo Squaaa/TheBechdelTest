@@ -31,6 +31,7 @@ IconChart.prototype.initVis = function() {
         vis.allData['boxOffice'].toLocaleString() + "M";
     document.getElementById("top-10-movie-bechdel").innerHTML = vis.allData['analysis'];
     document.getElementById("top-10-movie-video").innerHTML = vis.allData['clips'];
+    document.getElementById("2016-breakdown-title").innerHTML = "A Closer Look into " + vis.allData['title'];
 
     vis.wrangleData();
 };

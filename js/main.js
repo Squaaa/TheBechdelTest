@@ -174,6 +174,7 @@ function updateTop10() {
         d['boxOffice'].toLocaleString() + "M";
     document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
     document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+    document.getElementById("2016-breakdown-title").innerHTML = "A Closer Look into " + d['title'];
     $("#results").hide();
     $("#top-10-detail-area").show();
     vis.crewiconchart.data = d['crewData'];
@@ -200,13 +201,7 @@ function showBars() {
 function checkAnswers() {
     var vis = this;
 
-    $("#2016-initial-title").hide("slow");
-    $("#2016-section-title").fadeIn();
-    /* document.getElementById("2016-section-title").innerHTML =
-        "2016's Top 10 Movies Mostly Passed The Test, But Failed At Larger Representation"; */
     $("#quiz").hide("slow");
-    document.getElementById("click-instruction").innerHTML = "Click any bar to view more details";
-    // document.getElementById("button2").style.display='none';
     document.getElementById("user-results").innerHTML = "You got <u>" + vis.barchart2016.numberCorrect +
         "</u> out of 10 movies correct. Click any bar to view more details about that movie.";
     document.getElementById("correct-movies").innerHTML = "<b>Movies you guessed correctly:</b> " +

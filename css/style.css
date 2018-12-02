@@ -128,7 +128,7 @@ img {
     text-align: center;
 }
 
-#intro {
+#intro-body {
     font-size: 22px;
 }
 
@@ -143,7 +143,7 @@ img {
     border-radius: 25px;
 }
 
-#about, #resources {
+#intro, #top-10-detail-area, #breakdown-body, #time-data-analysis, #about, #resources {
     background-color: #EEE4D7;
     padding: 15px;
     border-radius: 25px;
@@ -169,15 +169,6 @@ img {
 
 #time-data-analysis p {
     display: inline;
-}
-
-#breakdown {
-    background-color: #EEE4D7;
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 25px;
-    margin-bottom: 20px;
 }
 
 #question1, #user-results{

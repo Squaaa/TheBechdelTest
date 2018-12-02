@@ -121,14 +121,14 @@ StackedAreaChart.prototype.initVis = function() {
         .text("Your guess");
 
     // Initialize data analysis text
-    vis.numberProportionText = "The proportion of movies that pass the Bechdel test seems to be growing very slowly " +
+    vis.numberProportionText = "The proportion of movies that pass the Bechdel test has grown slowly " +
         "over time, with about half of movies passing the test in recent years. There are large differences between " +
         "movies of different genres: 77% of musicals have passed the Bechdel test, while at the other end of the " +
         "spectrum, just 25% of documentaries have passed the test.";
-    vis.budgetGrossText = "In 2013, the most recent year for which we have data, movies that passed the Bechdel test " +
+    vis.budgetGrossText = "In 2013, movies that passed the Bechdel test " +
         "made up 36% of the total budget but 48% of the total domestic gross. While we can't say this effect is " +
         "causal, movies that pass the Bechdel test seem to be generating more money domestically relative to the " +
-        "size of their budgets."
+        "size of their budgets.";
 
     vis.yValue = d3.select("#select-box").property("value");
     if (vis.yValue === "number" || vis.yValue === "proportion") {

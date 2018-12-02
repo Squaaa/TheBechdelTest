@@ -198,17 +198,6 @@ StackedBarChart.prototype.updateVis = function(){
 
     pass.exit().remove();
 
-    d3.select("#time-genre-bar-chart")
-        .on("mouseover", function() {
-            d3.select(".genre-info").style("font-weight", "bold")
-            d3.select(".genre-info").style("display", "block")
-        })
-        .on("mouseout", function() {
-            d3.select(".genre-info").style("font-weight", "normal")
-            d3.select(".genre-info").style("display", "none")
-        });
-
-
     // Create axes
     vis.svg.select(".x-axis")
         .transition()

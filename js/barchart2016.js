@@ -71,23 +71,23 @@ BarChart2016.prototype.initVis = function() {
     vis.labels.exit().remove();
 
     // Init the scales
-    var y = d3.scaleBand()
+    vis.y = d3.scaleBand()
         .range([vis.height, 0])
         .padding(0.1);
 
-    var x = d3.scaleLinear()
+    vis.x = d3.scaleLinear()
         .range([0, vis.width]);
 
-    x.domain([0, d3.max(vis.data, function (d) { return d.boxOffice })]);
-    y.domain(vis.data.map(function(d) { return d.title.substring(0, 15); }));
+    vis.x.domain([0, d3.max(vis.data, function (d) { return d.boxOffice })]);
+    vis.y.domain(vis.data.map(function(d) { return d.title.substring(0, 15); }));
 
     vis.svg.selectAll(".bar")
         .data(vis.data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("width", function(d, i) {return x(d.boxOffice); } )
-        .attr("y", function(d) { return y(d.title.substring(0, 15)); })
-        .attr("height", y.bandwidth())
+        .attr("width", function(d, i) {return vis.x(d.boxOffice); } )
+        .attr("y", function(d) { return vis.y(d.title.substring(0, 15)); })
+        .attr("height", vis.y.bandwidth())
         .attr("fill", "#d32727")
         .on("mouseover", function(d) {
             d3.select(this).attr("fill", function() {
@@ -110,7 +110,7 @@ BarChart2016.prototype.initVis = function() {
     // add the x Axis
     vis.svg.append("g")
         .attr("transform", "translate(0," + vis.height + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(vis.x));
 
     vis.svg.append("text")
         .attr("class", "x-axis")
@@ -122,7 +122,7 @@ BarChart2016.prototype.initVis = function() {
 
     // add the y Axis
     vis.svg.append("g")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(vis.y));
 
 };
 
@@ -150,6 +150,27 @@ BarChart2016.prototype.revealBars = function() {
                 vis.incorrectMovies.unshift(d.title);
             }
             return correctFill;
+        })
+        .each(function(d) {
+            var width = +d3.select(this).attr("width");
+            var yPosition = +d3.select(this).attr("y");
+            var userGuess = d3.select(this).attr("fill")
+            if (d.bechdel) {
+                var correctFill = "#74b9ff";
+            } else {
+                var correctFill = "#d32727";
+            }
+            vis.svg.append("text")
+                .attr("x", function () {
+                    return (width + 10);
+                })
+                .attr("y", function () {
+                    console.log(vis.y.bandwidth() / 2)
+                    return (yPosition + vis.y.bandwidth() / 2 + 2);
+                })
+                .text(function () {
+                    return (userGuess === correctFill) ? "\u2714" : "\u2718";
+                });
         })
         .on("end", function() {
             checkAnswers();

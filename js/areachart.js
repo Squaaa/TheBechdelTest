@@ -89,31 +89,6 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("x", 0 - (vis.height / 2))
         .style("text-anchor", "middle");
 
-    // Annotations
-    /*
-    const type = d3.annotationXYThreshold;
-
-    const annotations = [{
-        note: {
-            label: "Longer text to show text wrapping",
-            title: "Annotations :)"
-        },
-        x: 50,
-        y: 150,
-        dy: 137,
-        dx: 162
-    }]
-
-    var makeAnnotations = d3.annotation()
-        .type(type)
-        .annotations(annotations)
-
-    console.log(makeAnnotations)
-
-    vis.svg.append("g")
-        .attr("class", "annotation-group")
-        .call(makeAnnotations); */
-
     vis.correctAnnotation = vis.svg.append("g")
         .attr("class", "annotation-group");
 
@@ -145,12 +120,22 @@ StackedAreaChart.prototype.initVis = function() {
         .attr("font-size", "14px")
         .text("Your guess");
 
-    /* vis.differenceAnnotation = vis.svg.append("line")
-        .attr("y1", vis.height / 2)
-        .attr("y2", vis.height / 2)
-        .attr("stroke-width", "1px")
-        .attr("stroke", "black")
-        .attr("stroke-dasharray", 4); */
+    // Initialize data analysis text
+    vis.numberProportionText = "The proportion of movies that pass the Bechdel test has grown slowly " +
+        "over time, with about half of movies passing the test in recent years. There are large differences between " +
+        "movies of different genres: 77% of musicals have passed the Bechdel test, while at the other end of the " +
+        "spectrum, just 25% of documentaries have passed the test.";
+    vis.budgetGrossText = "In 2013, movies that passed the Bechdel test " +
+        "made up 36% of the total budget but 48% of the total domestic gross. While we can't say this effect is " +
+        "causal, movies that pass the Bechdel test seem to be generating more money domestically relative to the " +
+        "size of their budgets.";
+
+    vis.yValue = d3.select("#select-box").property("value");
+    if (vis.yValue === "number" || vis.yValue === "proportion") {
+        document.getElementById("time-data-analysis").innerHTML = vis.numberProportionText;
+    } else {
+        document.getElementById("time-data-analysis").innerHTML = vis.budgetGrossText;
+    }
 
     vis.wrangleData();
 
@@ -232,6 +217,13 @@ StackedAreaChart.prototype.wrangleData = function(){
 StackedAreaChart.prototype.updateVis = function(){
     var vis = this;
 
+    // Update data analysis text
+    if (vis.yValue === "number" || vis.yValue === "proportion") {
+        document.getElementById("time-data-analysis").innerHTML = vis.numberProportionText;
+    } else {
+        document.getElementById("time-data-analysis").innerHTML = vis.budgetGrossText;
+    }
+
     // Update y-axis labels
     var selectedText = d3.select('#select-box option:checked').text();
     vis.yLabel.text(selectedText);
@@ -309,17 +301,6 @@ StackedAreaChart.prototype.updateVis = function(){
         .attr("transform", "translate(" + vis.x(1993) + ", 0)");
 
     vis.correctAnnotation.moveToFront();
-
-    // Hover effects for text
-    d3.select("#time-area-chart")
-        .on("mouseover", function() {
-            d3.select("." + vis.yValue).style("font-weight", "bold")
-            d3.select("." + vis.yValue).style("display", "block")
-        })
-        .on("mouseout", function() {
-            d3.select("." + vis.yValue).style("font-weight", "normal")
-            d3.select("." + vis.yValue).style("display", "none")
-        });
 
     vis.brushGroup.attr("clip-path", "url(#clip)").call(vis.brush);
 

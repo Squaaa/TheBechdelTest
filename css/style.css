@@ -76,12 +76,12 @@ img {
     transform: translateY(20%);
 }
 
-#guess, #guess-two {
+#guess-two {
     display:none;
     font-size: 22px;
 }
 
-#first-question, #second-question {
+#second-question {
     display: none;
     font-size: 40px;
     text-align: center;
@@ -128,7 +128,7 @@ img {
     text-align: center;
 }
 
-#intro {
+#intro-body {
     font-size: 22px;
 }
 
@@ -136,14 +136,14 @@ img {
     font-size: 16px;
 }
 
-#show-answer, #show-answer-2 {
+#show-answer-2 {
     font-size: 40px;
     background-color: #EEE4D7;
     padding: 20px;
     border-radius: 25px;
 }
 
-#about, #resources {
+#intro, #top-10-detail-area, #breakdown-body, #time-data-analysis, #about, #resources {
     background-color: #EEE4D7;
     padding: 15px;
     border-radius: 25px;
@@ -157,7 +157,7 @@ img {
     display: none;
 }
 
-#button3, #button35, #button4, #button6 {
+#button2, #button35, #button4, #button6, #button7 {
     margin:auto;
     display:block;
 }
@@ -171,13 +171,13 @@ img {
     display: inline;
 }
 
-#breakdown {
-    background-color: #EEE4D7;
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 25px;
-    margin-bottom: 20px;
+#question1, #user-results{
+    margin-bottom: 2rem;
+    font-size: 36px;
+}
+
+#incorrect-movies {
+    margin-top: 1rem;
 }
 
 #default-filter-text {

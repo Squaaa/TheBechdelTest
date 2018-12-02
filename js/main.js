@@ -141,20 +141,22 @@ function createVis() {
     var vis = this;
     var areachartBrush = {};
 
-    areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
+    vis.areachart = new StackedAreaChart("time-area-chart", alltimeData, areachartBrush);
     vis.crewiconchart = new IconChart("crew-icon-chart", top10Data[0]['crewData'], top10Data[0], "crew-icon-chart-error");
     vis.castdialoguechart = new BubbleChart("cast-dialogue-chart", top10Data[0]['dialogueData']);
-    genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
-    var barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, vis.crewiconchart, vis.castdialoguechart);
+    vis.genrechart = new StackedBarChart("time-genre-bar-chart", alltimeData);
+    vis.barchart2016 = new BarChart2016("top-10-bar-chart", top10Data, vis.crewiconchart, vis.castdialoguechart);
 
     $(areachartBrush).bind("selectionChanged", function(event, rangeStart, rangeEnd){
-        genrechart.onSelectionChange(rangeStart, rangeEnd);
+        vis.genrechart.onSelectionChange(rangeStart, rangeEnd);
     });
 }
 
 function updateAxes() {
-    areachart.wrangleData();
-    genrechart.wrangleData();
+    var vis = this;
+
+    vis.areachart.wrangleData();
+    vis.genrechart.wrangleData();
 }
 
 function updateTop10() {
@@ -172,37 +174,42 @@ function updateTop10() {
         d['boxOffice'].toLocaleString() + "M";
     document.getElementById("top-10-movie-bechdel").innerHTML = d['analysis'];
     document.getElementById("top-10-movie-video").innerHTML = d['clips'];
+    document.getElementById("2016-breakdown-title").innerHTML = "A Closer Look into " + d['title'];
+    $("#results").hide();
+    $("#top-10-detail-area").show();
     vis.crewiconchart.data = d['crewData'];
     vis.crewiconchart.wrangleData();
     vis.castdialoguechart.data = d['dialogueData'];
     vis.castdialoguechart.wrangleData();
 }
 
-function showQOne() {
-    $("#first-question").fadeIn(2000);
-    $("#guess").fadeIn(2000);
-    $("#button1").fadeTo(500, 0);
-    document.getElementById('bottom-view-1').scrollIntoView({ behavior: 'smooth', block: 'start', });
-}
-
-function showAnswerOne() {
-    var answer = document.getElementById('number-input').value;
-    if((answer < 0 || answer > 10) || (answer === "")) {
-        $("#answer-feedback").html("Please enter a valid integer between 0 and 10.")
-    }
-    else {
-        $("#button2").fadeTo(500, 0);
-        $("#answer-one").fadeIn();
-        $("#show-answer").html("You thought <u>" + answer + "</u> movies or <u>" + (answer * 10) + "%</u> of the top 10 grossing films from 2016 passed the Bechdel Test. " +
-            "<b>In 2016, 60% of the top grossing films passed the Bechdel Test.</b> Let's dive deeper into 2016.");
-        document.getElementById('answer-one').scrollIntoView({ behavior: 'smooth', block: "end", });
-    }
-}
-
 function showVis() {
-    $("#button3").fadeTo(500, 0);
+    $("#button1").fadeTo(500, 0);
     $("#first-movies").fadeIn();
+    $("#2016-section-title").hide();
+    $("#top-10-detail-area").hide();
+    $("#button35").hide();
     document.getElementById('top-view').scrollIntoView({ behavior: 'smooth', block: 'start', });
+}
+
+function showBars() {
+    var vis = this;
+
+    vis.barchart2016.revealBars();
+}
+
+function checkAnswers() {
+    var vis = this;
+
+    $("#quiz").hide("slow");
+    document.getElementById("user-results").innerHTML = "You got <u>" + vis.barchart2016.numberCorrect +
+        "</u> out of 10 movies correct. Click any bar to view more details about that movie.";
+    document.getElementById("correct-movies").innerHTML = "<b>Movies you guessed correctly:</b> " +
+        vis.barchart2016.correctMovies.join(', ');
+    document.getElementById("incorrect-movies").innerHTML = "<b>Movies you guessed incorrectly:</b> " +
+        vis.barchart2016.incorrectMovies.join(', ');
+    $("#results").show("slow");
+    $("#button35").show();
 }
 
 function showDets() {
@@ -219,45 +226,28 @@ function showQTwo() {
     document.getElementById('end-second').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 
-
-function showAnswerTwo() {
-    var answer = document.getElementById('year-input').value;
-    if((answer < 1980 || answer > 2013) || (answer === "")) {
-        $("#answer-feedback-2").html("Please enter a year between 1980 and 2013.")
-    }
-    else {
-        $("#button5").fadeTo(500, 0);
-        $("#answer-two").fadeIn();
-        $("#show-answer-2").html("You thought <u>" + answer + "</u> was the first year where at least half of the films passed the Bechdel test. <b>The correct answer is 1993, which is <u>"
-            + Math.abs(1993 - answer) + "</u> years off from your prediction.</b> Let's look at how the Bechdel Test changes overtime, from 1980 to 2013." );
-        document.getElementById('answer-two').scrollIntoView({ behavior: 'smooth', block: 'end', });
-        areachart.guessAnnotation
-            .attr("transform", "translate(" + areachart.x(answer) + ", 0)");
-        areachart.guessAnnotation.moveToFront();
-        areachart.correctText
-            .attr("x", function() {
-                return (answer > 1993) ? -10 : 10;
-            })
-            .attr("text-anchor", function() {
-                return (answer > 1993) ? "end" : "start";
-            })
-        areachart.guessText
-            .attr("x", function() {
-                return ((answer > 1993 && answer < 2011) || answer < 1983) ? 10 : -10;
-            })
-            .attr("text-anchor", function() {
-                return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
-            });
-        /* areachart.differenceAnnotation
-            .attr("x1", areachart.x(answer))
-            .attr("x2", areachart.x(1993));
-        areachart.differenceAnnotation.moveToFront(); */
-    }
-}
-
 function showVisTwo() {
-    $("#button6").fadeTo(500, 0);
+    vis = this;
+    $("#button5").fadeTo(500, 0);
     $("#main-visual-2").fadeIn();
+    var answer = document.getElementById('year-input').value;
+    vis.areachart.guessAnnotation
+        .attr("transform", "translate(" + areachart.x(answer) + ", 0)");
+    vis.areachart.guessAnnotation.moveToFront();
+    vis.areachart.correctText
+        .attr("x", function() {
+            return (answer > 1993) ? -10 : 10;
+        })
+        .attr("text-anchor", function() {
+            return (answer > 1993) ? "end" : "start";
+        })
+    vis.areachart.guessText
+        .attr("x", function() {
+            return ((answer > 1993 && answer < 2011) || answer < 1983) ? 10 : -10;
+        })
+        .attr("text-anchor", function() {
+            return ((answer > 1993 && answer < 2011) || answer < 1983) ? "start" : "end";
+        });
     document.getElementById('topViewTwo').scrollIntoView({ behavior: 'smooth', block: 'start', });
 }
 

@@ -1,5 +1,5 @@
 # TheBechdelTest
-Hello and welcome to our Github Repository, website found at: https://squaaa.github.io/TheBechdelTest/. Screen cast: https://youtu.be/ilPlKGJdbRg.
+Hello and welcome to our Github Repository, website found at: https://squaaa.github.io/TheBechdelTest/. Screen cast: https://youtu.be/rT0KUyjJbmM.
 
 Our goal for this project was to create a interactive story describing the state of female representation (or lackthereof)
 in cinema. Using the Bechdel Test as a metric, we detailed the history of successes and failures in the film industry

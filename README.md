@@ -1,34 +1,37 @@
 # TheBechdelTest
-(In Progress)
-Hello and welcome to our Github Repository.
+Hello and welcome to our Github Repository, website found at: https://squaaa.github.io/TheBechdelTest/. Screen cast: https://youtu.be/ilPlKGJdbRg.
 
 Our goal for this project was to create a interactive story describing the state of female representation (or lackthereof)
 in cinema. Using the Bechdel Test as a metric, we detailed the history of successes and failures in the film industry
 particularly highlighting 2016's top box office hits as points of observation to show how Hollywood has a bunch of work to
-do on the representation front. But enough overview, let's get into how to use our website.
+do on the representation front. But enough overview, let's give the website a breakdown.
 
-Head on over to https://squaaa.github.io/TheBechdelTest/. The squaaa is pronounced $quaaa, as if you are in a music
-video and you gotta let your Day 1s know that it's their turn to jump in. Upon arrival you'll be greeted with a
-beautiful landing page, giving you a view of Hollywood right over city limits. To be honest that's just a guess; Jess
-did all the landing page work so I pretty much made everything up in the second half of that sentence. Anyway, after you
-hit Enter, wait for the countdown (because we had to be extra) and you'll be presented with our cinematic masterpiece
-(our intro page).
+(Most of the sections of the website had a main person working on it, but received contributions from others on the team.
+The contributions are shown in the git logs so I'll only get into the main person working on each part.)
+
+The landing page, website progression/navigation, and introduction were mainly developed by Jess.
+
+From there the website moves on to the first user interaction where we prompt them to select movies that passed the Bechdel Test; this section was mainly developed by Lucy.
+Selecting the bar reveals more information about the movies and a relevant Bechdel test video, the initial bar chart and
+information was mainly developed by J.
+
+The section below includes our innovative view the bubble chart. Here you can select a movie and the movie characters
+are placed in bubbles colored by gender identity and sized based the number of words spoken. It's also filterable based
+on gender and role (lead vs. supporting). The ratio of characters and dialogue between men and women is also displayed.
+Additionally, the crew breakdown by gender is displayed in the bottom left. These items were mainly developed by Cassandra.
+
+The following section prompts the user to guess the first year where at least 50% of movies passed the Bechdel
+Test. Your answer will be displayed on an area chart along with the correct answer. The area chart is filterable displaying
+things like revenue, budget, percentage of success, etc. You can also highlight an specific portion of the area chart to
+refilter the genre bar chart below. Mousing over different areas of the section provides new information. This section
+was mainly developed by Lucy.
+
+The conclusion including so what, about us, and credits was a team effort.
+
+We used a few libraries such as annotation, tip, popper, and queue, but nothing outside of items used in lab. This
+website is a product of our blood, sweat, tears and multiple nights where someone would send a msg at 2am only to find out
+that everyone else is also awake at 2am working on the project.
+
+Thanks so much for visiting our website, if you want a more exciting readme file, head on over to README2.md
 
 
-The intro page will provide some information about the Bechdel test, and ask you a question. It currently asks how many
-of the top 10 movies of 2016 passed the Bechdel test, but that might change depending on how many new ideas come in and
-our willingness to provide the fun most engaging interface this side of the Ol' Mississippi, first place obviously goes
-to the Google team in California where they invented the running dinosaur game when your internet is out. After
-answering whatever question you'll be shown some bars showing more info about the top 10 movies with info about its
-title, box office, Bechdel evaluation and video clip. You'll also be able to load more details for info about cast and
-crew, with a bit of data analysis.
-
-The next part of the website transitions into Bechdel results over time. We'll ask you when the first time over half of
-the movies made past the Bechdel test. Let me tell you right now sonny, the results ain't pretty, but our visualizations
-sure are. Explore the results over a variety of parameters presented in the drop down menu, and highlight a portion of
-the area chart to observe more details in the bar chart below it. I know, so much interactivity, we're really spoiling
-yall down there. There's so much detail in this section, but I can't go over it all cuz that Lucy's schtik, but boy if
-it aint the most purtiest and technologically comprehensive viz you've seen...
-
-Anyways, the last section is basically the conclusion. I'm running out of jokes but it's self explanatory. Thanks for
-visiting and remember to always remember to do your part in shaping inclusivity and representation.

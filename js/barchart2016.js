@@ -22,7 +22,7 @@ BarChart2016.prototype.initVis = function() {
        return a.boxOffice - b.boxOffice;
     });
 
-    vis.margin = {top: 25, right: 25, bottom: 50, left: 90},
+    vis.margin = {top: 25, right: 25, bottom: 50, left: 110},
         vis.width = 500 - vis.margin.left - vis.margin.right,
         vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
@@ -79,14 +79,30 @@ BarChart2016.prototype.initVis = function() {
         .range([0, vis.width]);
 
     vis.x.domain([0, d3.max(vis.data, function (d) { return d.boxOffice })]);
-    vis.y.domain(vis.data.map(function(d) { return d.title.substring(0, 15); }));
+    vis.y.domain(vis.data.map(function(d) {
+        var cutoff = d.title.indexOf(':')
+        if (cutoff > -1) {
+            return d.title.substring(0, cutoff)
+        } else if (d.title === "Fantastic Beasts and Where to Find Them") {
+            return "Fantastic Beasts"
+        }
+        return d.title;
+    }));
 
     vis.svg.selectAll(".bar")
         .data(vis.data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("width", function(d, i) {return vis.x(d.boxOffice); } )
-        .attr("y", function(d) { return vis.y(d.title.substring(0, 15)); })
+        .attr("width", function(d) {return vis.x(d.boxOffice); } )
+        .attr("y", function(d) {
+            var cutoff = d.title.indexOf(':')
+            if (cutoff > -1) {
+                return vis.y(d.title.substring(0, cutoff));
+            } else if (d.title === "Fantastic Beasts and Where to Find Them") {
+                return vis.y("Fantastic Beasts");
+            }
+            return vis.y(d.title);
+        })
         .attr("height", vis.y.bandwidth())
         .attr("fill", "#d32727")
         .on("mouseover", function(d) {
